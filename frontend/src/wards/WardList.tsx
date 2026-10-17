@@ -1,8 +1,9 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { getWards, locateWard } from '../api'
 import AddressInput from '../components/AddressInput'
 import type { Field } from '../components/AddressInput'
 import type { WardSummary } from '../types'
+import { prefetchWard } from './cache'
 
 type Props = { selected: number | null; onSelect: (id: number) => void }
 
@@ -11,6 +12,10 @@ export default function WardList({ selected, onSelect }: Props) {
   const [listError, setListError] = useState('')
   const [search, setSearch] = useState<Field>({ text: '', point: null })
   const [searchError, setSearchError] = useState('')
+  const prefetch = useRef(0)
+  // Load a card while the pointer rests on (or focus lands on) its row, so the click is instant.
+  const warm = (id: number) => { window.clearTimeout(prefetch.current); prefetch.current = window.setTimeout(() => prefetchWard(id), 120) }
+  const cool = () => window.clearTimeout(prefetch.current)
 
   useEffect(() => {
     const pending = new AbortController()
@@ -37,7 +42,8 @@ export default function WardList({ selected, onSelect }: Props) {
     <ol className="wards">
       {wards.map((ward) => <li key={ward.id}>
         <button type="button" className={`ward-row${ward.id === selected ? ' selected' : ''}`}
-          aria-current={ward.id === selected ? 'page' : undefined} onClick={() => onSelect(ward.id)}>
+          aria-current={ward.id === selected ? 'page' : undefined} onClick={() => onSelect(ward.id)}
+          onPointerEnter={() => warm(ward.id)} onPointerLeave={cool} onFocus={() => warm(ward.id)} onBlur={cool}>
           <span className="ward-number">{ward.id}</span>
           <span>{ward.name}</span>
         </button>

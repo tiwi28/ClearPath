@@ -13,6 +13,7 @@ class Settings(BaseSettings):
     barrier_source: Literal["fixtures", "postgres"] = "fixtures"
     gemini_api_key: str = ""
     gemini_model: str = "gemini-3.8-flash"
+    background_refresh: bool = True  # keep live feeds warm in a background thread (off in tests)
 
 
 settings = Settings()

@@ -1,19 +1,23 @@
 import { useEffect, useState } from 'react'
-import { getWard } from '../api'
 import type { WardCard as Card } from '../types'
+import { cachedWard, loadWard } from './cache'
 import WardCard from './WardCard'
 
 export default function WardPage({ wardId }: { wardId: number | null }) {
-  const [card, setCard] = useState<Card | null>(null)
+  // Keyed by ward id in App, so a cached card is on screen from the first render.
+  const [card, setCard] = useState<Card | null>(() => wardId === null ? null : cachedWard(wardId)?.card ?? null)
   const [error, setError] = useState('')
 
   useEffect(() => {
     if (wardId === null) return
-    const pending = new AbortController()
-    getWard(wardId, pending.signal).then(setCard).catch((failure) => {
-      if (!pending.signal.aborted) setError(failure instanceof Error ? failure.message : String(failure))
+    const cached = cachedWard(wardId)
+    if (cached?.fresh) return
+    // The request is shared with any prefetch, so it is not aborted; a late answer is ignored instead.
+    let current = true
+    loadWard(wardId).then((next) => { if (current) setCard(next) }).catch((failure) => {
+      if (current && !cached) setError(failure instanceof Error ? failure.message : String(failure))
     })
-    return () => pending.abort()
+    return () => { current = false }
   }, [wardId])
 
   return <section className="ward-main" aria-label="Ward report card" aria-busy={wardId !== null && !card && !error}>

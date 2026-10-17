@@ -45,11 +45,13 @@ def controlled_dependencies(monkeypatch):
     """API tests never need real credentials, network calls, or a database."""
     monkeypatch.setattr(settings, "ors_api_key", "test-key")
     monkeypatch.setattr(settings, "barrier_source", "fixtures")
+    monkeypatch.setattr(settings, "background_refresh", False)
     monkeypatch.setattr(forecast, "predict", risk_map)
     monkeypatch.setattr(reports, "recent", lambda bounds: [])
     monkeypatch.setattr(restrictions, "active", lambda: {"available": True, "items": []})
     routing._cache.clear()
-    ttc._alerts_cache.update(fetched=0.0, value=None)
+    ttc.ALERTS.reset()
+    restrictions.FEED.reset()
 
     def post(url, **kwargs):
         return httpx.Response(200, json=ors_route(kwargs["json"]["coordinates"]), request=httpx.Request("POST", url))

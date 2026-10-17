@@ -43,7 +43,7 @@ export default function WardCard({ card }: { card: Card }) {
     <header className="ward-head">
       <div>
         <h2 id="ward-title"><span className="ward-badge"><span className="visually-hidden">Ward </span>{card.id}</span>{card.name}</h2>
-        <p className="ward-meta">311 reports through {longDate(card.meta.reports_through)} · Live numbers as of {new Date(card.generated_at).toLocaleTimeString('en-CA', { hour: 'numeric', minute: '2-digit' })}</p>
+        <p className="ward-meta">311 reports through {longDate(card.meta.reports_through)} · Live numbers as of {new Date(card.live_as_of).toLocaleTimeString('en-CA', { hour: 'numeric', minute: '2-digit' })}</p>
       </div>
       <Outline geometry={card.geometry} />
     </header>
@@ -56,6 +56,7 @@ export default function WardCard({ card }: { card: Card }) {
         <span className="ward-chip">{card.summary_source === 'gemini' ? 'AI summary of the numbers below' : 'Summary of the numbers below'}</span>
       </div>
       <p className="ward-summary">{card.summary}</p>
+      {card.summary_live && <p className="ward-summary-live">{card.summary_live}</p>}
     </section>
 
     <section className="ward-section" aria-labelledby="numbers-title">

@@ -1,0 +1,132 @@
+{
+ "data_version": "21b87c4ac48d",
+ "model": "gemini-3.8-flash",
+ "prompt_version": 2,
+ "wards": {
+  "1": {
+   "facts_hash": "b65ccc801a9af146",
+   "source": "gemini",
+   "text": "In Etobicoke North, people submitted 270 snow or ice reports last winter, along with 219 damaged sidewalk or curb reports and 7 ramp or tactile paver reports over the past 12 months. The place with the most reports over the past 12 months was Albion Rd & Elmhurst Dr, and 8 percent of reports from this period remain open. The ward also has 6 TTC subway stations."
+  },
+  "10": {
+   "facts_hash": "d9f46fd99464cbe4",
+   "source": "template",
+   "text": null
+  },
+  "11": {
+   "facts_hash": "ba9a8d33af91896c",
+   "source": "template",
+   "text": null
+  },
+  "12": {
+   "facts_hash": "e65722b03a3404b5",
+   "source": "gemini",
+   "text": "In Toronto-St. Paul's, people made 1,690 snow or ice reports last winter, along with 330 reports for damaged sidewalks or curbs and 9 reports for ramps or tactile pavers over the past 12 months. The place with the most reports over the past 12 months was Bathurst St & St Clair Ave W, and 10 percent of reports from that period remain open. The ward also has 6 TTC subway stations."
+  },
+  "13": {
+   "facts_hash": "9e7b234568dca0d6",
+   "source": "gemini",
+   "text": "In Toronto Centre, people reported snow or ice 871 times last winter, along with 576 reports of damaged sidewalks or curbs and 27 reports for ramps or tactile pavers over the past 12 months. The intersection with the most reports over the past 12 months was Bloor St E & Sherbourne St, and 18 percent of reports from that period remain open. The ward also has 5 TTC subway stations."
+  },
+  "14": {
+   "facts_hash": "ef6158316364b766",
+   "source": "gemini",
+   "text": "Last winter, people made 1,592 reports about snow or ice in Toronto-Danforth. Over the past 12 months, residents submitted 318 reports for damaged sidewalks or curbs and 16 reports for ramps or tactile pavers, with the most reports occurring around Pape Ave & Danforth Ave. Currently, 9 percent of reports from the past 12 months remain open, and the ward contains 5 TTC subway stations."
+  },
+  "15": {
+   "facts_hash": "0f8436b453f92123",
+   "source": "gemini",
+   "text": "Last winter, people made 766 reports about snow or ice on sidewalks in Don Valley West. Over the past 12 months, residents submitted 267 reports about damaged sidewalks or curbs and 9 reports about ramps or tactile pavers, with the most reports occurring near Eglinton Ave E & Bayview Ave. Currently, 3 percent of the reports from the past 12 months remain open, and the ward has 4 TTC subway stations."
+  },
+  "16": {
+   "facts_hash": "eae9363a0193e0ae",
+   "source": "gemini",
+   "text": "In Don Valley East, people reported snow or ice 471 times last winter, along with 92 reports of damaged sidewalks or curbs and 9 reports about ramps or tactile pavers over the past 12 months. The place with the most reports in the past 12 months was Don Mills Rd & Overlea Blvd, and 4 percent of reports from that period are still open. The ward also has 5 TTC subway stations."
+  },
+  "17": {
+   "facts_hash": "62b0fb68ffdd8fcf",
+   "source": "gemini",
+   "text": "In Don Valley North, people made 248 reports about snow or ice last winter, along with 216 reports for damaged sidewalks or curbs and 10 reports for ramps or tactile pavers over the past 12 months. The location with the most reports during the past 12 months was Don Mills Rd & Don Mills Rd E, and 6 percent of reports from that period remain open. The ward also contains 4 TTC subway stations."
+  },
+  "18": {
+   "facts_hash": "2cb55d9e49651e3c",
+   "source": "gemini",
+   "text": "Over the past 12 months, people reported damaged sidewalks or curbs 508 times and ramp or tactile paver issues 10 times, with the most reports occurring at Yonge St & Sheppard Ave E. Last winter, residents made 220 reports about snow or ice, and 8 percent of reports from the past 12 months remain open. The ward also includes 3 TTC subway stations."
+  },
+  "19": {
+   "facts_hash": "6bff36aad601c97f",
+   "source": "gemini",
+   "text": "In Beaches-East York, people reported snow or ice 1,192 times last winter. Over the past 12 months, there were 280 reports of damaged sidewalks or curbs and 14 reports regarding ramps or tactile pavers, with the most reports occurring at Woodbine Ave & Danforth Ave. Currently, 6 percent of reports from the past 12 months remain open, and the ward contains 3 TTC subway stations."
+  },
+  "2": {
+   "facts_hash": "b0d6d4b062147130",
+   "source": "gemini",
+   "text": "In Etobicoke Centre, people made 603 reports about snow or ice last winter, along with 334 reports for damaged sidewalks or curbs and 14 reports for ramps or tactile pavers over the past 12 months. The location with the most reports during the past 12 months was Humber River Trl & Humber River Recreational Trl, and 9 percent of all reports from that period remain open. The ward has 0 TTC subway stations."
+  },
+  "20": {
+   "facts_hash": "30979c6720ae5f4d",
+   "source": "gemini",
+   "text": "Last winter, people made 772 reports about snow or ice on sidewalks in Scarborough Southwest. Over the past 12 months, residents submitted 209 reports about damaged sidewalks or curbs and 13 reports about ramps or tactile pavers, with the most reports coming from Eglinton Ave E & Markham Rd. Currently, 6 percent of the reports from the past 12 months remain open, and the ward contains 3 TTC subway stations."
+  },
+  "21": {
+   "facts_hash": "b7413ac0683c49d3",
+   "source": "template",
+   "text": null
+  },
+  "22": {
+   "facts_hash": "029ba7a1cbab759d",
+   "source": "template",
+   "text": null
+  },
+  "23": {
+   "facts_hash": "bb0a929a2c086f03",
+   "source": "template",
+   "text": null
+  },
+  "24": {
+   "facts_hash": "ffbf301fc882568b",
+   "source": "template",
+   "text": null
+  },
+  "25": {
+   "facts_hash": "54de1a18653f6cde",
+   "source": "template",
+   "text": null
+  },
+  "3": {
+   "facts_hash": "20721ebd67447fac",
+   "source": "gemini",
+   "text": "Last winter, people made 881 reports about snow or ice in Etobicoke-Lakeshore. Over the past 12 months, residents submitted 314 reports regarding damaged sidewalks or curbs and 18 reports concerning ramps or tactile pavers, with the most reports occurring at Burnhamthorpe Rd & Cordova Ave. Currently, 7 percent of the reports from the past 12 months remain open, and there are 4 TTC subway stations in the ward."
+  },
+  "4": {
+   "facts_hash": "d727542bfb4faa61",
+   "source": "gemini",
+   "text": "In Parkdale-High Park, people made 1,202 snow or ice reports last winter, along with 240 reports for damaged sidewalks or curbs and 18 for ramps or tactile pavers over the past 12 months. The location with the most reports during the past 12 months was Glenlake Ave & Keele St, and 8 percent of all reports from that period remain open. The ward also includes 5 TTC subway stations."
+  },
+  "5": {
+   "facts_hash": "ad812a8e58e2fe6f",
+   "source": "gemini",
+   "text": "Last winter, people made 1,428 reports about snow or ice in York South-Weston. Over the past 12 months, people reported damaged sidewalks or curbs 246 times and ramp or tactile paver issues 11 times, with the most reports located at Lawrence Ave W & Weston Rd. Across the ward, which has 3 TTC subway stations, 4 percent of reports from the past 12 months remain open."
+  },
+  "6": {
+   "facts_hash": "f1e849a75da24eb2",
+   "source": "gemini",
+   "text": "In York Centre, people submitted 389 snow or ice reports last winter, 171 damaged sidewalk or curb reports over the past 12 months, and 9 ramp or tactile paver reports over the past 12 months. Bathurst St & Wilson Ave was the place with the most reports over the past 12 months, and 7 percent of reports from the past 12 months remain open. The ward also has 4 TTC subway stations."
+  },
+  "7": {
+   "facts_hash": "58581226ae8c700e",
+   "source": "gemini",
+   "text": "In Humber River-Black Creek, people made 207 reports about snow or ice last winter, 169 reports about damaged sidewalks or curbs over the past 12 months, and 5 reports regarding ramps or tactile pavers. The location with the most reports over the past 12 months was Finch Ave W & Ardwick Blvd, and 8 percent of reports from that period remain open. The ward has 13 TTC subway stations."
+  },
+  "8": {
+   "facts_hash": "0055df87c4b170e5",
+   "source": "gemini",
+   "text": "Last winter, people made 1,541 reports about snow or ice in Eglinton-Lawrence. Over the past 12 months, there were 374 reports of damaged sidewalks or curbs and 9 reports concerning ramps or tactile pavers, with the most reports occurring at Avenue Rd & Lawrence Ave W. Currently, 2 percent of the reports from the past 12 months remain open, and the ward has 8 TTC subway stations."
+  },
+  "9": {
+   "facts_hash": "cbe81684b4636a22",
+   "source": "gemini",
+   "text": "Last winter, people made 1,740 reports about snow or ice in Davenport. Over the past 12 months, residents submitted 277 reports for damaged sidewalks or curbs and 16 reports for ramps or tactile pavers, with the most reports occurring at Dupont St & Dufferin St. Currently, 9 percent of reports from the past 12 months remain open, and there are 3 TTC subway stations in the ward."
+  }
+ }
+}

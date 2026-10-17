@@ -134,7 +134,8 @@ export type WardCard = {
   geometry: Polygon | MultiPolygon
   meta: { reports_through: string; winter: [string, string]; year_from: string }
   sources: Record<'311' | 'wards' | 'ttc' | 'closures' | 'forecast', string>
-  generated_at: string
+  data_version: string
+  live_as_of: string
   live: {
     elevators: Live<{ out: number; outages: { station: string; text: string }[]; stations: number; stations_with_elevator: number }>
     closures: Live<{ count: number; sidewalk: number; road_closed: number }>
@@ -142,6 +143,7 @@ export type WardCard = {
   }
   summary: string
   summary_source: 'gemini' | 'template'
+  summary_live: string | null
 }
 
 export type HazardKind = 'barrier' | 'rider_report' | 'forecast' | 'closure' | 'unverified' | 'elevator'

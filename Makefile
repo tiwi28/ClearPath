@@ -1,4 +1,4 @@
-.PHONY: db api web dev schema test check
+.PHONY: db api web dev schema test check ward-summaries
 
 dev:
 	docker compose up --build
@@ -14,6 +14,10 @@ api:
 
 web:
 	cd frontend && npm run dev
+
+# Rewrite the AI ward summaries whose numbers changed. Run after ml/09_export_wards.py.
+ward-summaries:
+	docker compose exec -T api python -m app.write_summaries
 
 test:
 	docker compose run --rm --no-deps api python -m pytest -q

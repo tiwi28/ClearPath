@@ -8,7 +8,6 @@ publishes 311 data monthly.
 
 import csv
 import json
-import time
 from datetime import date, datetime, timedelta
 from functools import cache
 from pathlib import Path
@@ -19,13 +18,14 @@ import lightgbm as lgb
 import numpy as np
 from fastapi import HTTPException
 
+from .feeds import Feed
+
 DATA = Path(__file__).parent / "data"
 TORONTO = ZoneInfo("America/Toronto")
 PEARSON = (43.68, -79.63)  # the airport station the model's weather features were trained on
 DAYS_AHEAD = 2
 WEATHER_TTL = 3600
 
-_weather_cache: dict = {"fetched": 0.0, "days": {}}
 _prediction_cache: dict[tuple[date, float], dict] = {}
 
 
@@ -60,31 +60,34 @@ def _prior(day: date) -> np.ndarray:
     return cumulative[:, min(max((day - first).days, 0), cumulative.shape[1] - 1)]
 
 
+def _fetch_weather() -> dict[date, dict]:
+    response = httpx.get("https://api.open-meteo.com/v1/forecast", params={
+        "latitude": PEARSON[0], "longitude": PEARSON[1], "timezone": "America/Toronto",
+        "daily": "snowfall_sum,temperature_2m_max,temperature_2m_min,precipitation_sum",
+        "hourly": "snow_depth", "past_days": 7, "forecast_days": DAYS_AHEAD + 1,
+    }, timeout=10)
+    response.raise_for_status()
+    data = response.json()
+    depth: dict[str, list[float]] = {}
+    for stamp, value in zip(data["hourly"]["time"], data["hourly"]["snow_depth"]):
+        if value is not None:
+            depth.setdefault(stamp[:10], []).append(value)
+    daily = data["daily"]
+    return {date.fromisoformat(day): {
+        "snow": daily["snowfall_sum"][i] or 0.0,  # cm, like Environment Canada "Total Snow"
+        "snow_ground": 100 * max(depth[day]) if day in depth else np.nan,  # m -> cm
+        "tmin": daily["temperature_2m_min"][i], "tmax": daily["temperature_2m_max"][i],
+        "precip": daily["precipitation_sum"][i] or 0.0,
+    } for i, day in enumerate(daily["time"])}
+
+
+WEATHER = Feed("open-meteo", _fetch_weather, WEATHER_TTL)
+
+
 def _weather() -> dict[date, dict]:
-    if time.time() - _weather_cache["fetched"] < WEATHER_TTL and _weather_cache["days"]:
-        return _weather_cache["days"]
-    try:
-        response = httpx.get("https://api.open-meteo.com/v1/forecast", params={
-            "latitude": PEARSON[0], "longitude": PEARSON[1], "timezone": "America/Toronto",
-            "daily": "snowfall_sum,temperature_2m_max,temperature_2m_min,precipitation_sum",
-            "hourly": "snow_depth", "past_days": 7, "forecast_days": DAYS_AHEAD + 1,
-        }, timeout=10)
-        response.raise_for_status()
-        data = response.json()
-        depth: dict[str, list[float]] = {}
-        for stamp, value in zip(data["hourly"]["time"], data["hourly"]["snow_depth"]):
-            if value is not None:
-                depth.setdefault(stamp[:10], []).append(value)
-        daily = data["daily"]
-        days = {date.fromisoformat(day): {
-            "snow": daily["snowfall_sum"][i] or 0.0,  # cm, like Environment Canada "Total Snow"
-            "snow_ground": 100 * max(depth[day]) if day in depth else np.nan,  # m -> cm
-            "tmin": daily["temperature_2m_min"][i], "tmax": daily["temperature_2m_max"][i],
-            "precip": daily["precipitation_sum"][i] or 0.0,
-        } for i, day in enumerate(daily["time"])}
-    except (httpx.HTTPError, ValueError, KeyError, TypeError):
-        raise HTTPException(503, detail={"code": "risk_unavailable", "message": "The weather forecast is unavailable, so barrier risk can't be predicted right now."}) from None
-    _weather_cache.update(fetched=time.time(), days=days)
+    days = WEATHER.get()
+    if days is None:
+        raise HTTPException(503, detail={"code": "risk_unavailable", "message": "The weather forecast is unavailable, so barrier risk can't be predicted right now."})
     return days
 
 
@@ -123,7 +126,7 @@ def predict(day: date | None = None) -> dict:
         raise HTTPException(422, detail={"code": "invalid_day", "message": f"Forecasts cover today through {DAYS_AHEAD} days ahead."})
     meta, cells, _, _, booster = _history()
     _weather()  # refresh the weather cache first; its timestamp is part of the cache key
-    key = (day, _weather_cache["fetched"])
+    key = (day, WEATHER.fetched_at)
     if key not in _prediction_cache:
         columns = features(day)
         matrix = np.column_stack([columns[name] for name in booster.feature_name()]).astype(float)

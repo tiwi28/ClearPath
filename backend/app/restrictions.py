@@ -1,7 +1,8 @@
 """Active City of Toronto road and sidewalk restrictions (Road Restrictions v3 open-data feed).
 
 Used for ward report cards (closures in a ward) and trip alerts (closures near the route).
-The feed is a few MB and changes slowly, so it is cached for 10 minutes.
+The feed is a few MB and takes seconds to download, so it is kept in memory and refreshed
+in the background every 10 minutes (see feeds.py).
 """
 
 import json
@@ -11,10 +12,11 @@ import time
 import httpx
 from shapely.geometry import LineString, Point
 
+from .feeds import Feed
+
 URL = "https://secure.toronto.ca/opendata/cart/road_restrictions/v3?format=json"
 SOURCE_URL = "https://open.toronto.ca/dataset/road-restrictions/"
 TTL = 600
-_cache: dict = {"fetched": 0.0, "value": None}
 # The feed contains stray backslashes that are not valid JSON escapes.
 _BAD_ESCAPE = re.compile(r'\\(?!["\\/bfnrtu])')
 
@@ -45,15 +47,15 @@ def parse(text: str, now_ms: float | None = None) -> list[dict]:
     return result
 
 
+def _fetch() -> dict:
+    response = httpx.get(URL, timeout=20, headers={"User-Agent": "ClearPath-Toronto/0.1"})
+    response.raise_for_status()
+    return {"available": True, "items": parse(response.text)}
+
+
+FEED = Feed("road-restrictions", _fetch, TTL)
+
+
 def active() -> dict:
-    """{available, items}. Returns available=False rather than raising when the feed is down."""
-    if time.time() - _cache["fetched"] < TTL and _cache["value"]:
-        return _cache["value"]
-    try:
-        response = httpx.get(URL, timeout=20, headers={"User-Agent": "ClearPath-Toronto/0.1"})
-        response.raise_for_status()
-        value = {"available": True, "items": parse(response.text)}
-    except (httpx.HTTPError, ValueError, AttributeError):
-        return _cache["value"] or {"available": False, "items": []}
-    _cache.update(fetched=time.time(), value=value)
-    return value
+    """{available, items}. available=False, never an exception, when the feed has not loaded."""
+    return FEED.get() or {"available": False, "items": []}

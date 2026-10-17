@@ -1,13 +1,32 @@
+import asyncio
+import hashlib
+import json
+from contextlib import asynccontextmanager
 from datetime import date
 
-from fastapi import FastAPI, Query
+from fastapi import FastAPI, Query, Request, Response
 from fastapi.middleware.cors import CORSMiddleware
 
 from .config import settings
-from . import barriers, forecast, hazards, reports, risk, routing, ttc, wards
+from . import barriers, feeds, forecast, hazards, reports, restrictions, risk, routing, ttc, wards
 from .schemas import HazardRequest, PlanRequest, PlanResponse, ReportRequest
 
-app = FastAPI(title="Clearpath Toronto API")
+STATIC_CACHE = "public, max-age=86400"
+LIVE_CACHE = "public, max-age=60, stale-while-revalidate=300"
+WARM_UP_S = 25
+
+
+@asynccontextmanager
+async def lifespan(_: FastAPI):
+    # Keep live feeds and today's forecast warm, so no request waits on a download. Startup waits
+    # (up to WARM_UP_S) for the first load, so the API only reports healthy once it is warm.
+    if settings.background_refresh:
+        primed = feeds.start_refresher([ttc.ALERTS, restrictions.FEED, forecast.WEATHER], after=forecast.predict)
+        await asyncio.to_thread(primed.wait, WARM_UP_S)
+    yield
+
+
+app = FastAPI(title="Clearpath Toronto API", lifespan=lifespan)
 
 app.add_middleware(
     CORSMiddleware,
@@ -56,19 +75,26 @@ def plan(request: PlanRequest):
 
 
 @app.get("/wards")
-def ward_list():
+def ward_list(response: Response):
+    response.headers["Cache-Control"] = STATIC_CACHE
     return {"wards": wards.list_wards()}
 
 
 @app.get("/wards/locate")
-def ward_locate(lng: float = Query(ge=-180, le=180), lat: float = Query(ge=-90, le=90)):
+def ward_locate(response: Response, lng: float = Query(ge=-180, le=180), lat: float = Query(ge=-90, le=90)):
+    response.headers["Cache-Control"] = STATIC_CACHE
     return wards.locate(lng, lat)
 
 
 @app.get("/wards/{ward_id}")
-def ward_card(ward_id: int):
+def ward_card(ward_id: int, request: Request):
     """Report card for one ward: City 311 accessibility reports plus live TTC, closure and forecast numbers."""
-    return wards.card(ward_id)
+    body = json.dumps(wards.card(ward_id), separators=(",", ":")).encode()
+    etag = f'W/"{hashlib.sha1(body).hexdigest()[:20]}"'
+    headers = {"Cache-Control": LIVE_CACHE, "ETag": etag}
+    if etag in request.headers.get("if-none-match", ""):
+        return Response(status_code=304, headers=headers)
+    return Response(body, media_type="application/json", headers=headers)
 
 
 @app.post("/trip/hazards")

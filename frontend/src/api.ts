@@ -51,7 +51,7 @@ export async function getWards(signal: AbortSignal): Promise<WardSummary[]> {
   return (await request<{ wards: WardSummary[] }>('/wards', { signal })).wards
 }
 
-export function getWard(id: number, signal: AbortSignal): Promise<WardCard> {
+export function getWard(id: number, signal?: AbortSignal): Promise<WardCard> {
   return request(`/wards/${id}`, { signal })
 }
 

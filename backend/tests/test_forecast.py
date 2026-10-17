@@ -23,7 +23,7 @@ def open_meteo(snow_today=0.0, tmin=-3.0, tmax=2.0, depth_m=0.05):
 @pytest.fixture
 def weather(monkeypatch):
     monkeypatch.setattr(forecast, "today", lambda: TODAY)
-    forecast._weather_cache.update(fetched=0.0, days={})
+    forecast.WEATHER.reset()
     forecast._prediction_cache.clear()
     state = {"body": open_meteo(), "calls": 0}
 
@@ -46,7 +46,7 @@ def test_forecast_scores_every_cell_for_today(weather):
 def test_snow_raises_predicted_risk(weather):
     weather["body"] = open_meteo(tmin=8.0, tmax=16.0, depth_m=0.0)
     mild = sum(feature["properties"]["risk"] for feature in REAL_PREDICT()["features"])
-    forecast._weather_cache.update(fetched=0.0, days={})
+    forecast.WEATHER.reset()
     weather["body"] = open_meteo(snow_today=15.0, tmin=-5.0, tmax=-1.0, depth_m=0.15)
     snowy = sum(feature["properties"]["risk"] for feature in REAL_PREDICT()["features"])
     assert snowy > mild * 5

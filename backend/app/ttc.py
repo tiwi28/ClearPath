@@ -2,19 +2,18 @@
 
 import json
 import re
-import time
 from datetime import datetime, timezone
 from functools import cache
 from pathlib import Path
 
 import httpx
 
+from .feeds import Feed
+
 STATIONS_PATH = Path(__file__).parent / "data" / "ttc_stations.json"
 ALERTS_URL = "https://alerts.ttc.ca/api/alerts/live-alerts"
 ALERTS_TTL = 120
 ALIASES = {"bloor": "bloor-yonge", "yonge": "bloor-yonge"}  # one interchange, two GTFS names
-
-_alerts_cache: dict = {"fetched": 0.0, "value": None}
 
 
 def station_key(name: str) -> str:
@@ -69,18 +68,18 @@ def parse_alerts(data: dict, now: datetime | None = None) -> dict:
     return {"updated": data.get("lastUpdated"), "outages": outages, "closures": closures, "available": True}
 
 
+def _fetch_alerts() -> dict:
+    response = httpx.get(ALERTS_URL, headers={"User-Agent": "ClearPath-Toronto/0.1"}, timeout=8)
+    response.raise_for_status()
+    return parse_alerts(response.json())
+
+
+ALERTS = Feed("ttc-alerts", _fetch_alerts, ALERTS_TTL)
+
+
 def live_alerts() -> dict:
-    """Current outages and closures, cached briefly. Returns available=False when the feed is down."""
-    if time.time() - _alerts_cache["fetched"] < ALERTS_TTL and _alerts_cache["value"]:
-        return _alerts_cache["value"]
-    try:
-        response = httpx.get(ALERTS_URL, headers={"User-Agent": "ClearPath-Toronto/0.1"}, timeout=8)
-        response.raise_for_status()
-        value = parse_alerts(response.json())
-    except (httpx.HTTPError, ValueError, KeyError, TypeError, AttributeError):
-        return _alerts_cache["value"] or {"updated": None, "outages": [], "closures": [], "available": False}
-    _alerts_cache.update(fetched=time.time(), value=value)
-    return value
+    """Current outages and closures. Returns available=False when the feed has not loaded."""
+    return ALERTS.get() or {"updated": None, "outages": [], "closures": [], "available": False}
 
 
 def station_status() -> list[dict]:

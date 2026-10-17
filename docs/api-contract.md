@@ -15,7 +15,7 @@ Interactive documentation is available at http://localhost:8000/docs.
 | `GET /barriers?bbox=&kind=` | GeoJSON FeatureCollection of known barriers with `data_source`, plus open rider-report spots (`source: "rider"`, negative `id`) |
 | `GET /wards` | `{"wards":[{"id","name"}]}` for the 25 wards |
 | `GET /wards/locate?lng=&lat=` | `{"id","name"}` of the ward containing the point; 404 outside Toronto |
-| `GET /wards/{id}` | Ward report card: 311 counts (`snow_last_winter`, `damage_12m`, `ramps_12m`, `monthly`, `top_places`, `open_share_12m`), outline `geometry`, `live` (`elevators`, `closures`, `forecast`, each with `available`), `summary` and `summary_source` (`gemini` or `template`) |
+| `GET /wards/{id}` | Ward report card: 311 counts (`snow_last_winter`, `damage_12m`, `ramps_12m`, `monthly`, `top_places`, `open_share_12m`), outline `geometry`, `live` (`elevators`, `closures`, `forecast`, each with `available`) and `live_as_of`, `summary` and `summary_source` (`gemini` or `template`), `summary_live` (a template sentence about the live numbers, or null), `data_version` |
 | `POST /trip/hazards` | `{"route": LineString, "day"?, "stations"?: [{"name","at_m"}], "unverified"?: [Gap]}` → `{"hazards":[{"id","kind","label","severity","source","confirmable","at_m","lnglat"}]}` ordered along the route |
 | `POST /reports` | `{"device_id","kind","state":"blocked"\|"clear","profile"?,"location"}` → 201 `{"id","created_at"}`; 429 after 10 reports per device per hour |
 
@@ -27,6 +27,29 @@ confirm it (`verification: "rider_confirmed"`, `blocks_route: true`): routing th
 area around it, exactly like a verified barrier. Spots expire 48 h after the last blocked report.
 Reports are stored in the `rider_reports` table in both barrier modes; run `make schema` on an
 existing database volume.
+
+### Ward cards: caching and refreshing data
+
+A card never waits on Gemini or on a feed download:
+
+- **Summaries** are written ahead of time into `backend/app/data/ward_summaries.json`, each with a
+  fingerprint of the numbers it was written from. A card uses the stored text only while the
+  fingerprint matches its current numbers; otherwise it shows the template. Live numbers are never
+  sent to Gemini; they get their own template sentence (`summary_live`).
+- **Live feeds** (TTC alerts, road restrictions, Open-Meteo weather) are kept in memory and refreshed
+  in the background (`app/feeds.py`). The API waits for their first load at startup, then serves the
+  last good value if a feed goes down.
+- **HTTP:** `/wards` and `/wards/locate` send `Cache-Control: public, max-age=86400`. `/wards/{id}`
+  sends `max-age=60, stale-while-revalidate=300` and an `ETag`, and answers `If-None-Match` with 304.
+- The ward data files are re-read when they change on disk, so new data needs no restart.
+
+**When new 311 data arrives:**
+
+1. `cd ml && python 09_export_wards.py` (after `08_refresh_311.py`).
+2. `make ward-summaries`. Only wards whose numbers changed are sent to Gemini. The free tier allows
+   20 requests a day per model, so a full rewrite of 25 wards can take two runs; the command saves
+   as it goes and says when to run it again.
+3. Commit the three files in `backend/app/data/` and deploy.
 
 ### Plan steps
 

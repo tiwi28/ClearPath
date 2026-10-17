@@ -232,6 +232,7 @@ details[open] > summary::before { transform: rotate(45deg); }
 .ward-plain { border: 2px solid var(--asphalt); background: var(--dome-wash); }
 .ward-chip { padding: 3px 10px; border-radius: 999px; background: var(--paper); border: 1.5px solid var(--asphalt); font-size: .8125rem; font-weight: 700; }
 .ward-summary { font-size: 1.125rem; line-height: 1.6; max-width: 70ch; }
+.ward-summary-live { margin-top: 10px; max-width: 70ch; color: var(--muted); }
 .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(132px, 1fr)); gap: 12px; }
 .stat { display: flex; flex-direction: column; gap: 6px; padding: 16px; border-radius: 10px; background: var(--curb-light); }
 .stat-value { font-size: 2.5rem; font-weight: 800; line-height: 1; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
