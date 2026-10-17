@@ -12,6 +12,7 @@ type Props = {
   onChoice: (choice: Choice) => void
   onEditTrip: () => void
   onEditProfile: () => void
+  onStart: (mode: 'gps' | 'sim') => void
 }
 
 function legLabel(leg: TransitLeg) {
@@ -113,7 +114,7 @@ function Directions({ plan, choice }: { plan: Plan; choice: Choice }) {
   </li>)}</ol>
 }
 
-export default function OptionsStep({ plan, loading, error, choice, fromLabel, toLabel, onChoice, onEditTrip, onEditProfile }: Props) {
+export default function OptionsStep({ plan, loading, error, choice, fromLabel, toLabel, onChoice, onEditTrip, onEditProfile, onStart }: Props) {
   const profile = PROFILES.find((item) => item.value === plan?.profile)
   const stepFree = plan?.profile === 'manual_wheelchair' || plan?.profile === 'power_wheelchair'
   const cards: { id: Choice; body: ReactNode; tone?: string }[] = []
@@ -139,6 +140,10 @@ export default function OptionsStep({ plan, loading, error, choice, fromLabel, t
         {cards.map((card) => <button key={card.id} type="button" role="radio" aria-checked={choice === card.id}
           className={`option-card${card.tone ? ` option-${card.tone}` : ''}${choice === card.id ? ' selected' : ''}`}
           onClick={() => onChoice(card.id)}>{card.body}</button>)}
+      </div>
+      <div className="start-trip">
+        <button type="button" className="primary" onClick={() => onStart('gps')}>Start trip</button>
+        <button type="button" className="secondary" onClick={() => onStart('sim')}>Simulate</button>
       </div>
       <details className="directions">
         <summary>Directions{directionCount(plan, choice)}</summary>

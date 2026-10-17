@@ -171,7 +171,8 @@ def test_missing_key_is_reported(monkeypatch):
 
 
 @pytest.mark.parametrize("status,data,expected", [
-    (429, {"error": {"message": "rate limited"}}, 502),
+    (429, {"error": {"message": "rate limited"}}, 503),
+    (403, {"error": "Quota exceeded"}, 503),
     (200, {"features": []}, 502),
     (200, {"features": [{"geometry": {"type": "Point", "coordinates": [0, 0]}, "properties": {}}]}, 502),
 ])

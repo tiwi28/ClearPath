@@ -4,8 +4,8 @@ from fastapi import FastAPI, Query
 from fastapi.middleware.cors import CORSMiddleware
 
 from .config import settings
-from . import barriers, forecast, risk, routing, ttc
-from .schemas import PlanRequest, PlanResponse
+from . import barriers, forecast, hazards, reports, risk, routing, ttc, wards
+from .schemas import HazardRequest, PlanRequest, PlanResponse, ReportRequest
 
 app = FastAPI(title="Clearpath Toronto API")
 
@@ -53,3 +53,33 @@ def geocode(text: str = Query(min_length=2, max_length=200)):
 @app.post("/plan", response_model=PlanResponse)
 def plan(request: PlanRequest):
     return routing.plan(request)
+
+
+@app.get("/wards")
+def ward_list():
+    return {"wards": wards.list_wards()}
+
+
+@app.get("/wards/locate")
+def ward_locate(lng: float = Query(ge=-180, le=180), lat: float = Query(ge=-90, le=90)):
+    return wards.locate(lng, lat)
+
+
+@app.get("/wards/{ward_id}")
+def ward_card(ward_id: int):
+    """Report card for one ward: City 311 accessibility reports plus live TTC, closure and forecast numbers."""
+    return wards.card(ward_id)
+
+
+@app.post("/trip/hazards")
+def trip_hazards(request: HazardRequest):
+    """What's ahead on a trip, ordered by distance along the route."""
+    return {"hazards": hazards.find(request.route.coordinates, request.day,
+                                    [stop.model_dump() for stop in request.stations],
+                                    [gap.model_dump() for gap in request.unverified])}
+
+
+@app.post("/reports", status_code=201)
+def report(request: ReportRequest):
+    """A rider's report from a trip: a spot is blocked, or it's clear again."""
+    return reports.record(request.device_id, request.kind, request.state, request.profile, *request.location)

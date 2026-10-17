@@ -12,7 +12,26 @@ Interactive documentation is available at http://localhost:8000/docs.
 | `GET /risk?day=&bbox=` | Predicted-risk hexagons (`cell`, `risk`, `reports_last_year`) with `date`, `reports_through`, `weather`, `model` |
 | `GET /stations` | TTC stations (`name`, `lines`, `coordinates`, `has_elevator`, live `outages`) and subway `closures` notices |
 | `GET /geocode?text=` | `{"results":[{"label","coordinates"}]}` Toronto address suggestions (2-200 chars) |
-| `GET /barriers?bbox=&kind=` | GeoJSON FeatureCollection of known barriers with `data_source` |
+| `GET /barriers?bbox=&kind=` | GeoJSON FeatureCollection of known barriers with `data_source`, plus open rider-report spots (`source: "rider"`, negative `id`) |
+| `GET /wards` | `{"wards":[{"id","name"}]}` for the 25 wards |
+| `GET /wards/locate?lng=&lat=` | `{"id","name"}` of the ward containing the point; 404 outside Toronto |
+| `GET /wards/{id}` | Ward report card: 311 counts (`snow_last_winter`, `damage_12m`, `ramps_12m`, `monthly`, `top_places`, `open_share_12m`), outline `geometry`, `live` (`elevators`, `closures`, `forecast`, each with `available`), `summary` and `summary_source` (`gemini` or `template`) |
+| `POST /trip/hazards` | `{"route": LineString, "day"?, "stations"?: [{"name","at_m"}], "unverified"?: [Gap]}` → `{"hazards":[{"id","kind","label","severity","source","confirmable","at_m","lnglat"}]}` ordered along the route |
+| `POST /reports` | `{"device_id","kind","state":"blocked"\|"clear","profile"?,"location"}` → 201 `{"id","created_at"}`; 429 after 10 reports per device per hour |
+
+### Rider reports
+
+One `blocked` report shows the spot to other riders as unverified (`verification: "reported"`).
+Two or more different devices reporting it blocked within 48 h, with no newer `clear` report,
+confirm it (`verification: "rider_confirmed"`, `blocks_route: true`): routing then avoids a 12 m
+area around it, exactly like a verified barrier. Spots expire 48 h after the last blocked report.
+Reports are stored in the `rider_reports` table in both barrier modes; run `make schema` on an
+existing database volume.
+
+### Plan steps
+
+Each step carries `way_points` (the range of route coordinates it covers) and ORS's turn `type`,
+which trip mode uses for turn-by-turn progress and turn arrows.
 
 ## Plan request
 
@@ -80,7 +99,7 @@ Model validation uses FastAPI's standard `detail` array.
 | 422 | Invalid request, unknown profile or field, malformed bbox, or forecast day out of range |
 | 404 | No accessible street route and no transit option |
 | 409 | The only route crosses a known obstruction |
-| 503 | Missing ORS key, unavailable barrier storage, or (on `/risk`) weather forecast unavailable |
+| 503 | Missing ORS key, ORS daily quota reached (`routing_quota`), unavailable barrier or report storage, or (on `/risk`) weather forecast unavailable |
 | 502 | Provider failure or invalid provider response |
 | 504 | Provider timeout |
 

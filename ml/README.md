@@ -11,7 +11,7 @@ barriers and warn users before they reach them.
 cd ml
 python -m venv .venv
 .venv\Scripts\Activate.ps1
-pip install h3 pandas lightgbm scikit-learn matplotlib pyarrow
+pip install h3 pandas lightgbm scikit-learn matplotlib pyarrow shapely
 ```
 
 Raw data goes in the repo-root `data/raw/` (gitignored, nothing is downloaded by the scripts):
@@ -36,6 +36,7 @@ Run from inside `ml/`. Each step reads the previous step's output, so any step c
 | `06_evaluate.py` | ROC/PR-AUC vs baselines, daily top-10% capture, slide summary, live vs original model | `ml/feature_importance.png` |
 | `07_export.py` | Export the live model and its inputs for the backend | `backend/app/data/` (see below) |
 | `08_refresh_311.py` | Download the newest 311 zips from Toronto Open Data, re-run 01-03 and 07. Run monthly | refreshed `backend/app/data/` |
+| `09_export_wards.py` | Per-ward report counts for the ward report cards, plus the City's 25-ward boundaries (downloaded) | `backend/app/data/ward_stats.json`, `wards.geojson` |
 
 `common.py` holds paths, column names, `LAG`, and the street-name normalization (`norm`, `key`).
 `accessibility_types.csv` is the hand-picked list of 311 types that count as barriers.

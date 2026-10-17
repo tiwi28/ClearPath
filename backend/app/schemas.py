@@ -36,6 +36,10 @@ class RouteGeometry(BaseModel):
 class Step(BaseModel):
     instruction: str
     distance_m: NonNegative
+    # Indices into the route's coordinates that this step covers, and ORS's turn type
+    # (0 left, 1 right, 6 straight, 10 arrive, 11 depart, ...), for turn-by-turn trips.
+    way_points: tuple[int, int] | None = None
+    type: int | None = None
 
 
 class RouteRisk(BaseModel):
@@ -117,3 +121,27 @@ class PlanResponse(BaseModel):
     risk: RiskInfo
     warnings: list[str]
     barrier_source: Literal["fixtures", "postgres"]
+
+
+class TripStation(BaseModel):
+    name: str
+    at_m: NonNegative
+
+
+class HazardRequest(BaseModel):
+    route: RouteGeometry
+    day: date | None = None
+    stations: list[TripStation] = []
+    unverified: list[Gap] = []
+
+    model_config = {"extra": "forbid"}
+
+
+class ReportRequest(BaseModel):
+    device_id: str = Field(min_length=8, max_length=64, pattern=r"^[A-Za-z0-9-]+$")
+    kind: Literal["blocked_sidewalk", "snow_ice", "construction", "elevator_out", "other"]
+    state: Literal["blocked", "clear"]
+    profile: ProfileName | None = None
+    location: LngLat
+
+    model_config = {"extra": "forbid"}

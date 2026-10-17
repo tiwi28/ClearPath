@@ -29,10 +29,12 @@ Routes are checked against three things a generic map ignores: stairs on the str
 
 ## Capabilities and Constraints
 
-- React + Vite + MapLibre frontend; FastAPI backend; OpenRouteService routing; OSM raster tiles.
+- React + Vite + MapLibre frontend; FastAPI backend; OpenRouteService routing; OpenFreeMap vector tiles (Positron; Liberty via VITE_MAP_STYLE).
 - Mobility profiles: manual wheelchair, power wheelchair or scooter, walker/cane/crutches, limited stamina.
 - Barrier fixtures are fictional in development; risk is a forecast, not ground truth (see docs/data-limits.md).
 - Existing frontend tests rely on current visible copy and accessible names; keep them passing.
+- Trip mode: turn-by-turn on real GPS or a simulator, alerts ahead (barriers, rider reports, forecast, City road restrictions, TTC elevator outages), automatic re-routing, and rider reports ("blocked" / "clear") that routing avoids once two riders confirm a spot.
+- Ward report cards: nonpartisan per-ward pages from City 311 data with live TTC, closure and forecast numbers and a Gemini-written plain-words summary (template fallback). No candidates, parties or ward comparisons.
 
 ## Brand Commitments
 

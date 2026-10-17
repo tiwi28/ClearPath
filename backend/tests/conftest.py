@@ -4,7 +4,7 @@ from pathlib import Path
 import httpx
 import pytest
 
-from app import forecast, routing, ttc
+from app import forecast, reports, restrictions, routing, ttc
 from app.config import settings
 
 FIXTURES = Path(__file__).parent / "fixtures"
@@ -46,6 +46,8 @@ def controlled_dependencies(monkeypatch):
     monkeypatch.setattr(settings, "ors_api_key", "test-key")
     monkeypatch.setattr(settings, "barrier_source", "fixtures")
     monkeypatch.setattr(forecast, "predict", risk_map)
+    monkeypatch.setattr(reports, "recent", lambda bounds: [])
+    monkeypatch.setattr(restrictions, "active", lambda: {"available": True, "items": []})
     routing._cache.clear()
     ttc._alerts_cache.update(fetched=0.0, value=None)
 

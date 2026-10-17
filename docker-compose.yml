@@ -20,6 +20,8 @@ services:
       DATABASE_URL: postgresql://postgres:clearpath@db:5432/clearpath
       BARRIER_SOURCE: ${BARRIER_SOURCE:-fixtures}
       ORS_API_KEY: ${ORS_API_KEY:-}
+      GEMINI_API_KEY: ${GEMINI_API_KEY:-}
+      GEMINI_MODEL: ${GEMINI_MODEL:-gemini-3.8-flash}
       FRONTEND_ORIGIN: http://localhost:${WEB_PORT:-5173}
     ports: ["8000:8000"]
     volumes:

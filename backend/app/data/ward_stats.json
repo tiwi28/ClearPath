@@ -1,0 +1,8112 @@
+{
+ "meta": {
+  "reports_through": "2026-09-30",
+  "winter": [
+   "2025-11-01",
+   "2026-04-30"
+  ],
+  "year_from": "2025-10-01"
+ },
+ "wards": {
+  "1": {
+   "id": 1,
+   "name": "Etobicoke North",
+   "snow_last_winter": 270,
+   "damage_12m": 219,
+   "ramps_12m": 7,
+   "reports_12m": 496,
+   "reports_prior_12m": 443,
+   "open_share_12m": 0.077,
+   "monthly": [
+    {
+     "month": "2024-10",
+     "snow_ice": 0,
+     "damage": 8,
+     "ramps": 0
+    },
+    {
+     "month": "2024-11",
+     "snow_ice": 0,
+     "damage": 9,
+     "ramps": 0
+    },
+    {
+     "month": "2024-12",
+     "snow_ice": 4,
+     "damage": 2,
+     "ramps": 0
+    },
+    {
+     "month": "2025-01",
+     "snow_ice": 33,
+     "damage": 3,
+     "ramps": 0
+    },
+    {
+     "month": "2025-02",
+     "snow_ice": 191,
+     "damage": 12,
+     "ramps": 3
+    },
+    {
+     "month": "2025-03",
+     "snow_ice": 9,
+     "damage": 21,
+     "ramps": 1
+    },
+    {
+     "month": "2025-04",
+     "snow_ice": 0,
+     "damage": 9,
+     "ramps": 0
+    },
+    {
+     "month": "2025-05",
+     "snow_ice": 0,
+     "damage": 29,
+     "ramps": 0
+    },
+    {
+     "month": "2025-06",
+     "snow_ice": 0,
+     "damage": 45,
+     "ramps": 1
+    },
+    {
+     "month": "2025-07",
+     "snow_ice": 0,
+     "damage": 17,
+     "ramps": 1
+    },
+    {
+     "month": "2025-08",
+     "snow_ice": 0,
+     "damage": 22,
+     "ramps": 0
+    },
+    {
+     "month": "2025-09",
+     "snow_ice": 0,
+     "damage": 23,
+     "ramps": 0
+    },
+    {
+     "month": "2025-10",
+     "snow_ice": 0,
+     "damage": 15,
+     "ramps": 0
+    },
+    {
+     "month": "2025-11",
+     "snow_ice": 5,
+     "damage": 10,
+     "ramps": 0
+    },
+    {
+     "month": "2025-12",
+     "snow_ice": 55,
+     "damage": 14,
+     "ramps": 1
+    },
+    {
+     "month": "2026-01",
+     "snow_ice": 123,
+     "damage": 11,
+     "ramps": 2
+    },
+    {
+     "month": "2026-02",
+     "snow_ice": 74,
+     "damage": 10,
+     "ramps": 0
+    },
+    {
+     "month": "2026-03",
+     "snow_ice": 13,
+     "damage": 29,
+     "ramps": 1
+    },
+    {
+     "month": "2026-04",
+     "snow_ice": 0,
+     "damage": 20,
+     "ramps": 2
+    },
+    {
+     "month": "2026-05",
+     "snow_ice": 0,
+     "damage": 21,
+     "ramps": 0
+    },
+    {
+     "month": "2026-06",
+     "snow_ice": 0,
+     "damage": 29,
+     "ramps": 0
+    },
+    {
+     "month": "2026-07",
+     "snow_ice": 0,
+     "damage": 24,
+     "ramps": 0
+    },
+    {
+     "month": "2026-08",
+     "snow_ice": 0,
+     "damage": 17,
+     "ramps": 0
+    },
+    {
+     "month": "2026-09",
+     "snow_ice": 0,
+     "damage": 19,
+     "ramps": 1
+    }
+   ],
+   "monthly_prior_year": [
+    {
+     "month": "2023-10",
+     "snow_ice": 0,
+     "damage": 14,
+     "ramps": 1
+    },
+    {
+     "month": "2023-11",
+     "snow_ice": 2,
+     "damage": 13,
+     "ramps": 0
+    },
+    {
+     "month": "2023-12",
+     "snow_ice": 0,
+     "damage": 6,
+     "ramps": 0
+    },
+    {
+     "month": "2024-01",
+     "snow_ice": 15,
+     "damage": 7,
+     "ramps": 2
+    },
+    {
+     "month": "2024-02",
+     "snow_ice": 0,
+     "damage": 5,
+     "ramps": 0
+    },
+    {
+     "month": "2024-03",
+     "snow_ice": 1,
+     "damage": 11,
+     "ramps": 0
+    },
+    {
+     "month": "2024-04",
+     "snow_ice": 0,
+     "damage": 20,
+     "ramps": 0
+    },
+    {
+     "month": "2024-05",
+     "snow_ice": 0,
+     "damage": 25,
+     "ramps": 0
+    },
+    {
+     "month": "2024-06",
+     "snow_ice": 0,
+     "damage": 27,
+     "ramps": 0
+    },
+    {
+     "month": "2024-07",
+     "snow_ice": 0,
+     "damage": 29,
+     "ramps": 0
+    },
+    {
+     "month": "2024-08",
+     "snow_ice": 0,
+     "damage": 27,
+     "ramps": 1
+    },
+    {
+     "month": "2024-09",
+     "snow_ice": 0,
+     "damage": 14,
+     "ramps": 1
+    },
+    {
+     "month": "2024-10",
+     "snow_ice": 0,
+     "damage": 8,
+     "ramps": 0
+    },
+    {
+     "month": "2024-11",
+     "snow_ice": 0,
+     "damage": 9,
+     "ramps": 0
+    },
+    {
+     "month": "2024-12",
+     "snow_ice": 4,
+     "damage": 2,
+     "ramps": 0
+    },
+    {
+     "month": "2025-01",
+     "snow_ice": 33,
+     "damage": 3,
+     "ramps": 0
+    },
+    {
+     "month": "2025-02",
+     "snow_ice": 191,
+     "damage": 12,
+     "ramps": 3
+    },
+    {
+     "month": "2025-03",
+     "snow_ice": 9,
+     "damage": 21,
+     "ramps": 1
+    },
+    {
+     "month": "2025-04",
+     "snow_ice": 0,
+     "damage": 9,
+     "ramps": 0
+    },
+    {
+     "month": "2025-05",
+     "snow_ice": 0,
+     "damage": 29,
+     "ramps": 0
+    },
+    {
+     "month": "2025-06",
+     "snow_ice": 0,
+     "damage": 45,
+     "ramps": 1
+    },
+    {
+     "month": "2025-07",
+     "snow_ice": 0,
+     "damage": 17,
+     "ramps": 1
+    },
+    {
+     "month": "2025-08",
+     "snow_ice": 0,
+     "damage": 22,
+     "ramps": 0
+    },
+    {
+     "month": "2025-09",
+     "snow_ice": 0,
+     "damage": 23,
+     "ramps": 0
+    }
+   ],
+   "top_places": [
+    {
+     "place": "Albion Rd & Elmhurst Dr",
+     "reports": 6
+    },
+    {
+     "place": "Carlingview Dr & Dixon Rd",
+     "reports": 6
+    },
+    {
+     "place": "Elmhurst Dr & Turpin Ave",
+     "reports": 5
+    },
+    {
+     "place": "Kipling Ave & Kipling Ave Bicycle Trl",
+     "reports": 5
+    },
+    {
+     "place": "Finch Ave W & Humberline Dr",
+     "reports": 4
+    }
+   ]
+  },
+  "2": {
+   "id": 2,
+   "name": "Etobicoke Centre",
+   "snow_last_winter": 603,
+   "damage_12m": 334,
+   "ramps_12m": 14,
+   "reports_12m": 951,
+   "reports_prior_12m": 926,
+   "open_share_12m": 0.086,
+   "monthly": [
+    {
+     "month": "2024-10",
+     "snow_ice": 0,
+     "damage": 16,
+     "ramps": 0
+    },
+    {
+     "month": "2024-11",
+     "snow_ice": 0,
+     "damage": 8,
+     "ramps": 0
+    },
+    {
+     "month": "2024-12",
+     "snow_ice": 16,
+     "damage": 10,
+     "ramps": 0
+    },
+    {
+     "month": "2025-01",
+     "snow_ice": 50,
+     "damage": 5,
+     "ramps": 0
+    },
+    {
+     "month": "2025-02",
+     "snow_ice": 615,
+     "damage": 24,
+     "ramps": 0
+    },
+    {
+     "month": "2025-03",
+     "snow_ice": 20,
+     "damage": 24,
+     "ramps": 3
+    },
+    {
+     "month": "2025-04",
+     "snow_ice": 0,
+     "damage": 19,
+     "ramps": 0
+    },
+    {
+     "month": "2025-05",
+     "snow_ice": 0,
+     "damage": 19,
+     "ramps": 1
+    },
+    {
+     "month": "2025-06",
+     "snow_ice": 0,
+     "damage": 26,
+     "ramps": 0
+    },
+    {
+     "month": "2025-07",
+     "snow_ice": 0,
+     "damage": 20,
+     "ramps": 2
+    },
+    {
+     "month": "2025-08",
+     "snow_ice": 0,
+     "damage": 20,
+     "ramps": 1
+    },
+    {
+     "month": "2025-09",
+     "snow_ice": 0,
+     "damage": 26,
+     "ramps": 1
+    },
+    {
+     "month": "2025-10",
+     "snow_ice": 0,
+     "damage": 50,
+     "ramps": 0
+    },
+    {
+     "month": "2025-11",
+     "snow_ice": 7,
+     "damage": 34,
+     "ramps": 0
+    },
+    {
+     "month": "2025-12",
+     "snow_ice": 88,
+     "damage": 10,
+     "ramps": 0
+    },
+    {
+     "month": "2026-01",
+     "snow_ice": 327,
+     "damage": 11,
+     "ramps": 1
+    },
+    {
+     "month": "2026-02",
+     "snow_ice": 168,
+     "damage": 9,
+     "ramps": 0
+    },
+    {
+     "month": "2026-03",
+     "snow_ice": 13,
+     "damage": 33,
+     "ramps": 1
+    },
+    {
+     "month": "2026-04",
+     "snow_ice": 0,
+     "damage": 33,
+     "ramps": 7
+    },
+    {
+     "month": "2026-05",
+     "snow_ice": 0,
+     "damage": 34,
+     "ramps": 1
+    },
+    {
+     "month": "2026-06",
+     "snow_ice": 0,
+     "damage": 33,
+     "ramps": 1
+    },
+    {
+     "month": "2026-07",
+     "snow_ice": 0,
+     "damage": 32,
+     "ramps": 2
+    },
+    {
+     "month": "2026-08",
+     "snow_ice": 0,
+     "damage": 29,
+     "ramps": 1
+    },
+    {
+     "month": "2026-09",
+     "snow_ice": 0,
+     "damage": 26,
+     "ramps": 0
+    }
+   ],
+   "monthly_prior_year": [
+    {
+     "month": "2023-10",
+     "snow_ice": 0,
+     "damage": 13,
+     "ramps": 0
+    },
+    {
+     "month": "2023-11",
+     "snow_ice": 3,
+     "damage": 15,
+     "ramps": 0
+    },
+    {
+     "month": "2023-12",
+     "snow_ice": 1,
+     "damage": 10,
+     "ramps": 2
+    },
+    {
+     "month": "2024-01",
+     "snow_ice": 21,
+     "damage": 21,
+     "ramps": 1
+    },
+    {
+     "month": "2024-02",
+     "snow_ice": 15,
+     "damage": 8,
+     "ramps": 0
+    },
+    {
+     "month": "2024-03",
+     "snow_ice": 2,
+     "damage": 17,
+     "ramps": 0
+    },
+    {
+     "month": "2024-04",
+     "snow_ice": 0,
+     "damage": 20,
+     "ramps": 2
+    },
+    {
+     "month": "2024-05",
+     "snow_ice": 0,
+     "damage": 26,
+     "ramps": 3
+    },
+    {
+     "month": "2024-06",
+     "snow_ice": 0,
+     "damage": 23,
+     "ramps": 0
+    },
+    {
+     "month": "2024-07",
+     "snow_ice": 0,
+     "damage": 29,
+     "ramps": 1
+    },
+    {
+     "month": "2024-08",
+     "snow_ice": 0,
+     "damage": 42,
+     "ramps": 0
+    },
+    {
+     "month": "2024-09",
+     "snow_ice": 0,
+     "damage": 17,
+     "ramps": 2
+    },
+    {
+     "month": "2024-10",
+     "snow_ice": 0,
+     "damage": 16,
+     "ramps": 0
+    },
+    {
+     "month": "2024-11",
+     "snow_ice": 0,
+     "damage": 8,
+     "ramps": 0
+    },
+    {
+     "month": "2024-12",
+     "snow_ice": 16,
+     "damage": 10,
+     "ramps": 0
+    },
+    {
+     "month": "2025-01",
+     "snow_ice": 50,
+     "damage": 5,
+     "ramps": 0
+    },
+    {
+     "month": "2025-02",
+     "snow_ice": 615,
+     "damage": 24,
+     "ramps": 0
+    },
+    {
+     "month": "2025-03",
+     "snow_ice": 20,
+     "damage": 24,
+     "ramps": 3
+    },
+    {
+     "month": "2025-04",
+     "snow_ice": 0,
+     "damage": 19,
+     "ramps": 0
+    },
+    {
+     "month": "2025-05",
+     "snow_ice": 0,
+     "damage": 19,
+     "ramps": 1
+    },
+    {
+     "month": "2025-06",
+     "snow_ice": 0,
+     "damage": 26,
+     "ramps": 0
+    },
+    {
+     "month": "2025-07",
+     "snow_ice": 0,
+     "damage": 20,
+     "ramps": 2
+    },
+    {
+     "month": "2025-08",
+     "snow_ice": 0,
+     "damage": 20,
+     "ramps": 1
+    },
+    {
+     "month": "2025-09",
+     "snow_ice": 0,
+     "damage": 26,
+     "ramps": 1
+    }
+   ],
+   "top_places": [
+    {
+     "place": "Humber River Trl & Humber River Recreational Trl",
+     "reports": 25
+    },
+    {
+     "place": "Islington Ave & Dundas St W",
+     "reports": 17
+    },
+    {
+     "place": "Dixon Rd & Kipling Ave",
+     "reports": 9
+    },
+    {
+     "place": "Burnhamthorpe Rd & Mill Rd",
+     "reports": 9
+    },
+    {
+     "place": "Widdicombe Hill & Kipling Ave",
+     "reports": 7
+    }
+   ]
+  },
+  "3": {
+   "id": 3,
+   "name": "Etobicoke-Lakeshore",
+   "snow_last_winter": 881,
+   "damage_12m": 314,
+   "ramps_12m": 18,
+   "reports_12m": 1213,
+   "reports_prior_12m": 1233,
+   "open_share_12m": 0.068,
+   "monthly": [
+    {
+     "month": "2024-10",
+     "snow_ice": 0,
+     "damage": 30,
+     "ramps": 0
+    },
+    {
+     "month": "2024-11",
+     "snow_ice": 0,
+     "damage": 22,
+     "ramps": 1
+    },
+    {
+     "month": "2024-12",
+     "snow_ice": 18,
+     "damage": 11,
+     "ramps": 3
+    },
+    {
+     "month": "2025-01",
+     "snow_ice": 44,
+     "damage": 10,
+     "ramps": 0
+    },
+    {
+     "month": "2025-02",
+     "snow_ice": 819,
+     "damage": 13,
+     "ramps": 0
+    },
+    {
+     "month": "2025-03",
+     "snow_ice": 32,
+     "damage": 26,
+     "ramps": 0
+    },
+    {
+     "month": "2025-04",
+     "snow_ice": 2,
+     "damage": 28,
+     "ramps": 1
+    },
+    {
+     "month": "2025-05",
+     "snow_ice": 0,
+     "damage": 34,
+     "ramps": 1
+    },
+    {
+     "month": "2025-06",
+     "snow_ice": 0,
+     "damage": 39,
+     "ramps": 0
+    },
+    {
+     "month": "2025-07",
+     "snow_ice": 0,
+     "damage": 34,
+     "ramps": 1
+    },
+    {
+     "month": "2025-08",
+     "snow_ice": 0,
+     "damage": 22,
+     "ramps": 0
+    },
+    {
+     "month": "2025-09",
+     "snow_ice": 0,
+     "damage": 42,
+     "ramps": 0
+    },
+    {
+     "month": "2025-10",
+     "snow_ice": 0,
+     "damage": 27,
+     "ramps": 3
+    },
+    {
+     "month": "2025-11",
+     "snow_ice": 8,
+     "damage": 11,
+     "ramps": 1
+    },
+    {
+     "month": "2025-12",
+     "snow_ice": 121,
+     "damage": 16,
+     "ramps": 2
+    },
+    {
+     "month": "2026-01",
+     "snow_ice": 528,
+     "damage": 10,
+     "ramps": 2
+    },
+    {
+     "month": "2026-02",
+     "snow_ice": 205,
+     "damage": 11,
+     "ramps": 1
+    },
+    {
+     "month": "2026-03",
+     "snow_ice": 19,
+     "damage": 27,
+     "ramps": 3
+    },
+    {
+     "month": "2026-04",
+     "snow_ice": 0,
+     "damage": 39,
+     "ramps": 1
+    },
+    {
+     "month": "2026-05",
+     "snow_ice": 0,
+     "damage": 34,
+     "ramps": 0
+    },
+    {
+     "month": "2026-06",
+     "snow_ice": 0,
+     "damage": 36,
+     "ramps": 1
+    },
+    {
+     "month": "2026-07",
+     "snow_ice": 0,
+     "damage": 35,
+     "ramps": 2
+    },
+    {
+     "month": "2026-08",
+     "snow_ice": 0,
+     "damage": 44,
+     "ramps": 0
+    },
+    {
+     "month": "2026-09",
+     "snow_ice": 0,
+     "damage": 24,
+     "ramps": 2
+    }
+   ],
+   "monthly_prior_year": [
+    {
+     "month": "2023-10",
+     "snow_ice": 0,
+     "damage": 25,
+     "ramps": 3
+    },
+    {
+     "month": "2023-11",
+     "snow_ice": 0,
+     "damage": 10,
+     "ramps": 1
+    },
+    {
+     "month": "2023-12",
+     "snow_ice": 1,
+     "damage": 15,
+     "ramps": 0
+    },
+    {
+     "month": "2024-01",
+     "snow_ice": 14,
+     "damage": 12,
+     "ramps": 0
+    },
+    {
+     "month": "2024-02",
+     "snow_ice": 13,
+     "damage": 14,
+     "ramps": 2
+    },
+    {
+     "month": "2024-03",
+     "snow_ice": 5,
+     "damage": 11,
+     "ramps": 1
+    },
+    {
+     "month": "2024-04",
+     "snow_ice": 0,
+     "damage": 11,
+     "ramps": 0
+    },
+    {
+     "month": "2024-05",
+     "snow_ice": 0,
+     "damage": 25,
+     "ramps": 2
+    },
+    {
+     "month": "2024-06",
+     "snow_ice": 0,
+     "damage": 30,
+     "ramps": 0
+    },
+    {
+     "month": "2024-07",
+     "snow_ice": 0,
+     "damage": 21,
+     "ramps": 0
+    },
+    {
+     "month": "2024-08",
+     "snow_ice": 0,
+     "damage": 27,
+     "ramps": 0
+    },
+    {
+     "month": "2024-09",
+     "snow_ice": 0,
+     "damage": 41,
+     "ramps": 0
+    },
+    {
+     "month": "2024-10",
+     "snow_ice": 0,
+     "damage": 30,
+     "ramps": 0
+    },
+    {
+     "month": "2024-11",
+     "snow_ice": 0,
+     "damage": 22,
+     "ramps": 1
+    },
+    {
+     "month": "2024-12",
+     "snow_ice": 18,
+     "damage": 11,
+     "ramps": 3
+    },
+    {
+     "month": "2025-01",
+     "snow_ice": 44,
+     "damage": 10,
+     "ramps": 0
+    },
+    {
+     "month": "2025-02",
+     "snow_ice": 819,
+     "damage": 13,
+     "ramps": 0
+    },
+    {
+     "month": "2025-03",
+     "snow_ice": 32,
+     "damage": 26,
+     "ramps": 0
+    },
+    {
+     "month": "2025-04",
+     "snow_ice": 2,
+     "damage": 28,
+     "ramps": 1
+    },
+    {
+     "month": "2025-05",
+     "snow_ice": 0,
+     "damage": 34,
+     "ramps": 1
+    },
+    {
+     "month": "2025-06",
+     "snow_ice": 0,
+     "damage": 39,
+     "ramps": 0
+    },
+    {
+     "month": "2025-07",
+     "snow_ice": 0,
+     "damage": 34,
+     "ramps": 1
+    },
+    {
+     "month": "2025-08",
+     "snow_ice": 0,
+     "damage": 22,
+     "ramps": 0
+    },
+    {
+     "month": "2025-09",
+     "snow_ice": 0,
+     "damage": 42,
+     "ramps": 0
+    }
+   ],
+   "top_places": [
+    {
+     "place": "Burnhamthorpe Rd & Cordova Ave",
+     "reports": 21
+    },
+    {
+     "place": "Islington Ave & Bloor St W",
+     "reports": 18
+    },
+    {
+     "place": "Marine Parade Dr & Lake Shore Blvd W",
+     "reports": 17
+    },
+    {
+     "place": "Resurrection Rd & Bloor St W",
+     "reports": 12
+    },
+    {
+     "place": "Forty First St & Lake Shore Blvd W",
+     "reports": 10
+    }
+   ]
+  },
+  "4": {
+   "id": 4,
+   "name": "Parkdale-High Park",
+   "snow_last_winter": 1202,
+   "damage_12m": 240,
+   "ramps_12m": 18,
+   "reports_12m": 1460,
+   "reports_prior_12m": 1262,
+   "open_share_12m": 0.085,
+   "monthly": [
+    {
+     "month": "2024-10",
+     "snow_ice": 0,
+     "damage": 19,
+     "ramps": 0
+    },
+    {
+     "month": "2024-11",
+     "snow_ice": 0,
+     "damage": 18,
+     "ramps": 0
+    },
+    {
+     "month": "2024-12",
+     "snow_ice": 23,
+     "damage": 7,
+     "ramps": 0
+    },
+    {
+     "month": "2025-01",
+     "snow_ice": 48,
+     "damage": 8,
+     "ramps": 0
+    },
+    {
+     "month": "2025-02",
+     "snow_ice": 886,
+     "damage": 11,
+     "ramps": 5
+    },
+    {
+     "month": "2025-03",
+     "snow_ice": 44,
+     "damage": 43,
+     "ramps": 0
+    },
+    {
+     "month": "2025-04",
+     "snow_ice": 0,
+     "damage": 26,
+     "ramps": 2
+    },
+    {
+     "month": "2025-05",
+     "snow_ice": 0,
+     "damage": 19,
+     "ramps": 0
+    },
+    {
+     "month": "2025-06",
+     "snow_ice": 0,
+     "damage": 24,
+     "ramps": 0
+    },
+    {
+     "month": "2025-07",
+     "snow_ice": 0,
+     "damage": 24,
+     "ramps": 1
+    },
+    {
+     "month": "2025-08",
+     "snow_ice": 0,
+     "damage": 28,
+     "ramps": 0
+    },
+    {
+     "month": "2025-09",
+     "snow_ice": 0,
+     "damage": 25,
+     "ramps": 1
+    },
+    {
+     "month": "2025-10",
+     "snow_ice": 0,
+     "damage": 16,
+     "ramps": 3
+    },
+    {
+     "month": "2025-11",
+     "snow_ice": 9,
+     "damage": 17,
+     "ramps": 1
+    },
+    {
+     "month": "2025-12",
+     "snow_ice": 153,
+     "damage": 13,
+     "ramps": 0
+    },
+    {
+     "month": "2026-01",
+     "snow_ice": 513,
+     "damage": 13,
+     "ramps": 1
+    },
+    {
+     "month": "2026-02",
+     "snow_ice": 504,
+     "damage": 10,
+     "ramps": 2
+    },
+    {
+     "month": "2026-03",
+     "snow_ice": 23,
+     "damage": 23,
+     "ramps": 2
+    },
+    {
+     "month": "2026-04",
+     "snow_ice": 0,
+     "damage": 32,
+     "ramps": 4
+    },
+    {
+     "month": "2026-05",
+     "snow_ice": 0,
+     "damage": 18,
+     "ramps": 0
+    },
+    {
+     "month": "2026-06",
+     "snow_ice": 0,
+     "damage": 22,
+     "ramps": 1
+    },
+    {
+     "month": "2026-07",
+     "snow_ice": 0,
+     "damage": 26,
+     "ramps": 0
+    },
+    {
+     "month": "2026-08",
+     "snow_ice": 0,
+     "damage": 22,
+     "ramps": 3
+    },
+    {
+     "month": "2026-09",
+     "snow_ice": 0,
+     "damage": 28,
+     "ramps": 1
+    }
+   ],
+   "monthly_prior_year": [
+    {
+     "month": "2023-10",
+     "snow_ice": 0,
+     "damage": 10,
+     "ramps": 3
+    },
+    {
+     "month": "2023-11",
+     "snow_ice": 0,
+     "damage": 14,
+     "ramps": 0
+    },
+    {
+     "month": "2023-12",
+     "snow_ice": 0,
+     "damage": 10,
+     "ramps": 0
+    },
+    {
+     "month": "2024-01",
+     "snow_ice": 13,
+     "damage": 10,
+     "ramps": 3
+    },
+    {
+     "month": "2024-02",
+     "snow_ice": 8,
+     "damage": 8,
+     "ramps": 0
+    },
+    {
+     "month": "2024-03",
+     "snow_ice": 0,
+     "damage": 17,
+     "ramps": 0
+    },
+    {
+     "month": "2024-04",
+     "snow_ice": 0,
+     "damage": 17,
+     "ramps": 0
+    },
+    {
+     "month": "2024-05",
+     "snow_ice": 0,
+     "damage": 17,
+     "ramps": 3
+    },
+    {
+     "month": "2024-06",
+     "snow_ice": 0,
+     "damage": 22,
+     "ramps": 1
+    },
+    {
+     "month": "2024-07",
+     "snow_ice": 0,
+     "damage": 18,
+     "ramps": 0
+    },
+    {
+     "month": "2024-08",
+     "snow_ice": 0,
+     "damage": 16,
+     "ramps": 1
+    },
+    {
+     "month": "2024-09",
+     "snow_ice": 0,
+     "damage": 16,
+     "ramps": 0
+    },
+    {
+     "month": "2024-10",
+     "snow_ice": 0,
+     "damage": 19,
+     "ramps": 0
+    },
+    {
+     "month": "2024-11",
+     "snow_ice": 0,
+     "damage": 18,
+     "ramps": 0
+    },
+    {
+     "month": "2024-12",
+     "snow_ice": 23,
+     "damage": 7,
+     "ramps": 0
+    },
+    {
+     "month": "2025-01",
+     "snow_ice": 48,
+     "damage": 8,
+     "ramps": 0
+    },
+    {
+     "month": "2025-02",
+     "snow_ice": 886,
+     "damage": 11,
+     "ramps": 5
+    },
+    {
+     "month": "2025-03",
+     "snow_ice": 44,
+     "damage": 43,
+     "ramps": 0
+    },
+    {
+     "month": "2025-04",
+     "snow_ice": 0,
+     "damage": 26,
+     "ramps": 2
+    },
+    {
+     "month": "2025-05",
+     "snow_ice": 0,
+     "damage": 19,
+     "ramps": 0
+    },
+    {
+     "month": "2025-06",
+     "snow_ice": 0,
+     "damage": 24,
+     "ramps": 0
+    },
+    {
+     "month": "2025-07",
+     "snow_ice": 0,
+     "damage": 24,
+     "ramps": 1
+    },
+    {
+     "month": "2025-08",
+     "snow_ice": 0,
+     "damage": 28,
+     "ramps": 0
+    },
+    {
+     "month": "2025-09",
+     "snow_ice": 0,
+     "damage": 25,
+     "ramps": 1
+    }
+   ],
+   "top_places": [
+    {
+     "place": "Glenlake Ave & Keele St",
+     "reports": 11
+    },
+    {
+     "place": "Lansdowne Ave & Rideau Ave",
+     "reports": 10
+    },
+    {
+     "place": "Martin Goodman Trl & The Queensway",
+     "reports": 10
+    },
+    {
+     "place": "Parkside Dr & Bloor St W",
+     "reports": 10
+    },
+    {
+     "place": "Pacific Ave & Dundas St W",
+     "reports": 9
+    }
+   ]
+  },
+  "5": {
+   "id": 5,
+   "name": "York South-Weston",
+   "snow_last_winter": 1428,
+   "damage_12m": 246,
+   "ramps_12m": 11,
+   "reports_12m": 1685,
+   "reports_prior_12m": 888,
+   "open_share_12m": 0.045,
+   "monthly": [
+    {
+     "month": "2024-10",
+     "snow_ice": 0,
+     "damage": 20,
+     "ramps": 0
+    },
+    {
+     "month": "2024-11",
+     "snow_ice": 1,
+     "damage": 12,
+     "ramps": 2
+    },
+    {
+     "month": "2024-12",
+     "snow_ice": 13,
+     "damage": 9,
+     "ramps": 1
+    },
+    {
+     "month": "2025-01",
+     "snow_ice": 29,
+     "damage": 5,
+     "ramps": 0
+    },
+    {
+     "month": "2025-02",
+     "snow_ice": 594,
+     "damage": 8,
+     "ramps": 2
+    },
+    {
+     "month": "2025-03",
+     "snow_ice": 37,
+     "damage": 19,
+     "ramps": 0
+    },
+    {
+     "month": "2025-04",
+     "snow_ice": 0,
+     "damage": 14,
+     "ramps": 2
+    },
+    {
+     "month": "2025-05",
+     "snow_ice": 0,
+     "damage": 14,
+     "ramps": 0
+    },
+    {
+     "month": "2025-06",
+     "snow_ice": 0,
+     "damage": 37,
+     "ramps": 2
+    },
+    {
+     "month": "2025-07",
+     "snow_ice": 0,
+     "damage": 17,
+     "ramps": 0
+    },
+    {
+     "month": "2025-08",
+     "snow_ice": 0,
+     "damage": 27,
+     "ramps": 1
+    },
+    {
+     "month": "2025-09",
+     "snow_ice": 0,
+     "damage": 22,
+     "ramps": 0
+    },
+    {
+     "month": "2025-10",
+     "snow_ice": 0,
+     "damage": 18,
+     "ramps": 0
+    },
+    {
+     "month": "2025-11",
+     "snow_ice": 5,
+     "damage": 19,
+     "ramps": 0
+    },
+    {
+     "month": "2025-12",
+     "snow_ice": 153,
+     "damage": 10,
+     "ramps": 1
+    },
+    {
+     "month": "2026-01",
+     "snow_ice": 839,
+     "damage": 8,
+     "ramps": 3
+    },
+    {
+     "month": "2026-02",
+     "snow_ice": 417,
+     "damage": 10,
+     "ramps": 1
+    },
+    {
+     "month": "2026-03",
+     "snow_ice": 13,
+     "damage": 18,
+     "ramps": 3
+    },
+    {
+     "month": "2026-04",
+     "snow_ice": 1,
+     "damage": 22,
+     "ramps": 0
+    },
+    {
+     "month": "2026-05",
+     "snow_ice": 0,
+     "damage": 27,
+     "ramps": 1
+    },
+    {
+     "month": "2026-06",
+     "snow_ice": 0,
+     "damage": 22,
+     "ramps": 0
+    },
+    {
+     "month": "2026-07",
+     "snow_ice": 0,
+     "damage": 26,
+     "ramps": 1
+    },
+    {
+     "month": "2026-08",
+     "snow_ice": 0,
+     "damage": 34,
+     "ramps": 0
+    },
+    {
+     "month": "2026-09",
+     "snow_ice": 0,
+     "damage": 32,
+     "ramps": 1
+    }
+   ],
+   "monthly_prior_year": [
+    {
+     "month": "2023-10",
+     "snow_ice": 0,
+     "damage": 10,
+     "ramps": 0
+    },
+    {
+     "month": "2023-11",
+     "snow_ice": 0,
+     "damage": 8,
+     "ramps": 2
+    },
+    {
+     "month": "2023-12",
+     "snow_ice": 1,
+     "damage": 7,
+     "ramps": 0
+    },
+    {
+     "month": "2024-01",
+     "snow_ice": 8,
+     "damage": 11,
+     "ramps": 2
+    },
+    {
+     "month": "2024-02",
+     "snow_ice": 5,
+     "damage": 6,
+     "ramps": 1
+    },
+    {
+     "month": "2024-03",
+     "snow_ice": 1,
+     "damage": 13,
+     "ramps": 0
+    },
+    {
+     "month": "2024-04",
+     "snow_ice": 0,
+     "damage": 31,
+     "ramps": 0
+    },
+    {
+     "month": "2024-05",
+     "snow_ice": 0,
+     "damage": 17,
+     "ramps": 1
+    },
+    {
+     "month": "2024-06",
+     "snow_ice": 0,
+     "damage": 20,
+     "ramps": 0
+    },
+    {
+     "month": "2024-07",
+     "snow_ice": 0,
+     "damage": 18,
+     "ramps": 0
+    },
+    {
+     "month": "2024-08",
+     "snow_ice": 0,
+     "damage": 31,
+     "ramps": 0
+    },
+    {
+     "month": "2024-09",
+     "snow_ice": 0,
+     "damage": 15,
+     "ramps": 0
+    },
+    {
+     "month": "2024-10",
+     "snow_ice": 0,
+     "damage": 20,
+     "ramps": 0
+    },
+    {
+     "month": "2024-11",
+     "snow_ice": 1,
+     "damage": 12,
+     "ramps": 2
+    },
+    {
+     "month": "2024-12",
+     "snow_ice": 13,
+     "damage": 9,
+     "ramps": 1
+    },
+    {
+     "month": "2025-01",
+     "snow_ice": 29,
+     "damage": 5,
+     "ramps": 0
+    },
+    {
+     "month": "2025-02",
+     "snow_ice": 594,
+     "damage": 8,
+     "ramps": 2
+    },
+    {
+     "month": "2025-03",
+     "snow_ice": 37,
+     "damage": 19,
+     "ramps": 0
+    },
+    {
+     "month": "2025-04",
+     "snow_ice": 0,
+     "damage": 14,
+     "ramps": 2
+    },
+    {
+     "month": "2025-05",
+     "snow_ice": 0,
+     "damage": 14,
+     "ramps": 0
+    },
+    {
+     "month": "2025-06",
+     "snow_ice": 0,
+     "damage": 37,
+     "ramps": 2
+    },
+    {
+     "month": "2025-07",
+     "snow_ice": 0,
+     "damage": 17,
+     "ramps": 0
+    },
+    {
+     "month": "2025-08",
+     "snow_ice": 0,
+     "damage": 27,
+     "ramps": 1
+    },
+    {
+     "month": "2025-09",
+     "snow_ice": 0,
+     "damage": 22,
+     "ramps": 0
+    }
+   ],
+   "top_places": [
+    {
+     "place": "Lawrence Ave W & Weston Rd",
+     "reports": 21
+    },
+    {
+     "place": "Keele St & St Clair Ave W",
+     "reports": 14
+    },
+    {
+     "place": "Jane St & St Clair Ave W",
+     "reports": 12
+    },
+    {
+     "place": "Runnymede Rd & St Clair Ave W",
+     "reports": 12
+    },
+    {
+     "place": "Junction Rd & Old Weston Rd",
+     "reports": 11
+    }
+   ]
+  },
+  "6": {
+   "id": 6,
+   "name": "York Centre",
+   "snow_last_winter": 389,
+   "damage_12m": 171,
+   "ramps_12m": 9,
+   "reports_12m": 569,
+   "reports_prior_12m": 478,
+   "open_share_12m": 0.069,
+   "monthly": [
+    {
+     "month": "2024-10",
+     "snow_ice": 0,
+     "damage": 20,
+     "ramps": 1
+    },
+    {
+     "month": "2024-11",
+     "snow_ice": 0,
+     "damage": 12,
+     "ramps": 0
+    },
+    {
+     "month": "2024-12",
+     "snow_ice": 5,
+     "damage": 8,
+     "ramps": 0
+    },
+    {
+     "month": "2025-01",
+     "snow_ice": 31,
+     "damage": 4,
+     "ramps": 0
+    },
+    {
+     "month": "2025-02",
+     "snow_ice": 253,
+     "damage": 5,
+     "ramps": 0
+    },
+    {
+     "month": "2025-03",
+     "snow_ice": 9,
+     "damage": 13,
+     "ramps": 0
+    },
+    {
+     "month": "2025-04",
+     "snow_ice": 0,
+     "damage": 14,
+     "ramps": 0
+    },
+    {
+     "month": "2025-05",
+     "snow_ice": 0,
+     "damage": 20,
+     "ramps": 0
+    },
+    {
+     "month": "2025-06",
+     "snow_ice": 0,
+     "damage": 19,
+     "ramps": 2
+    },
+    {
+     "month": "2025-07",
+     "snow_ice": 0,
+     "damage": 29,
+     "ramps": 0
+    },
+    {
+     "month": "2025-08",
+     "snow_ice": 0,
+     "damage": 17,
+     "ramps": 0
+    },
+    {
+     "month": "2025-09",
+     "snow_ice": 0,
+     "damage": 16,
+     "ramps": 0
+    },
+    {
+     "month": "2025-10",
+     "snow_ice": 0,
+     "damage": 6,
+     "ramps": 0
+    },
+    {
+     "month": "2025-11",
+     "snow_ice": 3,
+     "damage": 6,
+     "ramps": 0
+    },
+    {
+     "month": "2025-12",
+     "snow_ice": 45,
+     "damage": 6,
+     "ramps": 0
+    },
+    {
+     "month": "2026-01",
+     "snow_ice": 178,
+     "damage": 7,
+     "ramps": 1
+    },
+    {
+     "month": "2026-02",
+     "snow_ice": 141,
+     "damage": 9,
+     "ramps": 1
+    },
+    {
+     "month": "2026-03",
+     "snow_ice": 21,
+     "damage": 11,
+     "ramps": 2
+    },
+    {
+     "month": "2026-04",
+     "snow_ice": 1,
+     "damage": 15,
+     "ramps": 1
+    },
+    {
+     "month": "2026-05",
+     "snow_ice": 0,
+     "damage": 20,
+     "ramps": 0
+    },
+    {
+     "month": "2026-06",
+     "snow_ice": 0,
+     "damage": 22,
+     "ramps": 0
+    },
+    {
+     "month": "2026-07",
+     "snow_ice": 0,
+     "damage": 21,
+     "ramps": 0
+    },
+    {
+     "month": "2026-08",
+     "snow_ice": 0,
+     "damage": 27,
+     "ramps": 2
+    },
+    {
+     "month": "2026-09",
+     "snow_ice": 0,
+     "damage": 21,
+     "ramps": 2
+    }
+   ],
+   "monthly_prior_year": [
+    {
+     "month": "2023-10",
+     "snow_ice": 0,
+     "damage": 12,
+     "ramps": 1
+    },
+    {
+     "month": "2023-11",
+     "snow_ice": 2,
+     "damage": 12,
+     "ramps": 0
+    },
+    {
+     "month": "2023-12",
+     "snow_ice": 3,
+     "damage": 8,
+     "ramps": 0
+    },
+    {
+     "month": "2024-01",
+     "snow_ice": 21,
+     "damage": 8,
+     "ramps": 0
+    },
+    {
+     "month": "2024-02",
+     "snow_ice": 3,
+     "damage": 6,
+     "ramps": 0
+    },
+    {
+     "month": "2024-03",
+     "snow_ice": 1,
+     "damage": 12,
+     "ramps": 0
+    },
+    {
+     "month": "2024-04",
+     "snow_ice": 0,
+     "damage": 10,
+     "ramps": 0
+    },
+    {
+     "month": "2024-05",
+     "snow_ice": 0,
+     "damage": 19,
+     "ramps": 0
+    },
+    {
+     "month": "2024-06",
+     "snow_ice": 0,
+     "damage": 17,
+     "ramps": 1
+    },
+    {
+     "month": "2024-07",
+     "snow_ice": 0,
+     "damage": 20,
+     "ramps": 0
+    },
+    {
+     "month": "2024-08",
+     "snow_ice": 0,
+     "damage": 25,
+     "ramps": 1
+    },
+    {
+     "month": "2024-09",
+     "snow_ice": 0,
+     "damage": 13,
+     "ramps": 0
+    },
+    {
+     "month": "2024-10",
+     "snow_ice": 0,
+     "damage": 20,
+     "ramps": 1
+    },
+    {
+     "month": "2024-11",
+     "snow_ice": 0,
+     "damage": 12,
+     "ramps": 0
+    },
+    {
+     "month": "2024-12",
+     "snow_ice": 5,
+     "damage": 8,
+     "ramps": 0
+    },
+    {
+     "month": "2025-01",
+     "snow_ice": 31,
+     "damage": 4,
+     "ramps": 0
+    },
+    {
+     "month": "2025-02",
+     "snow_ice": 253,
+     "damage": 5,
+     "ramps": 0
+    },
+    {
+     "month": "2025-03",
+     "snow_ice": 9,
+     "damage": 13,
+     "ramps": 0
+    },
+    {
+     "month": "2025-04",
+     "snow_ice": 0,
+     "damage": 14,
+     "ramps": 0
+    },
+    {
+     "month": "2025-05",
+     "snow_ice": 0,
+     "damage": 20,
+     "ramps": 0
+    },
+    {
+     "month": "2025-06",
+     "snow_ice": 0,
+     "damage": 19,
+     "ramps": 2
+    },
+    {
+     "month": "2025-07",
+     "snow_ice": 0,
+     "damage": 29,
+     "ramps": 0
+    },
+    {
+     "month": "2025-08",
+     "snow_ice": 0,
+     "damage": 17,
+     "ramps": 0
+    },
+    {
+     "month": "2025-09",
+     "snow_ice": 0,
+     "damage": 16,
+     "ramps": 0
+    }
+   ],
+   "top_places": [
+    {
+     "place": "Bathurst St & Wilson Ave",
+     "reports": 24
+    },
+    {
+     "place": "Bathurst St & Dewlane Dr",
+     "reports": 14
+    },
+    {
+     "place": "Finch Ave W & Keele St",
+     "reports": 10
+    },
+    {
+     "place": "Bathurst St & Sheppard Ave W",
+     "reports": 8
+    },
+    {
+     "place": "Finch Ave W & Bathurst St",
+     "reports": 7
+    }
+   ]
+  },
+  "7": {
+   "id": 7,
+   "name": "Humber River-Black Creek",
+   "snow_last_winter": 207,
+   "damage_12m": 169,
+   "ramps_12m": 5,
+   "reports_12m": 381,
+   "reports_prior_12m": 321,
+   "open_share_12m": 0.081,
+   "monthly": [
+    {
+     "month": "2024-10",
+     "snow_ice": 0,
+     "damage": 8,
+     "ramps": 0
+    },
+    {
+     "month": "2024-11",
+     "snow_ice": 0,
+     "damage": 12,
+     "ramps": 0
+    },
+    {
+     "month": "2024-12",
+     "snow_ice": 1,
+     "damage": 7,
+     "ramps": 0
+    },
+    {
+     "month": "2025-01",
+     "snow_ice": 20,
+     "damage": 5,
+     "ramps": 0
+    },
+    {
+     "month": "2025-02",
+     "snow_ice": 116,
+     "damage": 8,
+     "ramps": 1
+    },
+    {
+     "month": "2025-03",
+     "snow_ice": 4,
+     "damage": 15,
+     "ramps": 0
+    },
+    {
+     "month": "2025-04",
+     "snow_ice": 0,
+     "damage": 8,
+     "ramps": 0
+    },
+    {
+     "month": "2025-05",
+     "snow_ice": 0,
+     "damage": 21,
+     "ramps": 0
+    },
+    {
+     "month": "2025-06",
+     "snow_ice": 0,
+     "damage": 27,
+     "ramps": 0
+    },
+    {
+     "month": "2025-07",
+     "snow_ice": 0,
+     "damage": 40,
+     "ramps": 0
+    },
+    {
+     "month": "2025-08",
+     "snow_ice": 0,
+     "damage": 18,
+     "ramps": 0
+    },
+    {
+     "month": "2025-09",
+     "snow_ice": 0,
+     "damage": 10,
+     "ramps": 0
+    },
+    {
+     "month": "2025-10",
+     "snow_ice": 0,
+     "damage": 18,
+     "ramps": 2
+    },
+    {
+     "month": "2025-11",
+     "snow_ice": 1,
+     "damage": 10,
+     "ramps": 0
+    },
+    {
+     "month": "2025-12",
+     "snow_ice": 24,
+     "damage": 7,
+     "ramps": 0
+    },
+    {
+     "month": "2026-01",
+     "snow_ice": 129,
+     "damage": 4,
+     "ramps": 0
+    },
+    {
+     "month": "2026-02",
+     "snow_ice": 49,
+     "damage": 11,
+     "ramps": 1
+    },
+    {
+     "month": "2026-03",
+     "snow_ice": 4,
+     "damage": 13,
+     "ramps": 1
+    },
+    {
+     "month": "2026-04",
+     "snow_ice": 0,
+     "damage": 22,
+     "ramps": 0
+    },
+    {
+     "month": "2026-05",
+     "snow_ice": 0,
+     "damage": 20,
+     "ramps": 0
+    },
+    {
+     "month": "2026-06",
+     "snow_ice": 0,
+     "damage": 15,
+     "ramps": 0
+    },
+    {
+     "month": "2026-07",
+     "snow_ice": 0,
+     "damage": 18,
+     "ramps": 1
+    },
+    {
+     "month": "2026-08",
+     "snow_ice": 0,
+     "damage": 18,
+     "ramps": 0
+    },
+    {
+     "month": "2026-09",
+     "snow_ice": 0,
+     "damage": 13,
+     "ramps": 0
+    }
+   ],
+   "monthly_prior_year": [
+    {
+     "month": "2023-10",
+     "snow_ice": 0,
+     "damage": 11,
+     "ramps": 0
+    },
+    {
+     "month": "2023-11",
+     "snow_ice": 1,
+     "damage": 11,
+     "ramps": 1
+    },
+    {
+     "month": "2023-12",
+     "snow_ice": 0,
+     "damage": 7,
+     "ramps": 0
+    },
+    {
+     "month": "2024-01",
+     "snow_ice": 14,
+     "damage": 9,
+     "ramps": 0
+    },
+    {
+     "month": "2024-02",
+     "snow_ice": 1,
+     "damage": 6,
+     "ramps": 0
+    },
+    {
+     "month": "2024-03",
+     "snow_ice": 0,
+     "damage": 7,
+     "ramps": 0
+    },
+    {
+     "month": "2024-04",
+     "snow_ice": 0,
+     "damage": 10,
+     "ramps": 0
+    },
+    {
+     "month": "2024-05",
+     "snow_ice": 0,
+     "damage": 14,
+     "ramps": 1
+    },
+    {
+     "month": "2024-06",
+     "snow_ice": 0,
+     "damage": 19,
+     "ramps": 1
+    },
+    {
+     "month": "2024-07",
+     "snow_ice": 0,
+     "damage": 16,
+     "ramps": 3
+    },
+    {
+     "month": "2024-08",
+     "snow_ice": 0,
+     "damage": 22,
+     "ramps": 1
+    },
+    {
+     "month": "2024-09",
+     "snow_ice": 0,
+     "damage": 12,
+     "ramps": 0
+    },
+    {
+     "month": "2024-10",
+     "snow_ice": 0,
+     "damage": 8,
+     "ramps": 0
+    },
+    {
+     "month": "2024-11",
+     "snow_ice": 0,
+     "damage": 12,
+     "ramps": 0
+    },
+    {
+     "month": "2024-12",
+     "snow_ice": 1,
+     "damage": 7,
+     "ramps": 0
+    },
+    {
+     "month": "2025-01",
+     "snow_ice": 20,
+     "damage": 5,
+     "ramps": 0
+    },
+    {
+     "month": "2025-02",
+     "snow_ice": 116,
+     "damage": 8,
+     "ramps": 1
+    },
+    {
+     "month": "2025-03",
+     "snow_ice": 4,
+     "damage": 15,
+     "ramps": 0
+    },
+    {
+     "month": "2025-04",
+     "snow_ice": 0,
+     "damage": 8,
+     "ramps": 0
+    },
+    {
+     "month": "2025-05",
+     "snow_ice": 0,
+     "damage": 21,
+     "ramps": 0
+    },
+    {
+     "month": "2025-06",
+     "snow_ice": 0,
+     "damage": 27,
+     "ramps": 0
+    },
+    {
+     "month": "2025-07",
+     "snow_ice": 0,
+     "damage": 40,
+     "ramps": 0
+    },
+    {
+     "month": "2025-08",
+     "snow_ice": 0,
+     "damage": 18,
+     "ramps": 0
+    },
+    {
+     "month": "2025-09",
+     "snow_ice": 0,
+     "damage": 10,
+     "ramps": 0
+    }
+   ],
+   "top_places": [
+    {
+     "place": "Finch Ave W & Ardwick Blvd",
+     "reports": 7
+    },
+    {
+     "place": "Finch Ave W & Driftwood Ave",
+     "reports": 5
+    },
+    {
+     "place": "Albion Rd & Walsh Ave",
+     "reports": 5
+    },
+    {
+     "place": "Finch Ave W & Jane St",
+     "reports": 5
+    },
+    {
+     "place": "Finch Ave W & Romfield Lane",
+     "reports": 3
+    }
+   ]
+  },
+  "8": {
+   "id": 8,
+   "name": "Eglinton-Lawrence",
+   "snow_last_winter": 1541,
+   "damage_12m": 374,
+   "ramps_12m": 9,
+   "reports_12m": 1924,
+   "reports_prior_12m": 1471,
+   "open_share_12m": 0.025,
+   "monthly": [
+    {
+     "month": "2024-10",
+     "snow_ice": 0,
+     "damage": 25,
+     "ramps": 0
+    },
+    {
+     "month": "2024-11",
+     "snow_ice": 0,
+     "damage": 17,
+     "ramps": 1
+    },
+    {
+     "month": "2024-12",
+     "snow_ice": 21,
+     "damage": 7,
+     "ramps": 0
+    },
+    {
+     "month": "2025-01",
+     "snow_ice": 52,
+     "damage": 12,
+     "ramps": 0
+    },
+    {
+     "month": "2025-02",
+     "snow_ice": 1057,
+     "damage": 14,
+     "ramps": 1
+    },
+    {
+     "month": "2025-03",
+     "snow_ice": 40,
+     "damage": 38,
+     "ramps": 0
+    },
+    {
+     "month": "2025-04",
+     "snow_ice": 0,
+     "damage": 29,
+     "ramps": 1
+    },
+    {
+     "month": "2025-05",
+     "snow_ice": 0,
+     "damage": 32,
+     "ramps": 3
+    },
+    {
+     "month": "2025-06",
+     "snow_ice": 0,
+     "damage": 35,
+     "ramps": 0
+    },
+    {
+     "month": "2025-07",
+     "snow_ice": 0,
+     "damage": 23,
+     "ramps": 0
+    },
+    {
+     "month": "2025-08",
+     "snow_ice": 0,
+     "damage": 20,
+     "ramps": 1
+    },
+    {
+     "month": "2025-09",
+     "snow_ice": 0,
+     "damage": 42,
+     "ramps": 0
+    },
+    {
+     "month": "2025-10",
+     "snow_ice": 0,
+     "damage": 30,
+     "ramps": 1
+    },
+    {
+     "month": "2025-11",
+     "snow_ice": 11,
+     "damage": 14,
+     "ramps": 0
+    },
+    {
+     "month": "2025-12",
+     "snow_ice": 191,
+     "damage": 6,
+     "ramps": 0
+    },
+    {
+     "month": "2026-01",
+     "snow_ice": 886,
+     "damage": 9,
+     "ramps": 0
+    },
+    {
+     "month": "2026-02",
+     "snow_ice": 424,
+     "damage": 13,
+     "ramps": 1
+    },
+    {
+     "month": "2026-03",
+     "snow_ice": 28,
+     "damage": 48,
+     "ramps": 0
+    },
+    {
+     "month": "2026-04",
+     "snow_ice": 1,
+     "damage": 44,
+     "ramps": 0
+    },
+    {
+     "month": "2026-05",
+     "snow_ice": 0,
+     "damage": 29,
+     "ramps": 4
+    },
+    {
+     "month": "2026-06",
+     "snow_ice": 0,
+     "damage": 45,
+     "ramps": 1
+    },
+    {
+     "month": "2026-07",
+     "snow_ice": 0,
+     "damage": 52,
+     "ramps": 0
+    },
+    {
+     "month": "2026-08",
+     "snow_ice": 0,
+     "damage": 44,
+     "ramps": 1
+    },
+    {
+     "month": "2026-09",
+     "snow_ice": 0,
+     "damage": 40,
+     "ramps": 1
+    }
+   ],
+   "monthly_prior_year": [
+    {
+     "month": "2023-10",
+     "snow_ice": 0,
+     "damage": 24,
+     "ramps": 1
+    },
+    {
+     "month": "2023-11",
+     "snow_ice": 2,
+     "damage": 24,
+     "ramps": 0
+    },
+    {
+     "month": "2023-12",
+     "snow_ice": 3,
+     "damage": 17,
+     "ramps": 0
+    },
+    {
+     "month": "2024-01",
+     "snow_ice": 52,
+     "damage": 12,
+     "ramps": 0
+    },
+    {
+     "month": "2024-02",
+     "snow_ice": 5,
+     "damage": 14,
+     "ramps": 0
+    },
+    {
+     "month": "2024-03",
+     "snow_ice": 4,
+     "damage": 19,
+     "ramps": 2
+    },
+    {
+     "month": "2024-04",
+     "snow_ice": 0,
+     "damage": 25,
+     "ramps": 0
+    },
+    {
+     "month": "2024-05",
+     "snow_ice": 0,
+     "damage": 25,
+     "ramps": 5
+    },
+    {
+     "month": "2024-06",
+     "snow_ice": 0,
+     "damage": 22,
+     "ramps": 6
+    },
+    {
+     "month": "2024-07",
+     "snow_ice": 0,
+     "damage": 30,
+     "ramps": 7
+    },
+    {
+     "month": "2024-08",
+     "snow_ice": 0,
+     "damage": 32,
+     "ramps": 2
+    },
+    {
+     "month": "2024-09",
+     "snow_ice": 0,
+     "damage": 29,
+     "ramps": 2
+    },
+    {
+     "month": "2024-10",
+     "snow_ice": 0,
+     "damage": 25,
+     "ramps": 0
+    },
+    {
+     "month": "2024-11",
+     "snow_ice": 0,
+     "damage": 17,
+     "ramps": 1
+    },
+    {
+     "month": "2024-12",
+     "snow_ice": 21,
+     "damage": 7,
+     "ramps": 0
+    },
+    {
+     "month": "2025-01",
+     "snow_ice": 52,
+     "damage": 12,
+     "ramps": 0
+    },
+    {
+     "month": "2025-02",
+     "snow_ice": 1057,
+     "damage": 14,
+     "ramps": 1
+    },
+    {
+     "month": "2025-03",
+     "snow_ice": 40,
+     "damage": 38,
+     "ramps": 0
+    },
+    {
+     "month": "2025-04",
+     "snow_ice": 0,
+     "damage": 29,
+     "ramps": 1
+    },
+    {
+     "month": "2025-05",
+     "snow_ice": 0,
+     "damage": 32,
+     "ramps": 3
+    },
+    {
+     "month": "2025-06",
+     "snow_ice": 0,
+     "damage": 35,
+     "ramps": 0
+    },
+    {
+     "month": "2025-07",
+     "snow_ice": 0,
+     "damage": 23,
+     "ramps": 0
+    },
+    {
+     "month": "2025-08",
+     "snow_ice": 0,
+     "damage": 20,
+     "ramps": 1
+    },
+    {
+     "month": "2025-09",
+     "snow_ice": 0,
+     "damage": 42,
+     "ramps": 0
+    }
+   ],
+   "top_places": [
+    {
+     "place": "Avenue Rd & Lawrence Ave W",
+     "reports": 19
+    },
+    {
+     "place": "Bathurst St & Lawrence Ave W",
+     "reports": 17
+    },
+    {
+     "place": "Dufferin St & Lawrence Ave W",
+     "reports": 12
+    },
+    {
+     "place": "Avenue Rd & Eglinton Ave W",
+     "reports": 12
+    },
+    {
+     "place": "Wilson Ave & Yonge St",
+     "reports": 11
+    }
+   ]
+  },
+  "9": {
+   "id": 9,
+   "name": "Davenport",
+   "snow_last_winter": 1740,
+   "damage_12m": 277,
+   "ramps_12m": 16,
+   "reports_12m": 2033,
+   "reports_prior_12m": 1376,
+   "open_share_12m": 0.092,
+   "monthly": [
+    {
+     "month": "2024-10",
+     "snow_ice": 0,
+     "damage": 19,
+     "ramps": 0
+    },
+    {
+     "month": "2024-11",
+     "snow_ice": 0,
+     "damage": 24,
+     "ramps": 0
+    },
+    {
+     "month": "2024-12",
+     "snow_ice": 20,
+     "damage": 9,
+     "ramps": 0
+    },
+    {
+     "month": "2025-01",
+     "snow_ice": 67,
+     "damage": 14,
+     "ramps": 1
+    },
+    {
+     "month": "2025-02",
+     "snow_ice": 1028,
+     "damage": 10,
+     "ramps": 1
+    },
+    {
+     "month": "2025-03",
+     "snow_ice": 35,
+     "damage": 19,
+     "ramps": 2
+    },
+    {
+     "month": "2025-04",
+     "snow_ice": 0,
+     "damage": 17,
+     "ramps": 2
+    },
+    {
+     "month": "2025-05",
+     "snow_ice": 0,
+     "damage": 23,
+     "ramps": 0
+    },
+    {
+     "month": "2025-06",
+     "snow_ice": 0,
+     "damage": 20,
+     "ramps": 0
+    },
+    {
+     "month": "2025-07",
+     "snow_ice": 0,
+     "damage": 16,
+     "ramps": 0
+    },
+    {
+     "month": "2025-08",
+     "snow_ice": 0,
+     "damage": 18,
+     "ramps": 3
+    },
+    {
+     "month": "2025-09",
+     "snow_ice": 0,
+     "damage": 27,
+     "ramps": 1
+    },
+    {
+     "month": "2025-10",
+     "snow_ice": 0,
+     "damage": 31,
+     "ramps": 2
+    },
+    {
+     "month": "2025-11",
+     "snow_ice": 7,
+     "damage": 19,
+     "ramps": 0
+    },
+    {
+     "month": "2025-12",
+     "snow_ice": 303,
+     "damage": 4,
+     "ramps": 0
+    },
+    {
+     "month": "2026-01",
+     "snow_ice": 829,
+     "damage": 14,
+     "ramps": 5
+    },
+    {
+     "month": "2026-02",
+     "snow_ice": 582,
+     "damage": 10,
+     "ramps": 1
+    },
+    {
+     "month": "2026-03",
+     "snow_ice": 19,
+     "damage": 41,
+     "ramps": 0
+    },
+    {
+     "month": "2026-04",
+     "snow_ice": 0,
+     "damage": 36,
+     "ramps": 2
+    },
+    {
+     "month": "2026-05",
+     "snow_ice": 0,
+     "damage": 22,
+     "ramps": 0
+    },
+    {
+     "month": "2026-06",
+     "snow_ice": 0,
+     "damage": 37,
+     "ramps": 1
+    },
+    {
+     "month": "2026-07",
+     "snow_ice": 0,
+     "damage": 24,
+     "ramps": 0
+    },
+    {
+     "month": "2026-08",
+     "snow_ice": 0,
+     "damage": 19,
+     "ramps": 4
+    },
+    {
+     "month": "2026-09",
+     "snow_ice": 0,
+     "damage": 20,
+     "ramps": 1
+    }
+   ],
+   "monthly_prior_year": [
+    {
+     "month": "2023-10",
+     "snow_ice": 0,
+     "damage": 23,
+     "ramps": 0
+    },
+    {
+     "month": "2023-11",
+     "snow_ice": 1,
+     "damage": 11,
+     "ramps": 2
+    },
+    {
+     "month": "2023-12",
+     "snow_ice": 0,
+     "damage": 13,
+     "ramps": 0
+    },
+    {
+     "month": "2024-01",
+     "snow_ice": 28,
+     "damage": 9,
+     "ramps": 1
+    },
+    {
+     "month": "2024-02",
+     "snow_ice": 20,
+     "damage": 6,
+     "ramps": 2
+    },
+    {
+     "month": "2024-03",
+     "snow_ice": 8,
+     "damage": 11,
+     "ramps": 1
+    },
+    {
+     "month": "2024-04",
+     "snow_ice": 0,
+     "damage": 22,
+     "ramps": 1
+    },
+    {
+     "month": "2024-05",
+     "snow_ice": 0,
+     "damage": 23,
+     "ramps": 0
+    },
+    {
+     "month": "2024-06",
+     "snow_ice": 0,
+     "damage": 16,
+     "ramps": 2
+    },
+    {
+     "month": "2024-07",
+     "snow_ice": 0,
+     "damage": 17,
+     "ramps": 1
+    },
+    {
+     "month": "2024-08",
+     "snow_ice": 0,
+     "damage": 30,
+     "ramps": 3
+    },
+    {
+     "month": "2024-09",
+     "snow_ice": 0,
+     "damage": 26,
+     "ramps": 0
+    },
+    {
+     "month": "2024-10",
+     "snow_ice": 0,
+     "damage": 19,
+     "ramps": 0
+    },
+    {
+     "month": "2024-11",
+     "snow_ice": 0,
+     "damage": 24,
+     "ramps": 0
+    },
+    {
+     "month": "2024-12",
+     "snow_ice": 20,
+     "damage": 9,
+     "ramps": 0
+    },
+    {
+     "month": "2025-01",
+     "snow_ice": 67,
+     "damage": 14,
+     "ramps": 1
+    },
+    {
+     "month": "2025-02",
+     "snow_ice": 1028,
+     "damage": 10,
+     "ramps": 1
+    },
+    {
+     "month": "2025-03",
+     "snow_ice": 35,
+     "damage": 19,
+     "ramps": 2
+    },
+    {
+     "month": "2025-04",
+     "snow_ice": 0,
+     "damage": 17,
+     "ramps": 2
+    },
+    {
+     "month": "2025-05",
+     "snow_ice": 0,
+     "damage": 23,
+     "ramps": 0
+    },
+    {
+     "month": "2025-06",
+     "snow_ice": 0,
+     "damage": 20,
+     "ramps": 0
+    },
+    {
+     "month": "2025-07",
+     "snow_ice": 0,
+     "damage": 16,
+     "ramps": 0
+    },
+    {
+     "month": "2025-08",
+     "snow_ice": 0,
+     "damage": 18,
+     "ramps": 3
+    },
+    {
+     "month": "2025-09",
+     "snow_ice": 0,
+     "damage": 27,
+     "ramps": 1
+    }
+   ],
+   "top_places": [
+    {
+     "place": "Dupont St & Dufferin St",
+     "reports": 17
+    },
+    {
+     "place": "Dupont St & Lansdowne Ave",
+     "reports": 15
+    },
+    {
+     "place": "Dupont St & Symington Ave",
+     "reports": 15
+    },
+    {
+     "place": "Bloor St W & Dufferin St",
+     "reports": 12
+    },
+    {
+     "place": "Dufferin St & Eglinton Ave W",
+     "reports": 11
+    }
+   ]
+  },
+  "10": {
+   "id": 10,
+   "name": "Spadina-Fort York",
+   "snow_last_winter": 625,
+   "damage_12m": 511,
+   "ramps_12m": 35,
+   "reports_12m": 1171,
+   "reports_prior_12m": 1058,
+   "open_share_12m": 0.149,
+   "monthly": [
+    {
+     "month": "2024-10",
+     "snow_ice": 0,
+     "damage": 31,
+     "ramps": 0
+    },
+    {
+     "month": "2024-11",
+     "snow_ice": 0,
+     "damage": 33,
+     "ramps": 1
+    },
+    {
+     "month": "2024-12",
+     "snow_ice": 8,
+     "damage": 22,
+     "ramps": 1
+    },
+    {
+     "month": "2025-01",
+     "snow_ice": 24,
+     "damage": 18,
+     "ramps": 0
+    },
+    {
+     "month": "2025-02",
+     "snow_ice": 542,
+     "damage": 23,
+     "ramps": 1
+    },
+    {
+     "month": "2025-03",
+     "snow_ice": 14,
+     "damage": 41,
+     "ramps": 2
+    },
+    {
+     "month": "2025-04",
+     "snow_ice": 0,
+     "damage": 65,
+     "ramps": 1
+    },
+    {
+     "month": "2025-05",
+     "snow_ice": 0,
+     "damage": 50,
+     "ramps": 5
+    },
+    {
+     "month": "2025-06",
+     "snow_ice": 0,
+     "damage": 34,
+     "ramps": 2
+    },
+    {
+     "month": "2025-07",
+     "snow_ice": 0,
+     "damage": 53,
+     "ramps": 5
+    },
+    {
+     "month": "2025-08",
+     "snow_ice": 0,
+     "damage": 30,
+     "ramps": 3
+    },
+    {
+     "month": "2025-09",
+     "snow_ice": 0,
+     "damage": 49,
+     "ramps": 0
+    },
+    {
+     "month": "2025-10",
+     "snow_ice": 0,
+     "damage": 35,
+     "ramps": 4
+    },
+    {
+     "month": "2025-11",
+     "snow_ice": 3,
+     "damage": 33,
+     "ramps": 4
+    },
+    {
+     "month": "2025-12",
+     "snow_ice": 42,
+     "damage": 26,
+     "ramps": 1
+    },
+    {
+     "month": "2026-01",
+     "snow_ice": 379,
+     "damage": 21,
+     "ramps": 1
+    },
+    {
+     "month": "2026-02",
+     "snow_ice": 198,
+     "damage": 26,
+     "ramps": 1
+    },
+    {
+     "month": "2026-03",
+     "snow_ice": 3,
+     "damage": 54,
+     "ramps": 1
+    },
+    {
+     "month": "2026-04",
+     "snow_ice": 0,
+     "damage": 65,
+     "ramps": 4
+    },
+    {
+     "month": "2026-05",
+     "snow_ice": 0,
+     "damage": 51,
+     "ramps": 2
+    },
+    {
+     "month": "2026-06",
+     "snow_ice": 0,
+     "damage": 44,
+     "ramps": 3
+    },
+    {
+     "month": "2026-07",
+     "snow_ice": 0,
+     "damage": 49,
+     "ramps": 2
+    },
+    {
+     "month": "2026-08",
+     "snow_ice": 0,
+     "damage": 67,
+     "ramps": 6
+    },
+    {
+     "month": "2026-09",
+     "snow_ice": 0,
+     "damage": 40,
+     "ramps": 6
+    }
+   ],
+   "monthly_prior_year": [
+    {
+     "month": "2023-10",
+     "snow_ice": 0,
+     "damage": 27,
+     "ramps": 0
+    },
+    {
+     "month": "2023-11",
+     "snow_ice": 1,
+     "damage": 15,
+     "ramps": 0
+    },
+    {
+     "month": "2023-12",
+     "snow_ice": 5,
+     "damage": 11,
+     "ramps": 1
+    },
+    {
+     "month": "2024-01",
+     "snow_ice": 12,
+     "damage": 20,
+     "ramps": 2
+    },
+    {
+     "month": "2024-02",
+     "snow_ice": 2,
+     "damage": 29,
+     "ramps": 1
+    },
+    {
+     "month": "2024-03",
+     "snow_ice": 4,
+     "damage": 18,
+     "ramps": 3
+    },
+    {
+     "month": "2024-04",
+     "snow_ice": 0,
+     "damage": 35,
+     "ramps": 3
+    },
+    {
+     "month": "2024-05",
+     "snow_ice": 0,
+     "damage": 27,
+     "ramps": 4
+    },
+    {
+     "month": "2024-06",
+     "snow_ice": 0,
+     "damage": 44,
+     "ramps": 0
+    },
+    {
+     "month": "2024-07",
+     "snow_ice": 0,
+     "damage": 67,
+     "ramps": 1
+    },
+    {
+     "month": "2024-08",
+     "snow_ice": 0,
+     "damage": 33,
+     "ramps": 5
+    },
+    {
+     "month": "2024-09",
+     "snow_ice": 0,
+     "damage": 60,
+     "ramps": 0
+    },
+    {
+     "month": "2024-10",
+     "snow_ice": 0,
+     "damage": 31,
+     "ramps": 0
+    },
+    {
+     "month": "2024-11",
+     "snow_ice": 0,
+     "damage": 33,
+     "ramps": 1
+    },
+    {
+     "month": "2024-12",
+     "snow_ice": 8,
+     "damage": 22,
+     "ramps": 1
+    },
+    {
+     "month": "2025-01",
+     "snow_ice": 24,
+     "damage": 18,
+     "ramps": 0
+    },
+    {
+     "month": "2025-02",
+     "snow_ice": 542,
+     "damage": 23,
+     "ramps": 1
+    },
+    {
+     "month": "2025-03",
+     "snow_ice": 14,
+     "damage": 41,
+     "ramps": 2
+    },
+    {
+     "month": "2025-04",
+     "snow_ice": 0,
+     "damage": 65,
+     "ramps": 1
+    },
+    {
+     "month": "2025-05",
+     "snow_ice": 0,
+     "damage": 50,
+     "ramps": 5
+    },
+    {
+     "month": "2025-06",
+     "snow_ice": 0,
+     "damage": 34,
+     "ramps": 2
+    },
+    {
+     "month": "2025-07",
+     "snow_ice": 0,
+     "damage": 53,
+     "ramps": 5
+    },
+    {
+     "month": "2025-08",
+     "snow_ice": 0,
+     "damage": 30,
+     "ramps": 3
+    },
+    {
+     "month": "2025-09",
+     "snow_ice": 0,
+     "damage": 49,
+     "ramps": 0
+    }
+   ],
+   "top_places": [
+    {
+     "place": "Lake Shore Blvd W & Bathurst St",
+     "reports": 15
+    },
+    {
+     "place": "Fort York Blvd & Bathurst St",
+     "reports": 9
+    },
+    {
+     "place": "Queen St W & Dufferin St",
+     "reports": 9
+    },
+    {
+     "place": "Fleet St & Bathurst St",
+     "reports": 9
+    },
+    {
+     "place": "Dockside Dr & Queens Quay  E",
+     "reports": 9
+    }
+   ]
+  },
+  "11": {
+   "id": 11,
+   "name": "University-Rosedale",
+   "snow_last_winter": 1015,
+   "damage_12m": 465,
+   "ramps_12m": 28,
+   "reports_12m": 1508,
+   "reports_prior_12m": 1254,
+   "open_share_12m": 0.137,
+   "monthly": [
+    {
+     "month": "2024-10",
+     "snow_ice": 0,
+     "damage": 35,
+     "ramps": 0
+    },
+    {
+     "month": "2024-11",
+     "snow_ice": 1,
+     "damage": 20,
+     "ramps": 1
+    },
+    {
+     "month": "2024-12",
+     "snow_ice": 18,
+     "damage": 17,
+     "ramps": 2
+    },
+    {
+     "month": "2025-01",
+     "snow_ice": 32,
+     "damage": 15,
+     "ramps": 0
+    },
+    {
+     "month": "2025-02",
+     "snow_ice": 827,
+     "damage": 16,
+     "ramps": 1
+    },
+    {
+     "month": "2025-03",
+     "snow_ice": 26,
+     "damage": 27,
+     "ramps": 0
+    },
+    {
+     "month": "2025-04",
+     "snow_ice": 3,
+     "damage": 38,
+     "ramps": 0
+    },
+    {
+     "month": "2025-05",
+     "snow_ice": 0,
+     "damage": 48,
+     "ramps": 3
+    },
+    {
+     "month": "2025-06",
+     "snow_ice": 0,
+     "damage": 37,
+     "ramps": 3
+    },
+    {
+     "month": "2025-07",
+     "snow_ice": 0,
+     "damage": 40,
+     "ramps": 0
+    },
+    {
+     "month": "2025-08",
+     "snow_ice": 0,
+     "damage": 19,
+     "ramps": 0
+    },
+    {
+     "month": "2025-09",
+     "snow_ice": 0,
+     "damage": 24,
+     "ramps": 1
+    },
+    {
+     "month": "2025-10",
+     "snow_ice": 0,
+     "damage": 39,
+     "ramps": 0
+    },
+    {
+     "month": "2025-11",
+     "snow_ice": 10,
+     "damage": 17,
+     "ramps": 1
+    },
+    {
+     "month": "2025-12",
+     "snow_ice": 132,
+     "damage": 19,
+     "ramps": 0
+    },
+    {
+     "month": "2026-01",
+     "snow_ice": 485,
+     "damage": 22,
+     "ramps": 0
+    },
+    {
+     "month": "2026-02",
+     "snow_ice": 364,
+     "damage": 20,
+     "ramps": 0
+    },
+    {
+     "month": "2026-03",
+     "snow_ice": 24,
+     "damage": 43,
+     "ramps": 4
+    },
+    {
+     "month": "2026-04",
+     "snow_ice": 0,
+     "damage": 69,
+     "ramps": 5
+    },
+    {
+     "month": "2026-05",
+     "snow_ice": 0,
+     "damage": 48,
+     "ramps": 1
+    },
+    {
+     "month": "2026-06",
+     "snow_ice": 0,
+     "damage": 41,
+     "ramps": 5
+    },
+    {
+     "month": "2026-07",
+     "snow_ice": 0,
+     "damage": 47,
+     "ramps": 5
+    },
+    {
+     "month": "2026-08",
+     "snow_ice": 0,
+     "damage": 50,
+     "ramps": 2
+    },
+    {
+     "month": "2026-09",
+     "snow_ice": 0,
+     "damage": 50,
+     "ramps": 5
+    }
+   ],
+   "monthly_prior_year": [
+    {
+     "month": "2023-10",
+     "snow_ice": 0,
+     "damage": 30,
+     "ramps": 1
+    },
+    {
+     "month": "2023-11",
+     "snow_ice": 1,
+     "damage": 19,
+     "ramps": 2
+    },
+    {
+     "month": "2023-12",
+     "snow_ice": 0,
+     "damage": 15,
+     "ramps": 1
+    },
+    {
+     "month": "2024-01",
+     "snow_ice": 17,
+     "damage": 18,
+     "ramps": 0
+    },
+    {
+     "month": "2024-02",
+     "snow_ice": 2,
+     "damage": 20,
+     "ramps": 0
+    },
+    {
+     "month": "2024-03",
+     "snow_ice": 2,
+     "damage": 17,
+     "ramps": 1
+    },
+    {
+     "month": "2024-04",
+     "snow_ice": 0,
+     "damage": 25,
+     "ramps": 2
+    },
+    {
+     "month": "2024-05",
+     "snow_ice": 0,
+     "damage": 32,
+     "ramps": 1
+    },
+    {
+     "month": "2024-06",
+     "snow_ice": 0,
+     "damage": 28,
+     "ramps": 1
+    },
+    {
+     "month": "2024-07",
+     "snow_ice": 0,
+     "damage": 21,
+     "ramps": 1
+    },
+    {
+     "month": "2024-08",
+     "snow_ice": 0,
+     "damage": 22,
+     "ramps": 0
+    },
+    {
+     "month": "2024-09",
+     "snow_ice": 0,
+     "damage": 26,
+     "ramps": 1
+    },
+    {
+     "month": "2024-10",
+     "snow_ice": 0,
+     "damage": 35,
+     "ramps": 0
+    },
+    {
+     "month": "2024-11",
+     "snow_ice": 1,
+     "damage": 20,
+     "ramps": 1
+    },
+    {
+     "month": "2024-12",
+     "snow_ice": 18,
+     "damage": 17,
+     "ramps": 2
+    },
+    {
+     "month": "2025-01",
+     "snow_ice": 32,
+     "damage": 15,
+     "ramps": 0
+    },
+    {
+     "month": "2025-02",
+     "snow_ice": 827,
+     "damage": 16,
+     "ramps": 1
+    },
+    {
+     "month": "2025-03",
+     "snow_ice": 26,
+     "damage": 27,
+     "ramps": 0
+    },
+    {
+     "month": "2025-04",
+     "snow_ice": 3,
+     "damage": 38,
+     "ramps": 0
+    },
+    {
+     "month": "2025-05",
+     "snow_ice": 0,
+     "damage": 48,
+     "ramps": 3
+    },
+    {
+     "month": "2025-06",
+     "snow_ice": 0,
+     "damage": 37,
+     "ramps": 3
+    },
+    {
+     "month": "2025-07",
+     "snow_ice": 0,
+     "damage": 40,
+     "ramps": 0
+    },
+    {
+     "month": "2025-08",
+     "snow_ice": 0,
+     "damage": 19,
+     "ramps": 0
+    },
+    {
+     "month": "2025-09",
+     "snow_ice": 0,
+     "damage": 24,
+     "ramps": 1
+    }
+   ],
+   "top_places": [
+    {
+     "place": "Maclennan Ave & Rosedale Heights Dr",
+     "reports": 18
+    },
+    {
+     "place": "Christie St & Dupont St",
+     "reports": 16
+    },
+    {
+     "place": "Bloor St W & St George St",
+     "reports": 12
+    },
+    {
+     "place": "Dupont St & Bathurst St",
+     "reports": 11
+    },
+    {
+     "place": "College St & Grace St",
+     "reports": 11
+    }
+   ]
+  },
+  "12": {
+   "id": 12,
+   "name": "Toronto-St. Paul's",
+   "snow_last_winter": 1690,
+   "damage_12m": 330,
+   "ramps_12m": 9,
+   "reports_12m": 2029,
+   "reports_prior_12m": 1230,
+   "open_share_12m": 0.097,
+   "monthly": [
+    {
+     "month": "2024-10",
+     "snow_ice": 0,
+     "damage": 15,
+     "ramps": 1
+    },
+    {
+     "month": "2024-11",
+     "snow_ice": 0,
+     "damage": 13,
+     "ramps": 2
+    },
+    {
+     "month": "2024-12",
+     "snow_ice": 22,
+     "damage": 13,
+     "ramps": 0
+    },
+    {
+     "month": "2025-01",
+     "snow_ice": 66,
+     "damage": 18,
+     "ramps": 1
+    },
+    {
+     "month": "2025-02",
+     "snow_ice": 831,
+     "damage": 16,
+     "ramps": 0
+    },
+    {
+     "month": "2025-03",
+     "snow_ice": 37,
+     "damage": 31,
+     "ramps": 0
+    },
+    {
+     "month": "2025-04",
+     "snow_ice": 3,
+     "damage": 23,
+     "ramps": 0
+    },
+    {
+     "month": "2025-05",
+     "snow_ice": 0,
+     "damage": 30,
+     "ramps": 0
+    },
+    {
+     "month": "2025-06",
+     "snow_ice": 0,
+     "damage": 31,
+     "ramps": 0
+    },
+    {
+     "month": "2025-07",
+     "snow_ice": 0,
+     "damage": 24,
+     "ramps": 3
+    },
+    {
+     "month": "2025-08",
+     "snow_ice": 0,
+     "damage": 25,
+     "ramps": 1
+    },
+    {
+     "month": "2025-09",
+     "snow_ice": 0,
+     "damage": 24,
+     "ramps": 0
+    },
+    {
+     "month": "2025-10",
+     "snow_ice": 0,
+     "damage": 26,
+     "ramps": 1
+    },
+    {
+     "month": "2025-11",
+     "snow_ice": 7,
+     "damage": 20,
+     "ramps": 0
+    },
+    {
+     "month": "2025-12",
+     "snow_ice": 208,
+     "damage": 10,
+     "ramps": 1
+    },
+    {
+     "month": "2026-01",
+     "snow_ice": 983,
+     "damage": 11,
+     "ramps": 0
+    },
+    {
+     "month": "2026-02",
+     "snow_ice": 460,
+     "damage": 13,
+     "ramps": 0
+    },
+    {
+     "month": "2026-03",
+     "snow_ice": 31,
+     "damage": 30,
+     "ramps": 1
+    },
+    {
+     "month": "2026-04",
+     "snow_ice": 1,
+     "damage": 31,
+     "ramps": 3
+    },
+    {
+     "month": "2026-05",
+     "snow_ice": 0,
+     "damage": 37,
+     "ramps": 0
+    },
+    {
+     "month": "2026-06",
+     "snow_ice": 0,
+     "damage": 36,
+     "ramps": 0
+    },
+    {
+     "month": "2026-07",
+     "snow_ice": 0,
+     "damage": 32,
+     "ramps": 0
+    },
+    {
+     "month": "2026-08",
+     "snow_ice": 0,
+     "damage": 44,
+     "ramps": 1
+    },
+    {
+     "month": "2026-09",
+     "snow_ice": 0,
+     "damage": 40,
+     "ramps": 2
+    }
+   ],
+   "monthly_prior_year": [
+    {
+     "month": "2023-10",
+     "snow_ice": 0,
+     "damage": 19,
+     "ramps": 1
+    },
+    {
+     "month": "2023-11",
+     "snow_ice": 0,
+     "damage": 13,
+     "ramps": 0
+    },
+    {
+     "month": "2023-12",
+     "snow_ice": 0,
+     "damage": 22,
+     "ramps": 0
+    },
+    {
+     "month": "2024-01",
+     "snow_ice": 36,
+     "damage": 18,
+     "ramps": 0
+    },
+    {
+     "month": "2024-02",
+     "snow_ice": 12,
+     "damage": 7,
+     "ramps": 1
+    },
+    {
+     "month": "2024-03",
+     "snow_ice": 6,
+     "damage": 20,
+     "ramps": 0
+    },
+    {
+     "month": "2024-04",
+     "snow_ice": 0,
+     "damage": 27,
+     "ramps": 1
+    },
+    {
+     "month": "2024-05",
+     "snow_ice": 0,
+     "damage": 22,
+     "ramps": 1
+    },
+    {
+     "month": "2024-06",
+     "snow_ice": 0,
+     "damage": 27,
+     "ramps": 1
+    },
+    {
+     "month": "2024-07",
+     "snow_ice": 0,
+     "damage": 17,
+     "ramps": 2
+    },
+    {
+     "month": "2024-08",
+     "snow_ice": 0,
+     "damage": 25,
+     "ramps": 2
+    },
+    {
+     "month": "2024-09",
+     "snow_ice": 0,
+     "damage": 13,
+     "ramps": 3
+    },
+    {
+     "month": "2024-10",
+     "snow_ice": 0,
+     "damage": 15,
+     "ramps": 1
+    },
+    {
+     "month": "2024-11",
+     "snow_ice": 0,
+     "damage": 13,
+     "ramps": 2
+    },
+    {
+     "month": "2024-12",
+     "snow_ice": 22,
+     "damage": 13,
+     "ramps": 0
+    },
+    {
+     "month": "2025-01",
+     "snow_ice": 66,
+     "damage": 18,
+     "ramps": 1
+    },
+    {
+     "month": "2025-02",
+     "snow_ice": 831,
+     "damage": 16,
+     "ramps": 0
+    },
+    {
+     "month": "2025-03",
+     "snow_ice": 37,
+     "damage": 31,
+     "ramps": 0
+    },
+    {
+     "month": "2025-04",
+     "snow_ice": 3,
+     "damage": 23,
+     "ramps": 0
+    },
+    {
+     "month": "2025-05",
+     "snow_ice": 0,
+     "damage": 30,
+     "ramps": 0
+    },
+    {
+     "month": "2025-06",
+     "snow_ice": 0,
+     "damage": 31,
+     "ramps": 0
+    },
+    {
+     "month": "2025-07",
+     "snow_ice": 0,
+     "damage": 24,
+     "ramps": 3
+    },
+    {
+     "month": "2025-08",
+     "snow_ice": 0,
+     "damage": 25,
+     "ramps": 1
+    },
+    {
+     "month": "2025-09",
+     "snow_ice": 0,
+     "damage": 24,
+     "ramps": 0
+    }
+   ],
+   "top_places": [
+    {
+     "place": "Bathurst St & St Clair Ave W",
+     "reports": 21
+    },
+    {
+     "place": "Christie St & Davenport Rd",
+     "reports": 14
+    },
+    {
+     "place": "Avenue Rd & St Clair Ave W",
+     "reports": 13
+    },
+    {
+     "place": "Roehampton Ave & Yonge St",
+     "reports": 12
+    },
+    {
+     "place": "Chaplin Cres & Davisville Ave",
+     "reports": 12
+    }
+   ]
+  },
+  "13": {
+   "id": 13,
+   "name": "Toronto Centre",
+   "snow_last_winter": 871,
+   "damage_12m": 576,
+   "ramps_12m": 27,
+   "reports_12m": 1474,
+   "reports_prior_12m": 873,
+   "open_share_12m": 0.185,
+   "monthly": [
+    {
+     "month": "2024-10",
+     "snow_ice": 0,
+     "damage": 25,
+     "ramps": 1
+    },
+    {
+     "month": "2024-11",
+     "snow_ice": 0,
+     "damage": 24,
+     "ramps": 0
+    },
+    {
+     "month": "2024-12",
+     "snow_ice": 7,
+     "damage": 12,
+     "ramps": 0
+    },
+    {
+     "month": "2025-01",
+     "snow_ice": 14,
+     "damage": 17,
+     "ramps": 1
+    },
+    {
+     "month": "2025-02",
+     "snow_ice": 448,
+     "damage": 10,
+     "ramps": 0
+    },
+    {
+     "month": "2025-03",
+     "snow_ice": 20,
+     "damage": 45,
+     "ramps": 3
+    },
+    {
+     "month": "2025-04",
+     "snow_ice": 2,
+     "damage": 27,
+     "ramps": 1
+    },
+    {
+     "month": "2025-05",
+     "snow_ice": 0,
+     "damage": 42,
+     "ramps": 1
+    },
+    {
+     "month": "2025-06",
+     "snow_ice": 0,
+     "damage": 34,
+     "ramps": 1
+    },
+    {
+     "month": "2025-07",
+     "snow_ice": 0,
+     "damage": 37,
+     "ramps": 3
+    },
+    {
+     "month": "2025-08",
+     "snow_ice": 0,
+     "damage": 46,
+     "ramps": 2
+    },
+    {
+     "month": "2025-09",
+     "snow_ice": 0,
+     "damage": 47,
+     "ramps": 3
+    },
+    {
+     "month": "2025-10",
+     "snow_ice": 0,
+     "damage": 25,
+     "ramps": 6
+    },
+    {
+     "month": "2025-11",
+     "snow_ice": 7,
+     "damage": 31,
+     "ramps": 1
+    },
+    {
+     "month": "2025-12",
+     "snow_ice": 168,
+     "damage": 36,
+     "ramps": 1
+    },
+    {
+     "month": "2026-01",
+     "snow_ice": 397,
+     "damage": 23,
+     "ramps": 0
+    },
+    {
+     "month": "2026-02",
+     "snow_ice": 285,
+     "damage": 16,
+     "ramps": 0
+    },
+    {
+     "month": "2026-03",
+     "snow_ice": 13,
+     "damage": 54,
+     "ramps": 4
+    },
+    {
+     "month": "2026-04",
+     "snow_ice": 1,
+     "damage": 84,
+     "ramps": 5
+    },
+    {
+     "month": "2026-05",
+     "snow_ice": 0,
+     "damage": 62,
+     "ramps": 2
+    },
+    {
+     "month": "2026-06",
+     "snow_ice": 0,
+     "damage": 57,
+     "ramps": 2
+    },
+    {
+     "month": "2026-07",
+     "snow_ice": 0,
+     "damage": 60,
+     "ramps": 1
+    },
+    {
+     "month": "2026-08",
+     "snow_ice": 0,
+     "damage": 67,
+     "ramps": 2
+    },
+    {
+     "month": "2026-09",
+     "snow_ice": 0,
+     "damage": 61,
+     "ramps": 3
+    }
+   ],
+   "monthly_prior_year": [
+    {
+     "month": "2023-10",
+     "snow_ice": 0,
+     "damage": 23,
+     "ramps": 0
+    },
+    {
+     "month": "2023-11",
+     "snow_ice": 0,
+     "damage": 16,
+     "ramps": 2
+    },
+    {
+     "month": "2023-12",
+     "snow_ice": 0,
+     "damage": 20,
+     "ramps": 3
+    },
+    {
+     "month": "2024-01",
+     "snow_ice": 8,
+     "damage": 19,
+     "ramps": 0
+    },
+    {
+     "month": "2024-02",
+     "snow_ice": 4,
+     "damage": 23,
+     "ramps": 1
+    },
+    {
+     "month": "2024-03",
+     "snow_ice": 1,
+     "damage": 33,
+     "ramps": 2
+    },
+    {
+     "month": "2024-04",
+     "snow_ice": 0,
+     "damage": 20,
+     "ramps": 1
+    },
+    {
+     "month": "2024-05",
+     "snow_ice": 0,
+     "damage": 37,
+     "ramps": 0
+    },
+    {
+     "month": "2024-06",
+     "snow_ice": 0,
+     "damage": 32,
+     "ramps": 1
+    },
+    {
+     "month": "2024-07",
+     "snow_ice": 0,
+     "damage": 30,
+     "ramps": 0
+    },
+    {
+     "month": "2024-08",
+     "snow_ice": 0,
+     "damage": 38,
+     "ramps": 1
+    },
+    {
+     "month": "2024-09",
+     "snow_ice": 0,
+     "damage": 32,
+     "ramps": 1
+    },
+    {
+     "month": "2024-10",
+     "snow_ice": 0,
+     "damage": 25,
+     "ramps": 1
+    },
+    {
+     "month": "2024-11",
+     "snow_ice": 0,
+     "damage": 24,
+     "ramps": 0
+    },
+    {
+     "month": "2024-12",
+     "snow_ice": 7,
+     "damage": 12,
+     "ramps": 0
+    },
+    {
+     "month": "2025-01",
+     "snow_ice": 14,
+     "damage": 17,
+     "ramps": 1
+    },
+    {
+     "month": "2025-02",
+     "snow_ice": 448,
+     "damage": 10,
+     "ramps": 0
+    },
+    {
+     "month": "2025-03",
+     "snow_ice": 20,
+     "damage": 45,
+     "ramps": 3
+    },
+    {
+     "month": "2025-04",
+     "snow_ice": 2,
+     "damage": 27,
+     "ramps": 1
+    },
+    {
+     "month": "2025-05",
+     "snow_ice": 0,
+     "damage": 42,
+     "ramps": 1
+    },
+    {
+     "month": "2025-06",
+     "snow_ice": 0,
+     "damage": 34,
+     "ramps": 1
+    },
+    {
+     "month": "2025-07",
+     "snow_ice": 0,
+     "damage": 37,
+     "ramps": 3
+    },
+    {
+     "month": "2025-08",
+     "snow_ice": 0,
+     "damage": 46,
+     "ramps": 2
+    },
+    {
+     "month": "2025-09",
+     "snow_ice": 0,
+     "damage": 47,
+     "ramps": 3
+    }
+   ],
+   "top_places": [
+    {
+     "place": "Bloor St E & Sherbourne St",
+     "reports": 30
+    },
+    {
+     "place": "Bloor St E & Parliament St",
+     "reports": 17
+    },
+    {
+     "place": "The Esplanade & Lower Jarvis St",
+     "reports": 15
+    },
+    {
+     "place": "Carlton St & Yonge St",
+     "reports": 11
+    },
+    {
+     "place": "Lower Sherbourne St & The Esplanade",
+     "reports": 11
+    }
+   ]
+  },
+  "14": {
+   "id": 14,
+   "name": "Toronto-Danforth",
+   "snow_last_winter": 1592,
+   "damage_12m": 318,
+   "ramps_12m": 16,
+   "reports_12m": 1926,
+   "reports_prior_12m": 1358,
+   "open_share_12m": 0.091,
+   "monthly": [
+    {
+     "month": "2024-10",
+     "snow_ice": 0,
+     "damage": 19,
+     "ramps": 1
+    },
+    {
+     "month": "2024-11",
+     "snow_ice": 1,
+     "damage": 14,
+     "ramps": 0
+    },
+    {
+     "month": "2024-12",
+     "snow_ice": 16,
+     "damage": 8,
+     "ramps": 0
+    },
+    {
+     "month": "2025-01",
+     "snow_ice": 28,
+     "damage": 12,
+     "ramps": 0
+    },
+    {
+     "month": "2025-02",
+     "snow_ice": 1027,
+     "damage": 17,
+     "ramps": 0
+    },
+    {
+     "month": "2025-03",
+     "snow_ice": 37,
+     "damage": 30,
+     "ramps": 2
+    },
+    {
+     "month": "2025-04",
+     "snow_ice": 0,
+     "damage": 23,
+     "ramps": 0
+    },
+    {
+     "month": "2025-05",
+     "snow_ice": 0,
+     "damage": 32,
+     "ramps": 2
+    },
+    {
+     "month": "2025-06",
+     "snow_ice": 0,
+     "damage": 20,
+     "ramps": 0
+    },
+    {
+     "month": "2025-07",
+     "snow_ice": 0,
+     "damage": 26,
+     "ramps": 0
+    },
+    {
+     "month": "2025-08",
+     "snow_ice": 0,
+     "damage": 22,
+     "ramps": 0
+    },
+    {
+     "month": "2025-09",
+     "snow_ice": 0,
+     "damage": 21,
+     "ramps": 0
+    },
+    {
+     "month": "2025-10",
+     "snow_ice": 0,
+     "damage": 24,
+     "ramps": 1
+    },
+    {
+     "month": "2025-11",
+     "snow_ice": 8,
+     "damage": 8,
+     "ramps": 1
+    },
+    {
+     "month": "2025-12",
+     "snow_ice": 286,
+     "damage": 8,
+     "ramps": 2
+    },
+    {
+     "month": "2026-01",
+     "snow_ice": 695,
+     "damage": 12,
+     "ramps": 1
+    },
+    {
+     "month": "2026-02",
+     "snow_ice": 582,
+     "damage": 10,
+     "ramps": 2
+    },
+    {
+     "month": "2026-03",
+     "snow_ice": 21,
+     "damage": 41,
+     "ramps": 3
+    },
+    {
+     "month": "2026-04",
+     "snow_ice": 0,
+     "damage": 33,
+     "ramps": 2
+    },
+    {
+     "month": "2026-05",
+     "snow_ice": 0,
+     "damage": 39,
+     "ramps": 1
+    },
+    {
+     "month": "2026-06",
+     "snow_ice": 0,
+     "damage": 29,
+     "ramps": 2
+    },
+    {
+     "month": "2026-07",
+     "snow_ice": 0,
+     "damage": 59,
+     "ramps": 1
+    },
+    {
+     "month": "2026-08",
+     "snow_ice": 0,
+     "damage": 30,
+     "ramps": 0
+    },
+    {
+     "month": "2026-09",
+     "snow_ice": 0,
+     "damage": 25,
+     "ramps": 0
+    }
+   ],
+   "monthly_prior_year": [
+    {
+     "month": "2023-10",
+     "snow_ice": 0,
+     "damage": 20,
+     "ramps": 0
+    },
+    {
+     "month": "2023-11",
+     "snow_ice": 1,
+     "damage": 17,
+     "ramps": 0
+    },
+    {
+     "month": "2023-12",
+     "snow_ice": 3,
+     "damage": 13,
+     "ramps": 1
+    },
+    {
+     "month": "2024-01",
+     "snow_ice": 16,
+     "damage": 20,
+     "ramps": 1
+    },
+    {
+     "month": "2024-02",
+     "snow_ice": 6,
+     "damage": 8,
+     "ramps": 0
+    },
+    {
+     "month": "2024-03",
+     "snow_ice": 2,
+     "damage": 10,
+     "ramps": 1
+    },
+    {
+     "month": "2024-04",
+     "snow_ice": 0,
+     "damage": 17,
+     "ramps": 1
+    },
+    {
+     "month": "2024-05",
+     "snow_ice": 0,
+     "damage": 27,
+     "ramps": 1
+    },
+    {
+     "month": "2024-06",
+     "snow_ice": 0,
+     "damage": 24,
+     "ramps": 0
+    },
+    {
+     "month": "2024-07",
+     "snow_ice": 0,
+     "damage": 28,
+     "ramps": 1
+    },
+    {
+     "month": "2024-08",
+     "snow_ice": 0,
+     "damage": 16,
+     "ramps": 1
+    },
+    {
+     "month": "2024-09",
+     "snow_ice": 0,
+     "damage": 28,
+     "ramps": 0
+    },
+    {
+     "month": "2024-10",
+     "snow_ice": 0,
+     "damage": 19,
+     "ramps": 1
+    },
+    {
+     "month": "2024-11",
+     "snow_ice": 1,
+     "damage": 14,
+     "ramps": 0
+    },
+    {
+     "month": "2024-12",
+     "snow_ice": 16,
+     "damage": 8,
+     "ramps": 0
+    },
+    {
+     "month": "2025-01",
+     "snow_ice": 28,
+     "damage": 12,
+     "ramps": 0
+    },
+    {
+     "month": "2025-02",
+     "snow_ice": 1027,
+     "damage": 17,
+     "ramps": 0
+    },
+    {
+     "month": "2025-03",
+     "snow_ice": 37,
+     "damage": 30,
+     "ramps": 2
+    },
+    {
+     "month": "2025-04",
+     "snow_ice": 0,
+     "damage": 23,
+     "ramps": 0
+    },
+    {
+     "month": "2025-05",
+     "snow_ice": 0,
+     "damage": 32,
+     "ramps": 2
+    },
+    {
+     "month": "2025-06",
+     "snow_ice": 0,
+     "damage": 20,
+     "ramps": 0
+    },
+    {
+     "month": "2025-07",
+     "snow_ice": 0,
+     "damage": 26,
+     "ramps": 0
+    },
+    {
+     "month": "2025-08",
+     "snow_ice": 0,
+     "damage": 22,
+     "ramps": 0
+    },
+    {
+     "month": "2025-09",
+     "snow_ice": 0,
+     "damage": 21,
+     "ramps": 0
+    }
+   ],
+   "top_places": [
+    {
+     "place": "Pape Ave & Danforth Ave",
+     "reports": 21
+    },
+    {
+     "place": "Coxwell Ave & Danforth Ave",
+     "reports": 15
+    },
+    {
+     "place": "Mortimer Ave & Pottery Rd",
+     "reports": 14
+    },
+    {
+     "place": "Broadview Ave & Danforth Ave",
+     "reports": 13
+    },
+    {
+     "place": "Donlands Ave & Cosburn Ave",
+     "reports": 10
+    }
+   ]
+  },
+  "15": {
+   "id": 15,
+   "name": "Don Valley West",
+   "snow_last_winter": 766,
+   "damage_12m": 267,
+   "ramps_12m": 9,
+   "reports_12m": 1042,
+   "reports_prior_12m": 900,
+   "open_share_12m": 0.027,
+   "monthly": [
+    {
+     "month": "2024-10",
+     "snow_ice": 0,
+     "damage": 16,
+     "ramps": 2
+    },
+    {
+     "month": "2024-11",
+     "snow_ice": 0,
+     "damage": 11,
+     "ramps": 0
+    },
+    {
+     "month": "2024-12",
+     "snow_ice": 10,
+     "damage": 10,
+     "ramps": 0
+    },
+    {
+     "month": "2025-01",
+     "snow_ice": 37,
+     "damage": 5,
+     "ramps": 0
+    },
+    {
+     "month": "2025-02",
+     "snow_ice": 610,
+     "damage": 12,
+     "ramps": 0
+    },
+    {
+     "month": "2025-03",
+     "snow_ice": 15,
+     "damage": 17,
+     "ramps": 0
+    },
+    {
+     "month": "2025-04",
+     "snow_ice": 1,
+     "damage": 19,
+     "ramps": 0
+    },
+    {
+     "month": "2025-05",
+     "snow_ice": 0,
+     "damage": 34,
+     "ramps": 0
+    },
+    {
+     "month": "2025-06",
+     "snow_ice": 0,
+     "damage": 20,
+     "ramps": 0
+    },
+    {
+     "month": "2025-07",
+     "snow_ice": 0,
+     "damage": 24,
+     "ramps": 0
+    },
+    {
+     "month": "2025-08",
+     "snow_ice": 0,
+     "damage": 28,
+     "ramps": 0
+    },
+    {
+     "month": "2025-09",
+     "snow_ice": 0,
+     "damage": 29,
+     "ramps": 0
+    },
+    {
+     "month": "2025-10",
+     "snow_ice": 0,
+     "damage": 20,
+     "ramps": 0
+    },
+    {
+     "month": "2025-11",
+     "snow_ice": 1,
+     "damage": 18,
+     "ramps": 0
+    },
+    {
+     "month": "2025-12",
+     "snow_ice": 165,
+     "damage": 10,
+     "ramps": 0
+    },
+    {
+     "month": "2026-01",
+     "snow_ice": 439,
+     "damage": 9,
+     "ramps": 1
+    },
+    {
+     "month": "2026-02",
+     "snow_ice": 148,
+     "damage": 12,
+     "ramps": 0
+    },
+    {
+     "month": "2026-03",
+     "snow_ice": 12,
+     "damage": 32,
+     "ramps": 1
+    },
+    {
+     "month": "2026-04",
+     "snow_ice": 1,
+     "damage": 37,
+     "ramps": 0
+    },
+    {
+     "month": "2026-05",
+     "snow_ice": 0,
+     "damage": 23,
+     "ramps": 3
+    },
+    {
+     "month": "2026-06",
+     "snow_ice": 0,
+     "damage": 22,
+     "ramps": 0
+    },
+    {
+     "month": "2026-07",
+     "snow_ice": 0,
+     "damage": 23,
+     "ramps": 0
+    },
+    {
+     "month": "2026-08",
+     "snow_ice": 0,
+     "damage": 25,
+     "ramps": 2
+    },
+    {
+     "month": "2026-09",
+     "snow_ice": 0,
+     "damage": 36,
+     "ramps": 2
+    }
+   ],
+   "monthly_prior_year": [
+    {
+     "month": "2023-10",
+     "snow_ice": 0,
+     "damage": 18,
+     "ramps": 0
+    },
+    {
+     "month": "2023-11",
+     "snow_ice": 0,
+     "damage": 14,
+     "ramps": 0
+    },
+    {
+     "month": "2023-12",
+     "snow_ice": 0,
+     "damage": 11,
+     "ramps": 0
+    },
+    {
+     "month": "2024-01",
+     "snow_ice": 25,
+     "damage": 10,
+     "ramps": 1
+    },
+    {
+     "month": "2024-02",
+     "snow_ice": 5,
+     "damage": 14,
+     "ramps": 0
+    },
+    {
+     "month": "2024-03",
+     "snow_ice": 1,
+     "damage": 10,
+     "ramps": 0
+    },
+    {
+     "month": "2024-04",
+     "snow_ice": 0,
+     "damage": 21,
+     "ramps": 0
+    },
+    {
+     "month": "2024-05",
+     "snow_ice": 0,
+     "damage": 27,
+     "ramps": 0
+    },
+    {
+     "month": "2024-06",
+     "snow_ice": 0,
+     "damage": 29,
+     "ramps": 1
+    },
+    {
+     "month": "2024-07",
+     "snow_ice": 0,
+     "damage": 27,
+     "ramps": 0
+    },
+    {
+     "month": "2024-08",
+     "snow_ice": 0,
+     "damage": 28,
+     "ramps": 0
+    },
+    {
+     "month": "2024-09",
+     "snow_ice": 0,
+     "damage": 21,
+     "ramps": 0
+    },
+    {
+     "month": "2024-10",
+     "snow_ice": 0,
+     "damage": 16,
+     "ramps": 2
+    },
+    {
+     "month": "2024-11",
+     "snow_ice": 0,
+     "damage": 11,
+     "ramps": 0
+    },
+    {
+     "month": "2024-12",
+     "snow_ice": 10,
+     "damage": 10,
+     "ramps": 0
+    },
+    {
+     "month": "2025-01",
+     "snow_ice": 37,
+     "damage": 5,
+     "ramps": 0
+    },
+    {
+     "month": "2025-02",
+     "snow_ice": 610,
+     "damage": 12,
+     "ramps": 0
+    },
+    {
+     "month": "2025-03",
+     "snow_ice": 15,
+     "damage": 17,
+     "ramps": 0
+    },
+    {
+     "month": "2025-04",
+     "snow_ice": 1,
+     "damage": 19,
+     "ramps": 0
+    },
+    {
+     "month": "2025-05",
+     "snow_ice": 0,
+     "damage": 34,
+     "ramps": 0
+    },
+    {
+     "month": "2025-06",
+     "snow_ice": 0,
+     "damage": 20,
+     "ramps": 0
+    },
+    {
+     "month": "2025-07",
+     "snow_ice": 0,
+     "damage": 24,
+     "ramps": 0
+    },
+    {
+     "month": "2025-08",
+     "snow_ice": 0,
+     "damage": 28,
+     "ramps": 0
+    },
+    {
+     "month": "2025-09",
+     "snow_ice": 0,
+     "damage": 29,
+     "ramps": 0
+    }
+   ],
+   "top_places": [
+    {
+     "place": "Eglinton Ave E & Bayview Ave",
+     "reports": 14
+    },
+    {
+     "place": "Overlea Blvd & Thorncliffe Park Dr",
+     "reports": 14
+    },
+    {
+     "place": "Eglinton Ave E & Banff Rd",
+     "reports": 12
+    },
+    {
+     "place": "Davisville Ave & Mount Pleasant Rd",
+     "reports": 11
+    },
+    {
+     "place": "Merton St & Mount Pleasant Rd",
+     "reports": 9
+    }
+   ]
+  },
+  "16": {
+   "id": 16,
+   "name": "Don Valley East",
+   "snow_last_winter": 471,
+   "damage_12m": 92,
+   "ramps_12m": 9,
+   "reports_12m": 572,
+   "reports_prior_12m": 491,
+   "open_share_12m": 0.044,
+   "monthly": [
+    {
+     "month": "2024-10",
+     "snow_ice": 0,
+     "damage": 11,
+     "ramps": 0
+    },
+    {
+     "month": "2024-11",
+     "snow_ice": 0,
+     "damage": 7,
+     "ramps": 0
+    },
+    {
+     "month": "2024-12",
+     "snow_ice": 9,
+     "damage": 2,
+     "ramps": 0
+    },
+    {
+     "month": "2025-01",
+     "snow_ice": 19,
+     "damage": 3,
+     "ramps": 2
+    },
+    {
+     "month": "2025-02",
+     "snow_ice": 330,
+     "damage": 7,
+     "ramps": 0
+    },
+    {
+     "month": "2025-03",
+     "snow_ice": 18,
+     "damage": 10,
+     "ramps": 1
+    },
+    {
+     "month": "2025-04",
+     "snow_ice": 0,
+     "damage": 10,
+     "ramps": 0
+    },
+    {
+     "month": "2025-05",
+     "snow_ice": 0,
+     "damage": 12,
+     "ramps": 0
+    },
+    {
+     "month": "2025-06",
+     "snow_ice": 0,
+     "damage": 15,
+     "ramps": 0
+    },
+    {
+     "month": "2025-07",
+     "snow_ice": 0,
+     "damage": 14,
+     "ramps": 0
+    },
+    {
+     "month": "2025-08",
+     "snow_ice": 0,
+     "damage": 9,
+     "ramps": 2
+    },
+    {
+     "month": "2025-09",
+     "snow_ice": 0,
+     "damage": 10,
+     "ramps": 0
+    },
+    {
+     "month": "2025-10",
+     "snow_ice": 0,
+     "damage": 5,
+     "ramps": 1
+    },
+    {
+     "month": "2025-11",
+     "snow_ice": 5,
+     "damage": 7,
+     "ramps": 0
+    },
+    {
+     "month": "2025-12",
+     "snow_ice": 82,
+     "damage": 0,
+     "ramps": 1
+    },
+    {
+     "month": "2026-01",
+     "snow_ice": 255,
+     "damage": 7,
+     "ramps": 0
+    },
+    {
+     "month": "2026-02",
+     "snow_ice": 117,
+     "damage": 4,
+     "ramps": 1
+    },
+    {
+     "month": "2026-03",
+     "snow_ice": 11,
+     "damage": 9,
+     "ramps": 0
+    },
+    {
+     "month": "2026-04",
+     "snow_ice": 1,
+     "damage": 14,
+     "ramps": 0
+    },
+    {
+     "month": "2026-05",
+     "snow_ice": 0,
+     "damage": 5,
+     "ramps": 5
+    },
+    {
+     "month": "2026-06",
+     "snow_ice": 0,
+     "damage": 10,
+     "ramps": 0
+    },
+    {
+     "month": "2026-07",
+     "snow_ice": 0,
+     "damage": 9,
+     "ramps": 0
+    },
+    {
+     "month": "2026-08",
+     "snow_ice": 0,
+     "damage": 11,
+     "ramps": 0
+    },
+    {
+     "month": "2026-09",
+     "snow_ice": 0,
+     "damage": 11,
+     "ramps": 1
+    }
+   ],
+   "monthly_prior_year": [
+    {
+     "month": "2023-10",
+     "snow_ice": 0,
+     "damage": 12,
+     "ramps": 0
+    },
+    {
+     "month": "2023-11",
+     "snow_ice": 0,
+     "damage": 8,
+     "ramps": 0
+    },
+    {
+     "month": "2023-12",
+     "snow_ice": 0,
+     "damage": 6,
+     "ramps": 1
+    },
+    {
+     "month": "2024-01",
+     "snow_ice": 11,
+     "damage": 3,
+     "ramps": 0
+    },
+    {
+     "month": "2024-02",
+     "snow_ice": 2,
+     "damage": 5,
+     "ramps": 0
+    },
+    {
+     "month": "2024-03",
+     "snow_ice": 6,
+     "damage": 13,
+     "ramps": 0
+    },
+    {
+     "month": "2024-04",
+     "snow_ice": 0,
+     "damage": 12,
+     "ramps": 0
+    },
+    {
+     "month": "2024-05",
+     "snow_ice": 0,
+     "damage": 14,
+     "ramps": 0
+    },
+    {
+     "month": "2024-06",
+     "snow_ice": 0,
+     "damage": 9,
+     "ramps": 0
+    },
+    {
+     "month": "2024-07",
+     "snow_ice": 0,
+     "damage": 12,
+     "ramps": 1
+    },
+    {
+     "month": "2024-08",
+     "snow_ice": 0,
+     "damage": 8,
+     "ramps": 0
+    },
+    {
+     "month": "2024-09",
+     "snow_ice": 0,
+     "damage": 9,
+     "ramps": 1
+    },
+    {
+     "month": "2024-10",
+     "snow_ice": 0,
+     "damage": 11,
+     "ramps": 0
+    },
+    {
+     "month": "2024-11",
+     "snow_ice": 0,
+     "damage": 7,
+     "ramps": 0
+    },
+    {
+     "month": "2024-12",
+     "snow_ice": 9,
+     "damage": 2,
+     "ramps": 0
+    },
+    {
+     "month": "2025-01",
+     "snow_ice": 19,
+     "damage": 3,
+     "ramps": 2
+    },
+    {
+     "month": "2025-02",
+     "snow_ice": 330,
+     "damage": 7,
+     "ramps": 0
+    },
+    {
+     "month": "2025-03",
+     "snow_ice": 18,
+     "damage": 10,
+     "ramps": 1
+    },
+    {
+     "month": "2025-04",
+     "snow_ice": 0,
+     "damage": 10,
+     "ramps": 0
+    },
+    {
+     "month": "2025-05",
+     "snow_ice": 0,
+     "damage": 12,
+     "ramps": 0
+    },
+    {
+     "month": "2025-06",
+     "snow_ice": 0,
+     "damage": 15,
+     "ramps": 0
+    },
+    {
+     "month": "2025-07",
+     "snow_ice": 0,
+     "damage": 14,
+     "ramps": 0
+    },
+    {
+     "month": "2025-08",
+     "snow_ice": 0,
+     "damage": 9,
+     "ramps": 2
+    },
+    {
+     "month": "2025-09",
+     "snow_ice": 0,
+     "damage": 10,
+     "ramps": 0
+    }
+   ],
+   "top_places": [
+    {
+     "place": "Don Mills Rd & Overlea Blvd",
+     "reports": 14
+    },
+    {
+     "place": "Don Mills Rd & Duncan Mill Rd",
+     "reports": 11
+    },
+    {
+     "place": "Don Mills Rd & York Mills Rd",
+     "reports": 10
+    },
+    {
+     "place": "Don Mills Rd & Wynford Dr",
+     "reports": 10
+    },
+    {
+     "place": "Fenside Dr & York Mills Rd",
+     "reports": 8
+    }
+   ]
+  },
+  "17": {
+   "id": 17,
+   "name": "Don Valley North",
+   "snow_last_winter": 248,
+   "damage_12m": 216,
+   "ramps_12m": 10,
+   "reports_12m": 474,
+   "reports_prior_12m": 426,
+   "open_share_12m": 0.065,
+   "monthly": [
+    {
+     "month": "2024-10",
+     "snow_ice": 0,
+     "damage": 12,
+     "ramps": 0
+    },
+    {
+     "month": "2024-11",
+     "snow_ice": 0,
+     "damage": 5,
+     "ramps": 0
+    },
+    {
+     "month": "2024-12",
+     "snow_ice": 12,
+     "damage": 4,
+     "ramps": 0
+    },
+    {
+     "month": "2025-01",
+     "snow_ice": 33,
+     "damage": 5,
+     "ramps": 0
+    },
+    {
+     "month": "2025-02",
+     "snow_ice": 223,
+     "damage": 2,
+     "ramps": 0
+    },
+    {
+     "month": "2025-03",
+     "snow_ice": 17,
+     "damage": 13,
+     "ramps": 1
+    },
+    {
+     "month": "2025-04",
+     "snow_ice": 0,
+     "damage": 16,
+     "ramps": 0
+    },
+    {
+     "month": "2025-05",
+     "snow_ice": 0,
+     "damage": 14,
+     "ramps": 2
+    },
+    {
+     "month": "2025-06",
+     "snow_ice": 0,
+     "damage": 20,
+     "ramps": 0
+    },
+    {
+     "month": "2025-07",
+     "snow_ice": 0,
+     "damage": 10,
+     "ramps": 0
+    },
+    {
+     "month": "2025-08",
+     "snow_ice": 0,
+     "damage": 15,
+     "ramps": 1
+    },
+    {
+     "month": "2025-09",
+     "snow_ice": 0,
+     "damage": 20,
+     "ramps": 1
+    },
+    {
+     "month": "2025-10",
+     "snow_ice": 0,
+     "damage": 10,
+     "ramps": 0
+    },
+    {
+     "month": "2025-11",
+     "snow_ice": 2,
+     "damage": 13,
+     "ramps": 0
+    },
+    {
+     "month": "2025-12",
+     "snow_ice": 30,
+     "damage": 9,
+     "ramps": 0
+    },
+    {
+     "month": "2026-01",
+     "snow_ice": 131,
+     "damage": 7,
+     "ramps": 0
+    },
+    {
+     "month": "2026-02",
+     "snow_ice": 72,
+     "damage": 2,
+     "ramps": 2
+    },
+    {
+     "month": "2026-03",
+     "snow_ice": 11,
+     "damage": 19,
+     "ramps": 2
+    },
+    {
+     "month": "2026-04",
+     "snow_ice": 2,
+     "damage": 33,
+     "ramps": 1
+    },
+    {
+     "month": "2026-05",
+     "snow_ice": 0,
+     "damage": 19,
+     "ramps": 0
+    },
+    {
+     "month": "2026-06",
+     "snow_ice": 0,
+     "damage": 21,
+     "ramps": 0
+    },
+    {
+     "month": "2026-07",
+     "snow_ice": 0,
+     "damage": 33,
+     "ramps": 1
+    },
+    {
+     "month": "2026-08",
+     "snow_ice": 0,
+     "damage": 20,
+     "ramps": 3
+    },
+    {
+     "month": "2026-09",
+     "snow_ice": 0,
+     "damage": 30,
+     "ramps": 1
+    }
+   ],
+   "monthly_prior_year": [
+    {
+     "month": "2023-10",
+     "snow_ice": 0,
+     "damage": 19,
+     "ramps": 2
+    },
+    {
+     "month": "2023-11",
+     "snow_ice": 0,
+     "damage": 8,
+     "ramps": 0
+    },
+    {
+     "month": "2023-12",
+     "snow_ice": 0,
+     "damage": 9,
+     "ramps": 0
+    },
+    {
+     "month": "2024-01",
+     "snow_ice": 13,
+     "damage": 4,
+     "ramps": 1
+    },
+    {
+     "month": "2024-02",
+     "snow_ice": 2,
+     "damage": 11,
+     "ramps": 0
+    },
+    {
+     "month": "2024-03",
+     "snow_ice": 0,
+     "damage": 10,
+     "ramps": 0
+    },
+    {
+     "month": "2024-04",
+     "snow_ice": 0,
+     "damage": 22,
+     "ramps": 1
+    },
+    {
+     "month": "2024-05",
+     "snow_ice": 0,
+     "damage": 22,
+     "ramps": 0
+    },
+    {
+     "month": "2024-06",
+     "snow_ice": 0,
+     "damage": 16,
+     "ramps": 0
+    },
+    {
+     "month": "2024-07",
+     "snow_ice": 0,
+     "damage": 24,
+     "ramps": 1
+    },
+    {
+     "month": "2024-08",
+     "snow_ice": 0,
+     "damage": 19,
+     "ramps": 1
+    },
+    {
+     "month": "2024-09",
+     "snow_ice": 0,
+     "damage": 15,
+     "ramps": 0
+    },
+    {
+     "month": "2024-10",
+     "snow_ice": 0,
+     "damage": 12,
+     "ramps": 0
+    },
+    {
+     "month": "2024-11",
+     "snow_ice": 0,
+     "damage": 5,
+     "ramps": 0
+    },
+    {
+     "month": "2024-12",
+     "snow_ice": 12,
+     "damage": 4,
+     "ramps": 0
+    },
+    {
+     "month": "2025-01",
+     "snow_ice": 33,
+     "damage": 5,
+     "ramps": 0
+    },
+    {
+     "month": "2025-02",
+     "snow_ice": 223,
+     "damage": 2,
+     "ramps": 0
+    },
+    {
+     "month": "2025-03",
+     "snow_ice": 17,
+     "damage": 13,
+     "ramps": 1
+    },
+    {
+     "month": "2025-04",
+     "snow_ice": 0,
+     "damage": 16,
+     "ramps": 0
+    },
+    {
+     "month": "2025-05",
+     "snow_ice": 0,
+     "damage": 14,
+     "ramps": 2
+    },
+    {
+     "month": "2025-06",
+     "snow_ice": 0,
+     "damage": 20,
+     "ramps": 0
+    },
+    {
+     "month": "2025-07",
+     "snow_ice": 0,
+     "damage": 10,
+     "ramps": 0
+    },
+    {
+     "month": "2025-08",
+     "snow_ice": 0,
+     "damage": 15,
+     "ramps": 1
+    },
+    {
+     "month": "2025-09",
+     "snow_ice": 0,
+     "damage": 20,
+     "ramps": 1
+    }
+   ],
+   "top_places": [
+    {
+     "place": "Don Mills Rd & Don Mills Rd E",
+     "reports": 9
+    },
+    {
+     "place": "Don Mills Rd & Finch Ave E",
+     "reports": 8
+    },
+    {
+     "place": "Bayview Ave & Sheppard Ave E",
+     "reports": 7
+    },
+    {
+     "place": "Hawksbury Dr & Rean Dr",
+     "reports": 5
+    },
+    {
+     "place": "Bayview Ave & Steeles Ave E",
+     "reports": 5
+    }
+   ]
+  },
+  "18": {
+   "id": 18,
+   "name": "Willowdale",
+   "snow_last_winter": 220,
+   "damage_12m": 508,
+   "ramps_12m": 10,
+   "reports_12m": 738,
+   "reports_prior_12m": 624,
+   "open_share_12m": 0.083,
+   "monthly": [
+    {
+     "month": "2024-10",
+     "snow_ice": 0,
+     "damage": 39,
+     "ramps": 0
+    },
+    {
+     "month": "2024-11",
+     "snow_ice": 0,
+     "damage": 12,
+     "ramps": 0
+    },
+    {
+     "month": "2024-12",
+     "snow_ice": 6,
+     "damage": 8,
+     "ramps": 0
+    },
+    {
+     "month": "2025-01",
+     "snow_ice": 21,
+     "damage": 5,
+     "ramps": 0
+    },
+    {
+     "month": "2025-02",
+     "snow_ice": 184,
+     "damage": 4,
+     "ramps": 0
+    },
+    {
+     "month": "2025-03",
+     "snow_ice": 6,
+     "damage": 25,
+     "ramps": 2
+    },
+    {
+     "month": "2025-04",
+     "snow_ice": 0,
+     "damage": 50,
+     "ramps": 1
+    },
+    {
+     "month": "2025-05",
+     "snow_ice": 0,
+     "damage": 50,
+     "ramps": 0
+    },
+    {
+     "month": "2025-06",
+     "snow_ice": 0,
+     "damage": 44,
+     "ramps": 0
+    },
+    {
+     "month": "2025-07",
+     "snow_ice": 0,
+     "damage": 64,
+     "ramps": 0
+    },
+    {
+     "month": "2025-08",
+     "snow_ice": 0,
+     "damage": 46,
+     "ramps": 0
+    },
+    {
+     "month": "2025-09",
+     "snow_ice": 0,
+     "damage": 57,
+     "ramps": 0
+    },
+    {
+     "month": "2025-10",
+     "snow_ice": 0,
+     "damage": 42,
+     "ramps": 1
+    },
+    {
+     "month": "2025-11",
+     "snow_ice": 3,
+     "damage": 19,
+     "ramps": 1
+    },
+    {
+     "month": "2025-12",
+     "snow_ice": 44,
+     "damage": 4,
+     "ramps": 0
+    },
+    {
+     "month": "2026-01",
+     "snow_ice": 97,
+     "damage": 11,
+     "ramps": 1
+    },
+    {
+     "month": "2026-02",
+     "snow_ice": 60,
+     "damage": 6,
+     "ramps": 1
+    },
+    {
+     "month": "2026-03",
+     "snow_ice": 15,
+     "damage": 26,
+     "ramps": 0
+    },
+    {
+     "month": "2026-04",
+     "snow_ice": 1,
+     "damage": 82,
+     "ramps": 1
+    },
+    {
+     "month": "2026-05",
+     "snow_ice": 0,
+     "damage": 68,
+     "ramps": 0
+    },
+    {
+     "month": "2026-06",
+     "snow_ice": 0,
+     "damage": 61,
+     "ramps": 1
+    },
+    {
+     "month": "2026-07",
+     "snow_ice": 0,
+     "damage": 87,
+     "ramps": 2
+    },
+    {
+     "month": "2026-08",
+     "snow_ice": 0,
+     "damage": 43,
+     "ramps": 1
+    },
+    {
+     "month": "2026-09",
+     "snow_ice": 0,
+     "damage": 59,
+     "ramps": 1
+    }
+   ],
+   "monthly_prior_year": [
+    {
+     "month": "2023-10",
+     "snow_ice": 0,
+     "damage": 28,
+     "ramps": 1
+    },
+    {
+     "month": "2023-11",
+     "snow_ice": 0,
+     "damage": 20,
+     "ramps": 0
+    },
+    {
+     "month": "2023-12",
+     "snow_ice": 1,
+     "damage": 14,
+     "ramps": 0
+    },
+    {
+     "month": "2024-01",
+     "snow_ice": 19,
+     "damage": 7,
+     "ramps": 1
+    },
+    {
+     "month": "2024-02",
+     "snow_ice": 2,
+     "damage": 9,
+     "ramps": 0
+    },
+    {
+     "month": "2024-03",
+     "snow_ice": 4,
+     "damage": 9,
+     "ramps": 0
+    },
+    {
+     "month": "2024-04",
+     "snow_ice": 0,
+     "damage": 19,
+     "ramps": 0
+    },
+    {
+     "month": "2024-05",
+     "snow_ice": 0,
+     "damage": 50,
+     "ramps": 0
+    },
+    {
+     "month": "2024-06",
+     "snow_ice": 0,
+     "damage": 45,
+     "ramps": 2
+    },
+    {
+     "month": "2024-07",
+     "snow_ice": 0,
+     "damage": 59,
+     "ramps": 0
+    },
+    {
+     "month": "2024-08",
+     "snow_ice": 0,
+     "damage": 52,
+     "ramps": 0
+    },
+    {
+     "month": "2024-09",
+     "snow_ice": 0,
+     "damage": 41,
+     "ramps": 0
+    },
+    {
+     "month": "2024-10",
+     "snow_ice": 0,
+     "damage": 39,
+     "ramps": 0
+    },
+    {
+     "month": "2024-11",
+     "snow_ice": 0,
+     "damage": 12,
+     "ramps": 0
+    },
+    {
+     "month": "2024-12",
+     "snow_ice": 6,
+     "damage": 8,
+     "ramps": 0
+    },
+    {
+     "month": "2025-01",
+     "snow_ice": 21,
+     "damage": 5,
+     "ramps": 0
+    },
+    {
+     "month": "2025-02",
+     "snow_ice": 184,
+     "damage": 4,
+     "ramps": 0
+    },
+    {
+     "month": "2025-03",
+     "snow_ice": 6,
+     "damage": 25,
+     "ramps": 2
+    },
+    {
+     "month": "2025-04",
+     "snow_ice": 0,
+     "damage": 50,
+     "ramps": 1
+    },
+    {
+     "month": "2025-05",
+     "snow_ice": 0,
+     "damage": 50,
+     "ramps": 0
+    },
+    {
+     "month": "2025-06",
+     "snow_ice": 0,
+     "damage": 44,
+     "ramps": 0
+    },
+    {
+     "month": "2025-07",
+     "snow_ice": 0,
+     "damage": 64,
+     "ramps": 0
+    },
+    {
+     "month": "2025-08",
+     "snow_ice": 0,
+     "damage": 46,
+     "ramps": 0
+    },
+    {
+     "month": "2025-09",
+     "snow_ice": 0,
+     "damage": 57,
+     "ramps": 0
+    }
+   ],
+   "top_places": [
+    {
+     "place": "Yonge St & Sheppard Ave E",
+     "reports": 9
+    },
+    {
+     "place": "Yonge St & Cummer Ave",
+     "reports": 8
+    },
+    {
+     "place": "Finch Ave W & Yonge St",
+     "reports": 6
+    },
+    {
+     "place": "Doris Ave & Greenfield Ave",
+     "reports": 5
+    },
+    {
+     "place": "Beecroft Rd & Park Home Ave",
+     "reports": 4
+    }
+   ]
+  },
+  "19": {
+   "id": 19,
+   "name": "Beaches-East York",
+   "snow_last_winter": 1192,
+   "damage_12m": 280,
+   "ramps_12m": 14,
+   "reports_12m": 1486,
+   "reports_prior_12m": 1123,
+   "open_share_12m": 0.06,
+   "monthly": [
+    {
+     "month": "2024-10",
+     "snow_ice": 0,
+     "damage": 19,
+     "ramps": 0
+    },
+    {
+     "month": "2024-11",
+     "snow_ice": 1,
+     "damage": 18,
+     "ramps": 0
+    },
+    {
+     "month": "2024-12",
+     "snow_ice": 18,
+     "damage": 11,
+     "ramps": 1
+    },
+    {
+     "month": "2025-01",
+     "snow_ice": 31,
+     "damage": 4,
+     "ramps": 0
+    },
+    {
+     "month": "2025-02",
+     "snow_ice": 809,
+     "damage": 11,
+     "ramps": 4
+    },
+    {
+     "month": "2025-03",
+     "snow_ice": 26,
+     "damage": 25,
+     "ramps": 2
+    },
+    {
+     "month": "2025-04",
+     "snow_ice": 0,
+     "damage": 21,
+     "ramps": 1
+    },
+    {
+     "month": "2025-05",
+     "snow_ice": 0,
+     "damage": 28,
+     "ramps": 1
+    },
+    {
+     "month": "2025-06",
+     "snow_ice": 0,
+     "damage": 24,
+     "ramps": 3
+    },
+    {
+     "month": "2025-07",
+     "snow_ice": 0,
+     "damage": 18,
+     "ramps": 0
+    },
+    {
+     "month": "2025-08",
+     "snow_ice": 0,
+     "damage": 22,
+     "ramps": 2
+    },
+    {
+     "month": "2025-09",
+     "snow_ice": 0,
+     "damage": 23,
+     "ramps": 0
+    },
+    {
+     "month": "2025-10",
+     "snow_ice": 0,
+     "damage": 9,
+     "ramps": 2
+    },
+    {
+     "month": "2025-11",
+     "snow_ice": 3,
+     "damage": 16,
+     "ramps": 0
+    },
+    {
+     "month": "2025-12",
+     "snow_ice": 197,
+     "damage": 11,
+     "ramps": 0
+    },
+    {
+     "month": "2026-01",
+     "snow_ice": 546,
+     "damage": 17,
+     "ramps": 3
+    },
+    {
+     "month": "2026-02",
+     "snow_ice": 428,
+     "damage": 15,
+     "ramps": 2
+    },
+    {
+     "month": "2026-03",
+     "snow_ice": 17,
+     "damage": 33,
+     "ramps": 0
+    },
+    {
+     "month": "2026-04",
+     "snow_ice": 1,
+     "damage": 36,
+     "ramps": 1
+    },
+    {
+     "month": "2026-05",
+     "snow_ice": 0,
+     "damage": 36,
+     "ramps": 1
+    },
+    {
+     "month": "2026-06",
+     "snow_ice": 0,
+     "damage": 33,
+     "ramps": 1
+    },
+    {
+     "month": "2026-07",
+     "snow_ice": 0,
+     "damage": 20,
+     "ramps": 2
+    },
+    {
+     "month": "2026-08",
+     "snow_ice": 0,
+     "damage": 28,
+     "ramps": 1
+    },
+    {
+     "month": "2026-09",
+     "snow_ice": 0,
+     "damage": 26,
+     "ramps": 1
+    }
+   ],
+   "monthly_prior_year": [
+    {
+     "month": "2023-10",
+     "snow_ice": 0,
+     "damage": 20,
+     "ramps": 2
+    },
+    {
+     "month": "2023-11",
+     "snow_ice": 1,
+     "damage": 18,
+     "ramps": 2
+    },
+    {
+     "month": "2023-12",
+     "snow_ice": 4,
+     "damage": 13,
+     "ramps": 0
+    },
+    {
+     "month": "2024-01",
+     "snow_ice": 11,
+     "damage": 9,
+     "ramps": 1
+    },
+    {
+     "month": "2024-02",
+     "snow_ice": 9,
+     "damage": 9,
+     "ramps": 1
+    },
+    {
+     "month": "2024-03",
+     "snow_ice": 5,
+     "damage": 11,
+     "ramps": 1
+    },
+    {
+     "month": "2024-04",
+     "snow_ice": 0,
+     "damage": 26,
+     "ramps": 1
+    },
+    {
+     "month": "2024-05",
+     "snow_ice": 0,
+     "damage": 21,
+     "ramps": 0
+    },
+    {
+     "month": "2024-06",
+     "snow_ice": 0,
+     "damage": 26,
+     "ramps": 0
+    },
+    {
+     "month": "2024-07",
+     "snow_ice": 0,
+     "damage": 30,
+     "ramps": 2
+    },
+    {
+     "month": "2024-08",
+     "snow_ice": 0,
+     "damage": 14,
+     "ramps": 3
+    },
+    {
+     "month": "2024-09",
+     "snow_ice": 0,
+     "damage": 15,
+     "ramps": 1
+    },
+    {
+     "month": "2024-10",
+     "snow_ice": 0,
+     "damage": 19,
+     "ramps": 0
+    },
+    {
+     "month": "2024-11",
+     "snow_ice": 1,
+     "damage": 18,
+     "ramps": 0
+    },
+    {
+     "month": "2024-12",
+     "snow_ice": 18,
+     "damage": 11,
+     "ramps": 1
+    },
+    {
+     "month": "2025-01",
+     "snow_ice": 31,
+     "damage": 4,
+     "ramps": 0
+    },
+    {
+     "month": "2025-02",
+     "snow_ice": 809,
+     "damage": 11,
+     "ramps": 4
+    },
+    {
+     "month": "2025-03",
+     "snow_ice": 26,
+     "damage": 25,
+     "ramps": 2
+    },
+    {
+     "month": "2025-04",
+     "snow_ice": 0,
+     "damage": 21,
+     "ramps": 1
+    },
+    {
+     "month": "2025-05",
+     "snow_ice": 0,
+     "damage": 28,
+     "ramps": 1
+    },
+    {
+     "month": "2025-06",
+     "snow_ice": 0,
+     "damage": 24,
+     "ramps": 3
+    },
+    {
+     "month": "2025-07",
+     "snow_ice": 0,
+     "damage": 18,
+     "ramps": 0
+    },
+    {
+     "month": "2025-08",
+     "snow_ice": 0,
+     "damage": 22,
+     "ramps": 2
+    },
+    {
+     "month": "2025-09",
+     "snow_ice": 0,
+     "damage": 23,
+     "ramps": 0
+    }
+   ],
+   "top_places": [
+    {
+     "place": "Woodbine Ave & Danforth Ave",
+     "reports": 15
+    },
+    {
+     "place": "Main St & Gerrard St E",
+     "reports": 15
+    },
+    {
+     "place": "Eastern Ave & Kingston Rd",
+     "reports": 12
+    },
+    {
+     "place": "Queen St E & Wineva Ave",
+     "reports": 10
+    },
+    {
+     "place": "Main St & Danforth Ave",
+     "reports": 10
+    }
+   ]
+  },
+  "20": {
+   "id": 20,
+   "name": "Scarborough Southwest",
+   "snow_last_winter": 772,
+   "damage_12m": 209,
+   "ramps_12m": 13,
+   "reports_12m": 994,
+   "reports_prior_12m": 894,
+   "open_share_12m": 0.055,
+   "monthly": [
+    {
+     "month": "2024-10",
+     "snow_ice": 0,
+     "damage": 13,
+     "ramps": 0
+    },
+    {
+     "month": "2024-11",
+     "snow_ice": 0,
+     "damage": 10,
+     "ramps": 0
+    },
+    {
+     "month": "2024-12",
+     "snow_ice": 28,
+     "damage": 5,
+     "ramps": 0
+    },
+    {
+     "month": "2025-01",
+     "snow_ice": 44,
+     "damage": 3,
+     "ramps": 1
+    },
+    {
+     "month": "2025-02",
+     "snow_ice": 584,
+     "damage": 7,
+     "ramps": 1
+    },
+    {
+     "month": "2025-03",
+     "snow_ice": 32,
+     "damage": 23,
+     "ramps": 0
+    },
+    {
+     "month": "2025-04",
+     "snow_ice": 0,
+     "damage": 17,
+     "ramps": 0
+    },
+    {
+     "month": "2025-05",
+     "snow_ice": 0,
+     "damage": 26,
+     "ramps": 0
+    },
+    {
+     "month": "2025-06",
+     "snow_ice": 0,
+     "damage": 28,
+     "ramps": 1
+    },
+    {
+     "month": "2025-07",
+     "snow_ice": 0,
+     "damage": 26,
+     "ramps": 1
+    },
+    {
+     "month": "2025-08",
+     "snow_ice": 0,
+     "damage": 28,
+     "ramps": 0
+    },
+    {
+     "month": "2025-09",
+     "snow_ice": 1,
+     "damage": 15,
+     "ramps": 0
+    },
+    {
+     "month": "2025-10",
+     "snow_ice": 0,
+     "damage": 19,
+     "ramps": 1
+    },
+    {
+     "month": "2025-11",
+     "snow_ice": 5,
+     "damage": 12,
+     "ramps": 0
+    },
+    {
+     "month": "2025-12",
+     "snow_ice": 156,
+     "damage": 6,
+     "ramps": 4
+    },
+    {
+     "month": "2026-01",
+     "snow_ice": 422,
+     "damage": 4,
+     "ramps": 1
+    },
+    {
+     "month": "2026-02",
+     "snow_ice": 169,
+     "damage": 4,
+     "ramps": 1
+    },
+    {
+     "month": "2026-03",
+     "snow_ice": 20,
+     "damage": 22,
+     "ramps": 1
+    },
+    {
+     "month": "2026-04",
+     "snow_ice": 0,
+     "damage": 27,
+     "ramps": 0
+    },
+    {
+     "month": "2026-05",
+     "snow_ice": 0,
+     "damage": 27,
+     "ramps": 0
+    },
+    {
+     "month": "2026-06",
+     "snow_ice": 0,
+     "damage": 20,
+     "ramps": 2
+    },
+    {
+     "month": "2026-07",
+     "snow_ice": 0,
+     "damage": 22,
+     "ramps": 0
+    },
+    {
+     "month": "2026-08",
+     "snow_ice": 0,
+     "damage": 20,
+     "ramps": 1
+    },
+    {
+     "month": "2026-09",
+     "snow_ice": 0,
+     "damage": 26,
+     "ramps": 2
+    }
+   ],
+   "monthly_prior_year": [
+    {
+     "month": "2023-10",
+     "snow_ice": 0,
+     "damage": 20,
+     "ramps": 0
+    },
+    {
+     "month": "2023-11",
+     "snow_ice": 1,
+     "damage": 1,
+     "ramps": 0
+    },
+    {
+     "month": "2023-12",
+     "snow_ice": 1,
+     "damage": 3,
+     "ramps": 0
+    },
+    {
+     "month": "2024-01",
+     "snow_ice": 18,
+     "damage": 7,
+     "ramps": 0
+    },
+    {
+     "month": "2024-02",
+     "snow_ice": 9,
+     "damage": 6,
+     "ramps": 0
+    },
+    {
+     "month": "2024-03",
+     "snow_ice": 7,
+     "damage": 10,
+     "ramps": 1
+    },
+    {
+     "month": "2024-04",
+     "snow_ice": 1,
+     "damage": 12,
+     "ramps": 0
+    },
+    {
+     "month": "2024-05",
+     "snow_ice": 0,
+     "damage": 11,
+     "ramps": 0
+    },
+    {
+     "month": "2024-06",
+     "snow_ice": 0,
+     "damage": 15,
+     "ramps": 0
+    },
+    {
+     "month": "2024-07",
+     "snow_ice": 0,
+     "damage": 19,
+     "ramps": 0
+    },
+    {
+     "month": "2024-08",
+     "snow_ice": 0,
+     "damage": 8,
+     "ramps": 3
+    },
+    {
+     "month": "2024-09",
+     "snow_ice": 0,
+     "damage": 19,
+     "ramps": 0
+    },
+    {
+     "month": "2024-10",
+     "snow_ice": 0,
+     "damage": 13,
+     "ramps": 0
+    },
+    {
+     "month": "2024-11",
+     "snow_ice": 0,
+     "damage": 10,
+     "ramps": 0
+    },
+    {
+     "month": "2024-12",
+     "snow_ice": 28,
+     "damage": 5,
+     "ramps": 0
+    },
+    {
+     "month": "2025-01",
+     "snow_ice": 44,
+     "damage": 3,
+     "ramps": 1
+    },
+    {
+     "month": "2025-02",
+     "snow_ice": 584,
+     "damage": 7,
+     "ramps": 1
+    },
+    {
+     "month": "2025-03",
+     "snow_ice": 32,
+     "damage": 23,
+     "ramps": 0
+    },
+    {
+     "month": "2025-04",
+     "snow_ice": 0,
+     "damage": 17,
+     "ramps": 0
+    },
+    {
+     "month": "2025-05",
+     "snow_ice": 0,
+     "damage": 26,
+     "ramps": 0
+    },
+    {
+     "month": "2025-06",
+     "snow_ice": 0,
+     "damage": 28,
+     "ramps": 1
+    },
+    {
+     "month": "2025-07",
+     "snow_ice": 0,
+     "damage": 26,
+     "ramps": 1
+    },
+    {
+     "month": "2025-08",
+     "snow_ice": 0,
+     "damage": 28,
+     "ramps": 0
+    },
+    {
+     "month": "2025-09",
+     "snow_ice": 1,
+     "damage": 15,
+     "ramps": 0
+    }
+   ],
+   "top_places": [
+    {
+     "place": "Eglinton Ave E & Markham Rd",
+     "reports": 17
+    },
+    {
+     "place": "Kingston Rd & Cathedral Bluffs Dr",
+     "reports": 13
+    },
+    {
+     "place": "St Clair Ave E & Warden Ave",
+     "reports": 13
+    },
+    {
+     "place": "Victoria Park Ave & Danforth Ave",
+     "reports": 13
+    },
+    {
+     "place": "Danforth Rd & Midland Ave",
+     "reports": 10
+    }
+   ]
+  },
+  "21": {
+   "id": 21,
+   "name": "Scarborough Centre",
+   "snow_last_winter": 597,
+   "damage_12m": 194,
+   "ramps_12m": 13,
+   "reports_12m": 804,
+   "reports_prior_12m": 812,
+   "open_share_12m": 0.062,
+   "monthly": [
+    {
+     "month": "2024-10",
+     "snow_ice": 0,
+     "damage": 16,
+     "ramps": 0
+    },
+    {
+     "month": "2024-11",
+     "snow_ice": 1,
+     "damage": 18,
+     "ramps": 0
+    },
+    {
+     "month": "2024-12",
+     "snow_ice": 18,
+     "damage": 10,
+     "ramps": 0
+    },
+    {
+     "month": "2025-01",
+     "snow_ice": 29,
+     "damage": 8,
+     "ramps": 0
+    },
+    {
+     "month": "2025-02",
+     "snow_ice": 546,
+     "damage": 7,
+     "ramps": 0
+    },
+    {
+     "month": "2025-03",
+     "snow_ice": 23,
+     "damage": 20,
+     "ramps": 1
+    },
+    {
+     "month": "2025-04",
+     "snow_ice": 0,
+     "damage": 14,
+     "ramps": 2
+    },
+    {
+     "month": "2025-05",
+     "snow_ice": 0,
+     "damage": 21,
+     "ramps": 3
+    },
+    {
+     "month": "2025-06",
+     "snow_ice": 0,
+     "damage": 13,
+     "ramps": 0
+    },
+    {
+     "month": "2025-07",
+     "snow_ice": 0,
+     "damage": 21,
+     "ramps": 0
+    },
+    {
+     "month": "2025-08",
+     "snow_ice": 0,
+     "damage": 19,
+     "ramps": 0
+    },
+    {
+     "month": "2025-09",
+     "snow_ice": 0,
+     "damage": 22,
+     "ramps": 0
+    },
+    {
+     "month": "2025-10",
+     "snow_ice": 0,
+     "damage": 10,
+     "ramps": 1
+    },
+    {
+     "month": "2025-11",
+     "snow_ice": 4,
+     "damage": 5,
+     "ramps": 0
+    },
+    {
+     "month": "2025-12",
+     "snow_ice": 82,
+     "damage": 7,
+     "ramps": 0
+    },
+    {
+     "month": "2026-01",
+     "snow_ice": 337,
+     "damage": 6,
+     "ramps": 5
+    },
+    {
+     "month": "2026-02",
+     "snow_ice": 149,
+     "damage": 6,
+     "ramps": 0
+    },
+    {
+     "month": "2026-03",
+     "snow_ice": 23,
+     "damage": 20,
+     "ramps": 1
+    },
+    {
+     "month": "2026-04",
+     "snow_ice": 2,
+     "damage": 30,
+     "ramps": 1
+    },
+    {
+     "month": "2026-05",
+     "snow_ice": 0,
+     "damage": 27,
+     "ramps": 0
+    },
+    {
+     "month": "2026-06",
+     "snow_ice": 0,
+     "damage": 22,
+     "ramps": 0
+    },
+    {
+     "month": "2026-07",
+     "snow_ice": 0,
+     "damage": 27,
+     "ramps": 2
+    },
+    {
+     "month": "2026-08",
+     "snow_ice": 0,
+     "damage": 16,
+     "ramps": 0
+    },
+    {
+     "month": "2026-09",
+     "snow_ice": 0,
+     "damage": 18,
+     "ramps": 3
+    }
+   ],
+   "monthly_prior_year": [
+    {
+     "month": "2023-10",
+     "snow_ice": 0,
+     "damage": 24,
+     "ramps": 1
+    },
+    {
+     "month": "2023-11",
+     "snow_ice": 1,
+     "damage": 16,
+     "ramps": 0
+    },
+    {
+     "month": "2023-12",
+     "snow_ice": 2,
+     "damage": 6,
+     "ramps": 0
+    },
+    {
+     "month": "2024-01",
+     "snow_ice": 28,
+     "damage": 8,
+     "ramps": 1
+    },
+    {
+     "month": "2024-02",
+     "snow_ice": 14,
+     "damage": 6,
+     "ramps": 0
+    },
+    {
+     "month": "2024-03",
+     "snow_ice": 4,
+     "damage": 15,
+     "ramps": 0
+    },
+    {
+     "month": "2024-04",
+     "snow_ice": 0,
+     "damage": 12,
+     "ramps": 0
+    },
+    {
+     "month": "2024-05",
+     "snow_ice": 0,
+     "damage": 15,
+     "ramps": 0
+    },
+    {
+     "month": "2024-06",
+     "snow_ice": 0,
+     "damage": 17,
+     "ramps": 0
+    },
+    {
+     "month": "2024-07",
+     "snow_ice": 0,
+     "damage": 18,
+     "ramps": 1
+    },
+    {
+     "month": "2024-08",
+     "snow_ice": 0,
+     "damage": 18,
+     "ramps": 0
+    },
+    {
+     "month": "2024-09",
+     "snow_ice": 0,
+     "damage": 14,
+     "ramps": 0
+    },
+    {
+     "month": "2024-10",
+     "snow_ice": 0,
+     "damage": 16,
+     "ramps": 0
+    },
+    {
+     "month": "2024-11",
+     "snow_ice": 1,
+     "damage": 18,
+     "ramps": 0
+    },
+    {
+     "month": "2024-12",
+     "snow_ice": 18,
+     "damage": 10,
+     "ramps": 0
+    },
+    {
+     "month": "2025-01",
+     "snow_ice": 29,
+     "damage": 8,
+     "ramps": 0
+    },
+    {
+     "month": "2025-02",
+     "snow_ice": 546,
+     "damage": 7,
+     "ramps": 0
+    },
+    {
+     "month": "2025-03",
+     "snow_ice": 23,
+     "damage": 20,
+     "ramps": 1
+    },
+    {
+     "month": "2025-04",
+     "snow_ice": 0,
+     "damage": 14,
+     "ramps": 2
+    },
+    {
+     "month": "2025-05",
+     "snow_ice": 0,
+     "damage": 21,
+     "ramps": 3
+    },
+    {
+     "month": "2025-06",
+     "snow_ice": 0,
+     "damage": 13,
+     "ramps": 0
+    },
+    {
+     "month": "2025-07",
+     "snow_ice": 0,
+     "damage": 21,
+     "ramps": 0
+    },
+    {
+     "month": "2025-08",
+     "snow_ice": 0,
+     "damage": 19,
+     "ramps": 0
+    },
+    {
+     "month": "2025-09",
+     "snow_ice": 0,
+     "damage": 22,
+     "ramps": 0
+    }
+   ],
+   "top_places": [
+    {
+     "place": "Lawrence Ave E & Midland Ave",
+     "reports": 18
+    },
+    {
+     "place": "Lawrence Ave E & Warden Ave",
+     "reports": 16
+    },
+    {
+     "place": "Eglinton Ave E & Kennedy Rd",
+     "reports": 12
+    },
+    {
+     "place": "Eglinton Ave E & Brimley Rd",
+     "reports": 9
+    },
+    {
+     "place": "Borough Dr & Triton Rd",
+     "reports": 9
+    }
+   ]
+  },
+  "22": {
+   "id": 22,
+   "name": "Scarborough-Agincourt",
+   "snow_last_winter": 372,
+   "damage_12m": 162,
+   "ramps_12m": 9,
+   "reports_12m": 543,
+   "reports_prior_12m": 488,
+   "open_share_12m": 0.081,
+   "monthly": [
+    {
+     "month": "2024-10",
+     "snow_ice": 0,
+     "damage": 8,
+     "ramps": 0
+    },
+    {
+     "month": "2024-11",
+     "snow_ice": 0,
+     "damage": 5,
+     "ramps": 0
+    },
+    {
+     "month": "2024-12",
+     "snow_ice": 12,
+     "damage": 1,
+     "ramps": 0
+    },
+    {
+     "month": "2025-01",
+     "snow_ice": 24,
+     "damage": 7,
+     "ramps": 0
+    },
+    {
+     "month": "2025-02",
+     "snow_ice": 269,
+     "damage": 5,
+     "ramps": 0
+    },
+    {
+     "month": "2025-03",
+     "snow_ice": 12,
+     "damage": 18,
+     "ramps": 1
+    },
+    {
+     "month": "2025-04",
+     "snow_ice": 0,
+     "damage": 14,
+     "ramps": 0
+    },
+    {
+     "month": "2025-05",
+     "snow_ice": 0,
+     "damage": 16,
+     "ramps": 0
+    },
+    {
+     "month": "2025-06",
+     "snow_ice": 0,
+     "damage": 18,
+     "ramps": 0
+    },
+    {
+     "month": "2025-07",
+     "snow_ice": 0,
+     "damage": 23,
+     "ramps": 2
+    },
+    {
+     "month": "2025-08",
+     "snow_ice": 0,
+     "damage": 40,
+     "ramps": 1
+    },
+    {
+     "month": "2025-09",
+     "snow_ice": 0,
+     "damage": 12,
+     "ramps": 0
+    },
+    {
+     "month": "2025-10",
+     "snow_ice": 0,
+     "damage": 15,
+     "ramps": 1
+    },
+    {
+     "month": "2025-11",
+     "snow_ice": 6,
+     "damage": 9,
+     "ramps": 1
+    },
+    {
+     "month": "2025-12",
+     "snow_ice": 72,
+     "damage": 5,
+     "ramps": 1
+    },
+    {
+     "month": "2026-01",
+     "snow_ice": 184,
+     "damage": 7,
+     "ramps": 1
+    },
+    {
+     "month": "2026-02",
+     "snow_ice": 96,
+     "damage": 7,
+     "ramps": 1
+    },
+    {
+     "month": "2026-03",
+     "snow_ice": 14,
+     "damage": 16,
+     "ramps": 0
+    },
+    {
+     "month": "2026-04",
+     "snow_ice": 0,
+     "damage": 22,
+     "ramps": 0
+    },
+    {
+     "month": "2026-05",
+     "snow_ice": 0,
+     "damage": 15,
+     "ramps": 0
+    },
+    {
+     "month": "2026-06",
+     "snow_ice": 0,
+     "damage": 12,
+     "ramps": 0
+    },
+    {
+     "month": "2026-07",
+     "snow_ice": 0,
+     "damage": 15,
+     "ramps": 1
+    },
+    {
+     "month": "2026-08",
+     "snow_ice": 0,
+     "damage": 15,
+     "ramps": 0
+    },
+    {
+     "month": "2026-09",
+     "snow_ice": 0,
+     "damage": 24,
+     "ramps": 3
+    }
+   ],
+   "monthly_prior_year": [
+    {
+     "month": "2023-10",
+     "snow_ice": 0,
+     "damage": 11,
+     "ramps": 0
+    },
+    {
+     "month": "2023-11",
+     "snow_ice": 0,
+     "damage": 7,
+     "ramps": 0
+    },
+    {
+     "month": "2023-12",
+     "snow_ice": 0,
+     "damage": 10,
+     "ramps": 0
+    },
+    {
+     "month": "2024-01",
+     "snow_ice": 36,
+     "damage": 8,
+     "ramps": 0
+    },
+    {
+     "month": "2024-02",
+     "snow_ice": 8,
+     "damage": 6,
+     "ramps": 0
+    },
+    {
+     "month": "2024-03",
+     "snow_ice": 1,
+     "damage": 9,
+     "ramps": 0
+    },
+    {
+     "month": "2024-04",
+     "snow_ice": 0,
+     "damage": 10,
+     "ramps": 0
+    },
+    {
+     "month": "2024-05",
+     "snow_ice": 0,
+     "damage": 15,
+     "ramps": 1
+    },
+    {
+     "month": "2024-06",
+     "snow_ice": 0,
+     "damage": 10,
+     "ramps": 0
+    },
+    {
+     "month": "2024-07",
+     "snow_ice": 0,
+     "damage": 28,
+     "ramps": 0
+    },
+    {
+     "month": "2024-08",
+     "snow_ice": 0,
+     "damage": 21,
+     "ramps": 1
+    },
+    {
+     "month": "2024-09",
+     "snow_ice": 0,
+     "damage": 12,
+     "ramps": 0
+    },
+    {
+     "month": "2024-10",
+     "snow_ice": 0,
+     "damage": 8,
+     "ramps": 0
+    },
+    {
+     "month": "2024-11",
+     "snow_ice": 0,
+     "damage": 5,
+     "ramps": 0
+    },
+    {
+     "month": "2024-12",
+     "snow_ice": 12,
+     "damage": 1,
+     "ramps": 0
+    },
+    {
+     "month": "2025-01",
+     "snow_ice": 24,
+     "damage": 7,
+     "ramps": 0
+    },
+    {
+     "month": "2025-02",
+     "snow_ice": 269,
+     "damage": 5,
+     "ramps": 0
+    },
+    {
+     "month": "2025-03",
+     "snow_ice": 12,
+     "damage": 18,
+     "ramps": 1
+    },
+    {
+     "month": "2025-04",
+     "snow_ice": 0,
+     "damage": 14,
+     "ramps": 0
+    },
+    {
+     "month": "2025-05",
+     "snow_ice": 0,
+     "damage": 16,
+     "ramps": 0
+    },
+    {
+     "month": "2025-06",
+     "snow_ice": 0,
+     "damage": 18,
+     "ramps": 0
+    },
+    {
+     "month": "2025-07",
+     "snow_ice": 0,
+     "damage": 23,
+     "ramps": 2
+    },
+    {
+     "month": "2025-08",
+     "snow_ice": 0,
+     "damage": 40,
+     "ramps": 1
+    },
+    {
+     "month": "2025-09",
+     "snow_ice": 0,
+     "damage": 12,
+     "ramps": 0
+    }
+   ],
+   "top_places": [
+    {
+     "place": "Sheppard Ave E & Birchmount Rd",
+     "reports": 28
+    },
+    {
+     "place": "Sheppard Ave E & Warden Ave",
+     "reports": 18
+    },
+    {
+     "place": "Sheppard Ave E & Kennedy Rd",
+     "reports": 13
+    },
+    {
+     "place": "Finch Ave E & Midland Ave",
+     "reports": 10
+    },
+    {
+     "place": "Sheppard Ave E & Pharmacy Ave",
+     "reports": 8
+    }
+   ]
+  },
+  "23": {
+   "id": 23,
+   "name": "Scarborough North",
+   "snow_last_winter": 286,
+   "damage_12m": 147,
+   "ramps_12m": 10,
+   "reports_12m": 443,
+   "reports_prior_12m": 375,
+   "open_share_12m": 0.111,
+   "monthly": [
+    {
+     "month": "2024-10",
+     "snow_ice": 0,
+     "damage": 12,
+     "ramps": 0
+    },
+    {
+     "month": "2024-11",
+     "snow_ice": 0,
+     "damage": 2,
+     "ramps": 0
+    },
+    {
+     "month": "2024-12",
+     "snow_ice": 8,
+     "damage": 2,
+     "ramps": 0
+    },
+    {
+     "month": "2025-01",
+     "snow_ice": 24,
+     "damage": 3,
+     "ramps": 0
+    },
+    {
+     "month": "2025-02",
+     "snow_ice": 220,
+     "damage": 6,
+     "ramps": 0
+    },
+    {
+     "month": "2025-03",
+     "snow_ice": 12,
+     "damage": 8,
+     "ramps": 2
+    },
+    {
+     "month": "2025-04",
+     "snow_ice": 1,
+     "damage": 13,
+     "ramps": 1
+    },
+    {
+     "month": "2025-05",
+     "snow_ice": 0,
+     "damage": 8,
+     "ramps": 1
+    },
+    {
+     "month": "2025-06",
+     "snow_ice": 0,
+     "damage": 5,
+     "ramps": 0
+    },
+    {
+     "month": "2025-07",
+     "snow_ice": 0,
+     "damage": 17,
+     "ramps": 0
+    },
+    {
+     "month": "2025-08",
+     "snow_ice": 0,
+     "damage": 17,
+     "ramps": 2
+    },
+    {
+     "month": "2025-09",
+     "snow_ice": 0,
+     "damage": 11,
+     "ramps": 0
+    },
+    {
+     "month": "2025-10",
+     "snow_ice": 0,
+     "damage": 9,
+     "ramps": 0
+    },
+    {
+     "month": "2025-11",
+     "snow_ice": 1,
+     "damage": 9,
+     "ramps": 1
+    },
+    {
+     "month": "2025-12",
+     "snow_ice": 60,
+     "damage": 6,
+     "ramps": 0
+    },
+    {
+     "month": "2026-01",
+     "snow_ice": 136,
+     "damage": 2,
+     "ramps": 3
+    },
+    {
+     "month": "2026-02",
+     "snow_ice": 73,
+     "damage": 2,
+     "ramps": 0
+    },
+    {
+     "month": "2026-03",
+     "snow_ice": 16,
+     "damage": 14,
+     "ramps": 2
+    },
+    {
+     "month": "2026-04",
+     "snow_ice": 0,
+     "damage": 26,
+     "ramps": 0
+    },
+    {
+     "month": "2026-05",
+     "snow_ice": 0,
+     "damage": 5,
+     "ramps": 2
+    },
+    {
+     "month": "2026-06",
+     "snow_ice": 0,
+     "damage": 23,
+     "ramps": 1
+    },
+    {
+     "month": "2026-07",
+     "snow_ice": 0,
+     "damage": 14,
+     "ramps": 0
+    },
+    {
+     "month": "2026-08",
+     "snow_ice": 0,
+     "damage": 18,
+     "ramps": 0
+    },
+    {
+     "month": "2026-09",
+     "snow_ice": 0,
+     "damage": 19,
+     "ramps": 1
+    }
+   ],
+   "monthly_prior_year": [
+    {
+     "month": "2023-10",
+     "snow_ice": 0,
+     "damage": 5,
+     "ramps": 0
+    },
+    {
+     "month": "2023-11",
+     "snow_ice": 0,
+     "damage": 10,
+     "ramps": 0
+    },
+    {
+     "month": "2023-12",
+     "snow_ice": 1,
+     "damage": 4,
+     "ramps": 0
+    },
+    {
+     "month": "2024-01",
+     "snow_ice": 29,
+     "damage": 8,
+     "ramps": 0
+    },
+    {
+     "month": "2024-02",
+     "snow_ice": 6,
+     "damage": 7,
+     "ramps": 0
+    },
+    {
+     "month": "2024-03",
+     "snow_ice": 1,
+     "damage": 6,
+     "ramps": 0
+    },
+    {
+     "month": "2024-04",
+     "snow_ice": 0,
+     "damage": 11,
+     "ramps": 0
+    },
+    {
+     "month": "2024-05",
+     "snow_ice": 0,
+     "damage": 22,
+     "ramps": 2
+    },
+    {
+     "month": "2024-06",
+     "snow_ice": 0,
+     "damage": 9,
+     "ramps": 0
+    },
+    {
+     "month": "2024-07",
+     "snow_ice": 0,
+     "damage": 17,
+     "ramps": 0
+    },
+    {
+     "month": "2024-08",
+     "snow_ice": 0,
+     "damage": 20,
+     "ramps": 0
+    },
+    {
+     "month": "2024-09",
+     "snow_ice": 0,
+     "damage": 17,
+     "ramps": 0
+    },
+    {
+     "month": "2024-10",
+     "snow_ice": 0,
+     "damage": 12,
+     "ramps": 0
+    },
+    {
+     "month": "2024-11",
+     "snow_ice": 0,
+     "damage": 2,
+     "ramps": 0
+    },
+    {
+     "month": "2024-12",
+     "snow_ice": 8,
+     "damage": 2,
+     "ramps": 0
+    },
+    {
+     "month": "2025-01",
+     "snow_ice": 24,
+     "damage": 3,
+     "ramps": 0
+    },
+    {
+     "month": "2025-02",
+     "snow_ice": 220,
+     "damage": 6,
+     "ramps": 0
+    },
+    {
+     "month": "2025-03",
+     "snow_ice": 12,
+     "damage": 8,
+     "ramps": 2
+    },
+    {
+     "month": "2025-04",
+     "snow_ice": 1,
+     "damage": 13,
+     "ramps": 1
+    },
+    {
+     "month": "2025-05",
+     "snow_ice": 0,
+     "damage": 8,
+     "ramps": 1
+    },
+    {
+     "month": "2025-06",
+     "snow_ice": 0,
+     "damage": 5,
+     "ramps": 0
+    },
+    {
+     "month": "2025-07",
+     "snow_ice": 0,
+     "damage": 17,
+     "ramps": 0
+    },
+    {
+     "month": "2025-08",
+     "snow_ice": 0,
+     "damage": 17,
+     "ramps": 2
+    },
+    {
+     "month": "2025-09",
+     "snow_ice": 0,
+     "damage": 11,
+     "ramps": 0
+    }
+   ],
+   "top_places": [
+    {
+     "place": "Sheppard Ave E & Mccowan Rd",
+     "reports": 7
+    },
+    {
+     "place": "Mccowan Rd & Alton Towers Crcl",
+     "reports": 7
+    },
+    {
+     "place": "Steeles Ave E & Brimley Rd",
+     "reports": 6
+    },
+    {
+     "place": "Sheppard Ave E & Gateforth Dr",
+     "reports": 5
+    },
+    {
+     "place": "Pitfield Rd & Tidworth Sq",
+     "reports": 5
+    }
+   ]
+  },
+  "24": {
+   "id": 24,
+   "name": "Scarborough-Guildwood",
+   "snow_last_winter": 382,
+   "damage_12m": 163,
+   "ramps_12m": 15,
+   "reports_12m": 560,
+   "reports_prior_12m": 514,
+   "open_share_12m": 0.091,
+   "monthly": [
+    {
+     "month": "2024-10",
+     "snow_ice": 0,
+     "damage": 23,
+     "ramps": 0
+    },
+    {
+     "month": "2024-11",
+     "snow_ice": 0,
+     "damage": 6,
+     "ramps": 0
+    },
+    {
+     "month": "2024-12",
+     "snow_ice": 16,
+     "damage": 7,
+     "ramps": 0
+    },
+    {
+     "month": "2025-01",
+     "snow_ice": 20,
+     "damage": 9,
+     "ramps": 0
+    },
+    {
+     "month": "2025-02",
+     "snow_ice": 311,
+     "damage": 7,
+     "ramps": 1
+    },
+    {
+     "month": "2025-03",
+     "snow_ice": 13,
+     "damage": 19,
+     "ramps": 1
+    },
+    {
+     "month": "2025-04",
+     "snow_ice": 0,
+     "damage": 10,
+     "ramps": 1
+    },
+    {
+     "month": "2025-05",
+     "snow_ice": 0,
+     "damage": 17,
+     "ramps": 0
+    },
+    {
+     "month": "2025-06",
+     "snow_ice": 0,
+     "damage": 12,
+     "ramps": 0
+    },
+    {
+     "month": "2025-07",
+     "snow_ice": 0,
+     "damage": 17,
+     "ramps": 1
+    },
+    {
+     "month": "2025-08",
+     "snow_ice": 0,
+     "damage": 6,
+     "ramps": 0
+    },
+    {
+     "month": "2025-09",
+     "snow_ice": 0,
+     "damage": 16,
+     "ramps": 1
+    },
+    {
+     "month": "2025-10",
+     "snow_ice": 0,
+     "damage": 12,
+     "ramps": 1
+    },
+    {
+     "month": "2025-11",
+     "snow_ice": 7,
+     "damage": 7,
+     "ramps": 1
+    },
+    {
+     "month": "2025-12",
+     "snow_ice": 60,
+     "damage": 6,
+     "ramps": 2
+    },
+    {
+     "month": "2026-01",
+     "snow_ice": 198,
+     "damage": 10,
+     "ramps": 3
+    },
+    {
+     "month": "2026-02",
+     "snow_ice": 107,
+     "damage": 3,
+     "ramps": 1
+    },
+    {
+     "month": "2026-03",
+     "snow_ice": 8,
+     "damage": 19,
+     "ramps": 2
+    },
+    {
+     "month": "2026-04",
+     "snow_ice": 2,
+     "damage": 21,
+     "ramps": 0
+    },
+    {
+     "month": "2026-05",
+     "snow_ice": 0,
+     "damage": 18,
+     "ramps": 1
+    },
+    {
+     "month": "2026-06",
+     "snow_ice": 0,
+     "damage": 16,
+     "ramps": 1
+    },
+    {
+     "month": "2026-07",
+     "snow_ice": 0,
+     "damage": 11,
+     "ramps": 0
+    },
+    {
+     "month": "2026-08",
+     "snow_ice": 0,
+     "damage": 14,
+     "ramps": 0
+    },
+    {
+     "month": "2026-09",
+     "snow_ice": 0,
+     "damage": 26,
+     "ramps": 3
+    }
+   ],
+   "monthly_prior_year": [
+    {
+     "month": "2023-10",
+     "snow_ice": 0,
+     "damage": 9,
+     "ramps": 1
+    },
+    {
+     "month": "2023-11",
+     "snow_ice": 0,
+     "damage": 7,
+     "ramps": 0
+    },
+    {
+     "month": "2023-12",
+     "snow_ice": 0,
+     "damage": 4,
+     "ramps": 0
+    },
+    {
+     "month": "2024-01",
+     "snow_ice": 13,
+     "damage": 4,
+     "ramps": 0
+    },
+    {
+     "month": "2024-02",
+     "snow_ice": 5,
+     "damage": 5,
+     "ramps": 0
+    },
+    {
+     "month": "2024-03",
+     "snow_ice": 2,
+     "damage": 7,
+     "ramps": 0
+    },
+    {
+     "month": "2024-04",
+     "snow_ice": 0,
+     "damage": 18,
+     "ramps": 2
+    },
+    {
+     "month": "2024-05",
+     "snow_ice": 0,
+     "damage": 22,
+     "ramps": 0
+    },
+    {
+     "month": "2024-06",
+     "snow_ice": 0,
+     "damage": 18,
+     "ramps": 0
+    },
+    {
+     "month": "2024-07",
+     "snow_ice": 0,
+     "damage": 7,
+     "ramps": 0
+    },
+    {
+     "month": "2024-08",
+     "snow_ice": 0,
+     "damage": 8,
+     "ramps": 0
+    },
+    {
+     "month": "2024-09",
+     "snow_ice": 0,
+     "damage": 24,
+     "ramps": 0
+    },
+    {
+     "month": "2024-10",
+     "snow_ice": 0,
+     "damage": 23,
+     "ramps": 0
+    },
+    {
+     "month": "2024-11",
+     "snow_ice": 0,
+     "damage": 6,
+     "ramps": 0
+    },
+    {
+     "month": "2024-12",
+     "snow_ice": 16,
+     "damage": 7,
+     "ramps": 0
+    },
+    {
+     "month": "2025-01",
+     "snow_ice": 20,
+     "damage": 9,
+     "ramps": 0
+    },
+    {
+     "month": "2025-02",
+     "snow_ice": 311,
+     "damage": 7,
+     "ramps": 1
+    },
+    {
+     "month": "2025-03",
+     "snow_ice": 13,
+     "damage": 19,
+     "ramps": 1
+    },
+    {
+     "month": "2025-04",
+     "snow_ice": 0,
+     "damage": 10,
+     "ramps": 1
+    },
+    {
+     "month": "2025-05",
+     "snow_ice": 0,
+     "damage": 17,
+     "ramps": 0
+    },
+    {
+     "month": "2025-06",
+     "snow_ice": 0,
+     "damage": 12,
+     "ramps": 0
+    },
+    {
+     "month": "2025-07",
+     "snow_ice": 0,
+     "damage": 17,
+     "ramps": 1
+    },
+    {
+     "month": "2025-08",
+     "snow_ice": 0,
+     "damage": 6,
+     "ramps": 0
+    },
+    {
+     "month": "2025-09",
+     "snow_ice": 0,
+     "damage": 16,
+     "ramps": 1
+    }
+   ],
+   "top_places": [
+    {
+     "place": "Lawrence Ave E & Markham Rd",
+     "reports": 10
+    },
+    {
+     "place": "Lawrence Ave E & Scarborough Golf Club Rd",
+     "reports": 9
+    },
+    {
+     "place": "Kingston Rd & Morningside Ave",
+     "reports": 7
+    },
+    {
+     "place": "Lee Centre Dr & Corporate Dr",
+     "reports": 7
+    },
+    {
+     "place": "Brimorton Dr & Scarborough Golf Club Rd",
+     "reports": 6
+    }
+   ]
+  },
+  "25": {
+   "id": 25,
+   "name": "Scarborough-Rouge Park",
+   "snow_last_winter": 363,
+   "damage_12m": 272,
+   "ramps_12m": 8,
+   "reports_12m": 643,
+   "reports_prior_12m": 582,
+   "open_share_12m": 0.115,
+   "monthly": [
+    {
+     "month": "2024-10",
+     "snow_ice": 0,
+     "damage": 15,
+     "ramps": 1
+    },
+    {
+     "month": "2024-11",
+     "snow_ice": 0,
+     "damage": 12,
+     "ramps": 0
+    },
+    {
+     "month": "2024-12",
+     "snow_ice": 9,
+     "damage": 6,
+     "ramps": 0
+    },
+    {
+     "month": "2025-01",
+     "snow_ice": 23,
+     "damage": 9,
+     "ramps": 0
+    },
+    {
+     "month": "2025-02",
+     "snow_ice": 342,
+     "damage": 8,
+     "ramps": 1
+    },
+    {
+     "month": "2025-03",
+     "snow_ice": 14,
+     "damage": 22,
+     "ramps": 3
+    },
+    {
+     "month": "2025-04",
+     "snow_ice": 0,
+     "damage": 13,
+     "ramps": 0
+    },
+    {
+     "month": "2025-05",
+     "snow_ice": 0,
+     "damage": 27,
+     "ramps": 1
+    },
+    {
+     "month": "2025-06",
+     "snow_ice": 0,
+     "damage": 21,
+     "ramps": 1
+    },
+    {
+     "month": "2025-07",
+     "snow_ice": 0,
+     "damage": 19,
+     "ramps": 0
+    },
+    {
+     "month": "2025-08",
+     "snow_ice": 0,
+     "damage": 16,
+     "ramps": 0
+    },
+    {
+     "month": "2025-09",
+     "snow_ice": 0,
+     "damage": 19,
+     "ramps": 0
+    },
+    {
+     "month": "2025-10",
+     "snow_ice": 0,
+     "damage": 21,
+     "ramps": 1
+    },
+    {
+     "month": "2025-11",
+     "snow_ice": 4,
+     "damage": 16,
+     "ramps": 0
+    },
+    {
+     "month": "2025-12",
+     "snow_ice": 92,
+     "damage": 22,
+     "ramps": 0
+    },
+    {
+     "month": "2026-01",
+     "snow_ice": 154,
+     "damage": 5,
+     "ramps": 0
+    },
+    {
+     "month": "2026-02",
+     "snow_ice": 86,
+     "damage": 2,
+     "ramps": 0
+    },
+    {
+     "month": "2026-03",
+     "snow_ice": 26,
+     "damage": 21,
+     "ramps": 2
+    },
+    {
+     "month": "2026-04",
+     "snow_ice": 1,
+     "damage": 36,
+     "ramps": 1
+    },
+    {
+     "month": "2026-05",
+     "snow_ice": 0,
+     "damage": 30,
+     "ramps": 0
+    },
+    {
+     "month": "2026-06",
+     "snow_ice": 0,
+     "damage": 49,
+     "ramps": 0
+    },
+    {
+     "month": "2026-07",
+     "snow_ice": 0,
+     "damage": 25,
+     "ramps": 1
+    },
+    {
+     "month": "2026-08",
+     "snow_ice": 0,
+     "damage": 29,
+     "ramps": 2
+    },
+    {
+     "month": "2026-09",
+     "snow_ice": 0,
+     "damage": 16,
+     "ramps": 1
+    }
+   ],
+   "monthly_prior_year": [
+    {
+     "month": "2023-10",
+     "snow_ice": 0,
+     "damage": 14,
+     "ramps": 0
+    },
+    {
+     "month": "2023-11",
+     "snow_ice": 0,
+     "damage": 4,
+     "ramps": 0
+    },
+    {
+     "month": "2023-12",
+     "snow_ice": 1,
+     "damage": 7,
+     "ramps": 0
+    },
+    {
+     "month": "2024-01",
+     "snow_ice": 21,
+     "damage": 9,
+     "ramps": 1
+    },
+    {
+     "month": "2024-02",
+     "snow_ice": 5,
+     "damage": 12,
+     "ramps": 0
+    },
+    {
+     "month": "2024-03",
+     "snow_ice": 1,
+     "damage": 16,
+     "ramps": 0
+    },
+    {
+     "month": "2024-04",
+     "snow_ice": 0,
+     "damage": 7,
+     "ramps": 1
+    },
+    {
+     "month": "2024-05",
+     "snow_ice": 0,
+     "damage": 20,
+     "ramps": 1
+    },
+    {
+     "month": "2024-06",
+     "snow_ice": 0,
+     "damage": 24,
+     "ramps": 0
+    },
+    {
+     "month": "2024-07",
+     "snow_ice": 0,
+     "damage": 26,
+     "ramps": 2
+    },
+    {
+     "month": "2024-08",
+     "snow_ice": 0,
+     "damage": 17,
+     "ramps": 0
+    },
+    {
+     "month": "2024-09",
+     "snow_ice": 0,
+     "damage": 16,
+     "ramps": 0
+    },
+    {
+     "month": "2024-10",
+     "snow_ice": 0,
+     "damage": 15,
+     "ramps": 1
+    },
+    {
+     "month": "2024-11",
+     "snow_ice": 0,
+     "damage": 12,
+     "ramps": 0
+    },
+    {
+     "month": "2024-12",
+     "snow_ice": 9,
+     "damage": 6,
+     "ramps": 0
+    },
+    {
+     "month": "2025-01",
+     "snow_ice": 23,
+     "damage": 9,
+     "ramps": 0
+    },
+    {
+     "month": "2025-02",
+     "snow_ice": 342,
+     "damage": 8,
+     "ramps": 1
+    },
+    {
+     "month": "2025-03",
+     "snow_ice": 14,
+     "damage": 22,
+     "ramps": 3
+    },
+    {
+     "month": "2025-04",
+     "snow_ice": 0,
+     "damage": 13,
+     "ramps": 0
+    },
+    {
+     "month": "2025-05",
+     "snow_ice": 0,
+     "damage": 27,
+     "ramps": 1
+    },
+    {
+     "month": "2025-06",
+     "snow_ice": 0,
+     "damage": 21,
+     "ramps": 1
+    },
+    {
+     "month": "2025-07",
+     "snow_ice": 0,
+     "damage": 19,
+     "ramps": 0
+    },
+    {
+     "month": "2025-08",
+     "snow_ice": 0,
+     "damage": 16,
+     "ramps": 0
+    },
+    {
+     "month": "2025-09",
+     "snow_ice": 0,
+     "damage": 19,
+     "ramps": 0
+    }
+   ],
+   "top_places": [
+    {
+     "place": "Morningside Ave & Finch Ave E",
+     "reports": 9
+    },
+    {
+     "place": "Finch Ave E & Neilson Rd",
+     "reports": 6
+    },
+    {
+     "place": "Conference Blvd & Port Union Rd",
+     "reports": 5
+    },
+    {
+     "place": "East Ave & Lawrence Ave E",
+     "reports": 5
+    },
+    {
+     "place": "Sheppard Ave E & Murison Blvd",
+     "reports": 5
+    }
+   ]
+  }
+ }
+}

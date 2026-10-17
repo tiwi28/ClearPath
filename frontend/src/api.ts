@@ -1,4 +1,4 @@
-import type { Barriers, Place, Plan, PlanRequest, RiskMap, Stations } from './types'
+import type { Barriers, Gap, Hazard, LngLat, Place, Plan, PlanRequest, ProfileName, ReportKind, RiskMap, Stations, WardCard, WardSummary } from './types'
 
 const baseUrl = (import.meta.env.VITE_API_URL || '/api').replace(/\/$/, '')
 
@@ -45,4 +45,31 @@ export function getPlan(body: PlanRequest, signal: AbortSignal): Promise<Plan> {
     method: 'POST', headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(body), signal,
   })
+}
+
+export async function getWards(signal: AbortSignal): Promise<WardSummary[]> {
+  return (await request<{ wards: WardSummary[] }>('/wards', { signal })).wards
+}
+
+export function getWard(id: number, signal: AbortSignal): Promise<WardCard> {
+  return request(`/wards/${id}`, { signal })
+}
+
+export function locateWard(point: [number, number], signal: AbortSignal): Promise<WardSummary> {
+  return request(`/wards/locate?${new URLSearchParams({ lng: String(point[0]), lat: String(point[1]) })}`, { signal })
+}
+
+export type HazardRequest = { route: { type: 'LineString'; coordinates: LngLat[] }; day: string | null; stations: { name: string; at_m: number }[]; unverified: Gap[] }
+
+export async function getHazards(body: HazardRequest, signal: AbortSignal): Promise<Hazard[]> {
+  const result = await request<{ hazards: Hazard[] }>('/trip/hazards', {
+    method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body), signal,
+  })
+  return result.hazards
+}
+
+export type ReportBody = { device_id: string; kind: ReportKind; state: 'blocked' | 'clear'; profile: ProfileName; location: LngLat }
+
+export function postReport(body: ReportBody): Promise<{ id: number }> {
+  return request('/reports', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) })
 }

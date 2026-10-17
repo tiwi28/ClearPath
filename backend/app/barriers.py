@@ -10,6 +10,7 @@ from psycopg.rows import dict_row
 from psycopg_pool import ConnectionPool, PoolTimeout
 from shapely.geometry import box, shape
 
+from . import reports
 from .config import settings
 
 TORONTO_BBOX = (-79.65, 43.55, -79.1, 43.9)
@@ -68,6 +69,8 @@ def query_features(bounds=None, kind: str | None = None) -> list[dict]:
                 "code": "barrier_data_unavailable", "message": "Barrier data is unavailable. Try again shortly.",
             }) from None
 
+    # Rider reports live in Postgres in both modes; when it's unreachable they're simply absent.
+    features = features + reports.features(bounds or TORONTO_BBOX)
     return [feature for feature in features
             if feature["properties"].get("status") == "open"
             and feature["properties"].get("closed_at") is None
@@ -86,7 +89,7 @@ def blockers(features: list[dict]) -> list[dict]:
     for feature in features:
         properties = feature["properties"]
         if not (properties.get("status") == "open"
-                and properties.get("verification") == "verified"
+                and properties.get("verification") in ("verified", "rider_confirmed")
                 and properties.get("blocks_route") is True):
             continue
         geometry = shape(feature["geometry"])

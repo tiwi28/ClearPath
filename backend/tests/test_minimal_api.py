@@ -7,7 +7,10 @@ TRIP = {"from": [-79.3832, 43.6534], "to": [-79.3802, 43.6561], "include_transit
 
 
 def test_only_navigation_endpoints_are_exposed():
-    assert set(client.get("/openapi.json").json()["paths"]) == {"/health", "/barriers", "/geocode", "/plan", "/risk", "/stations"}
+    assert set(client.get("/openapi.json").json()["paths"]) == {
+        "/health", "/barriers", "/geocode", "/plan", "/risk", "/stations",
+        "/wards", "/wards/locate", "/wards/{ward_id}", "/trip/hazards", "/reports",
+    }
 
 
 def test_ward_reporting_api_is_removed():

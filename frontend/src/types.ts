@@ -1,4 +1,4 @@
-import type { FeatureCollection, Geometry, LineString, Polygon } from 'geojson'
+import type { FeatureCollection, Geometry, LineString, MultiPolygon, Polygon } from 'geojson'
 
 export type LngLat = [number, number]
 export type BarrierProperties = {
@@ -64,7 +64,7 @@ export type RouteRisk = {
   high_risk_share: number
 }
 export type Gap = { end: 'start' | 'destination'; geometry: LineString; length_m: number; uses_stairs: boolean }
-export type Step = { instruction: string; distance_m: number }
+export type Step = { instruction: string; distance_m: number; way_points?: [number, number] | null; type?: number | null }
 export type RouteOption = {
   geometry: LineString
   distance_m: number
@@ -115,3 +115,44 @@ export type Plan = {
 }
 /** Which option card is selected: the street route, the typical route, or a transit option by index. */
 export type Choice = 'accessible' | 'ideal' | `transit-${number}`
+
+export type WardSummary = { id: number; name: string }
+export type WardMonth = { month: string; snow_ice: number; damage: number; ramps: number }
+type Live<T> = ({ available: true } & T) | { available: false }
+export type WardCard = {
+  id: number
+  name: string
+  snow_last_winter: number
+  damage_12m: number
+  ramps_12m: number
+  reports_12m: number
+  reports_prior_12m: number
+  open_share_12m: number
+  monthly: WardMonth[]
+  monthly_prior_year: WardMonth[]
+  top_places: { place: string; reports: number }[]
+  geometry: Polygon | MultiPolygon
+  meta: { reports_through: string; winter: [string, string]; year_from: string }
+  sources: Record<'311' | 'wards' | 'ttc' | 'closures' | 'forecast', string>
+  generated_at: string
+  live: {
+    elevators: Live<{ out: number; outages: { station: string; text: string }[]; stations: number; stations_with_elevator: number }>
+    closures: Live<{ count: number; sidewalk: number; road_closed: number }>
+    forecast: Live<{ date: string; cells: number; high: number; elevated: number }>
+  }
+  summary: string
+  summary_source: 'gemini' | 'template'
+}
+
+export type HazardKind = 'barrier' | 'rider_report' | 'forecast' | 'closure' | 'unverified' | 'elevator'
+export type Hazard = {
+  id: string
+  kind: HazardKind
+  label: string
+  severity: 'blocker' | 'warning' | 'info'
+  source: string
+  confirmable: boolean
+  at_m: number
+  lnglat: LngLat
+}
+export type ReportKind = 'blocked_sidewalk' | 'snow_ice' | 'construction' | 'elevator_out' | 'other'

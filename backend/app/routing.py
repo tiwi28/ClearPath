@@ -91,6 +91,8 @@ def ors(profile: str, coordinates, options: dict | None = None, preference: str 
         data = response.json()
         error = data.get("error", {})
         if not response.is_success:
+            if response.status_code in (403, 429):
+                raise HTTPException(503, detail={"code": "routing_quota", "message": "The routing service's daily limit has been reached. Try again later, or use a different ORS API key."})
             if response.status_code == 404 or (isinstance(error, dict) and error.get("code") in (2009, 2010)):
                 raise HTTPException(404, detail={"code": "no_route", "message": "No route found with these accessibility constraints. Try other points."})
             raise HTTPException(502, detail={"code": "routing_unavailable", "message": "The routing service could not calculate this trip. Try again."})
@@ -102,7 +104,8 @@ def ors(profile: str, coordinates, options: dict | None = None, preference: str 
             "geometry": geometry.model_dump(mode="json"),
             "distance_m": number.validate_python(summary.get("distance", 0)),
             "duration_s": number.validate_python(summary.get("duration", 0)),
-            "steps": [Step(instruction=step["instruction"], distance_m=step["distance"]).model_dump()
+            "steps": [Step(instruction=step["instruction"], distance_m=step["distance"],
+                           way_points=step.get("way_points"), type=step.get("type")).model_dump()
                       for segment in feature["properties"]["segments"] for step in segment["steps"]],
             "waytypes": feature["properties"].get("extras", {}).get("waytype", {}).get("values", []),
         }

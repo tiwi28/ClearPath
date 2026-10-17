@@ -9,17 +9,13 @@ type LayerProps = {
   onDay: (day: string) => void
 }
 
-function wideScreen() {
-  try { return window.matchMedia('(min-width: 761px)').matches } catch { return true }
-}
-
 export function LayerPanel({ layers, day, onLayers, onDay }: LayerProps) {
   const options: { key: keyof Layers; label: string }[] = [
     { key: 'risk', label: 'Sidewalk barrier forecast' },
     { key: 'stations', label: 'TTC station elevators' },
     { key: 'barriers', label: 'Known barriers' },
   ]
-  return <details className="layer-panel" open={wideScreen()}>
+  return <details className="layer-panel">
     <summary>Map layers</summary>
     <div className="layer-body">
       {options.map((option) => <label key={option.key} className="layer-option">
