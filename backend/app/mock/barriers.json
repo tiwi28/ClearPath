@@ -1,0 +1,15 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {"type": "Feature",
+     "geometry": {"type": "Point", "coordinates": [-79.2575, 43.7731]},
+     "properties": {"id": 1, "source": "311", "kind": "sidewalk", "status": "open",
+                    "opened_at": "2026-08-01T12:00:00Z", "ward_id": 24,
+                    "source_url": "https://open.toronto.ca/"}},
+    {"type": "Feature",
+     "geometry": {"type": "Point", "coordinates": [-79.3832, 43.6532]},
+     "properties": {"id": 2, "source": "elevator", "kind": "elevator_out", "status": "open",
+                    "opened_at": "2026-10-10T08:00:00Z", "ward_id": 13,
+                    "source_url": "https://www.ttc.ca/"}}
+  ]
+}

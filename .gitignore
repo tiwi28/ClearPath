@@ -1,0 +1,24 @@
+# env + secrets
+.env
+*.pem
+
+# python
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# node
+node_modules/
+dist/
+
+# data: raw downloads ignored, small fixtures committed
+data/*
+!data/fixtures/
+!data/fixtures/**
+
+# audit model weights / videos
+audit/*.pt
+audit/*.mp4
+
+.DS_Store
