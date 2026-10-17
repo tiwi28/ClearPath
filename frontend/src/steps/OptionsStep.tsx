@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react'
-import { formatDistance, formatDuration, formatTime, percent, PROFILES } from '../format'
+import { formatDistance, formatDuration, formatTime, percent } from '../format'
 import type { AccessibleRoute, Choice, Plan, RouteOption, TransitLeg, TransitOption } from '../types'
 
 type Props = {
@@ -115,7 +115,6 @@ function Directions({ plan, choice }: { plan: Plan; choice: Choice }) {
 }
 
 export default function OptionsStep({ plan, loading, error, choice, fromLabel, toLabel, onChoice, onEditTrip, onEditProfile, onStart }: Props) {
-  const profile = PROFILES.find((item) => item.value === plan?.profile)
   const cards: { id: Choice; body: ReactNode; tone?: string }[] = []
   if (plan?.accessible) cards.push({ id: 'accessible', body: <AccessibleCard route={plan.accessible} plan={plan} label="Accessible route" /> })
   plan?.transit.forEach((option, index) => cards.push({ id: `transit-${index}`, body: <TransitCard option={option} /> }))
@@ -127,7 +126,7 @@ export default function OptionsStep({ plan, loading, error, choice, fromLabel, t
       <p><span className="summary-place">{fromLabel}</span> to <span className="summary-place">{toLabel}</span></p>
       <p className="summary-edit">
         <button type="button" className="link-button" onClick={onEditTrip}>Change trip</button>
-        <button type="button" className="link-button" onClick={onEditProfile}>{profile ? profile.label : 'Change how you get around'}</button>
+        <button type="button" className="link-button" onClick={onEditProfile}>Change access needs</button>
       </p>
     </div>
 
