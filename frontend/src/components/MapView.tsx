@@ -79,37 +79,37 @@ export default function MapView(props: Props) {
       }
       map.addLayer({ id: 'risk-fill', type: 'fill', source: 'risk',
         paint: { 'fill-color': ['interpolate', ['linear'], ['get', 'risk'], ...RISK_STOPS.flat()],
-          'fill-opacity': ['interpolate', ['linear'], ['get', 'risk'], 0, 0.06, 0.1, 0.3, 0.3, 0.45] } })
+          'fill-opacity': ['interpolate', ['linear'], ['get', 'risk'], 0, 0.04, 0.1, 0.2, 0.3, 0.5] } })
       map.addLayer({ id: 'risk-outline', type: 'line', source: 'risk',
         paint: { 'line-color': '#ffffff', 'line-width': 0.6, 'line-opacity': 0.6 } })
       map.addLayer({ id: 'barrier-areas', type: 'fill', source: 'barriers',
-        filter: ['==', ['geometry-type'], 'Polygon'], paint: { 'fill-color': '#1d2433', 'fill-opacity': .35 } })
+        filter: ['==', ['geometry-type'], 'Polygon'], paint: { 'fill-color': '#262626', 'fill-opacity': .35 } })
       map.addLayer({ id: 'barrier-outlines', type: 'line', source: 'barriers',
-        filter: ['==', ['geometry-type'], 'Polygon'], paint: { 'line-color': '#1d2433', 'line-width': 2, 'line-dasharray': [2, 1] } })
+        filter: ['==', ['geometry-type'], 'Polygon'], paint: { 'line-color': '#262626', 'line-width': 2, 'line-dasharray': [2, 1] } })
       map.addLayer({ id: 'barrier-points', type: 'circle', source: 'barriers',
         filter: ['==', ['geometry-type'], 'Point'],
-        paint: { 'circle-radius': 6, 'circle-color': '#1d2433', 'circle-stroke-color': '#fff', 'circle-stroke-width': 2 } })
+        paint: { 'circle-radius': 6, 'circle-color': '#262626', 'circle-stroke-color': '#f5c400', 'circle-stroke-width': 2 } })
       map.addLayer({ id: 'ideal-line', type: 'line', source: 'ideal', layout: { 'line-cap': 'round', 'line-join': 'round' },
-        paint: { 'line-color': '#4b5568', 'line-width': 4, 'line-dasharray': [1.5, 1.5], 'line-opacity': .85 } })
+        paint: { 'line-color': '#5a5852', 'line-width': 4, 'line-dasharray': [1.5, 1.5], 'line-opacity': .85 } })
       map.addLayer({ id: 'route-casing', type: 'line', source: 'route', filter: ['!=', ['get', 'kind'], 'gap'],
         layout: { 'line-cap': 'round', 'line-join': 'round' }, paint: { 'line-color': '#ffffff', 'line-width': 10 } })
       map.addLayer({ id: 'route-street', type: 'line', source: 'route', filter: ['==', ['get', 'kind'], 'street'],
         layout: { 'line-cap': 'round', 'line-join': 'round' }, paint: { 'line-color': '#1d4fa3', 'line-width': 6 } })
       map.addLayer({ id: 'route-typical', type: 'line', source: 'route', filter: ['==', ['get', 'kind'], 'typical'],
-        layout: { 'line-cap': 'round', 'line-join': 'round' }, paint: { 'line-color': '#4b5568', 'line-width': 6 } })
+        layout: { 'line-cap': 'round', 'line-join': 'round' }, paint: { 'line-color': '#5a5852', 'line-width': 6 } })
       map.addLayer({ id: 'route-ride', type: 'line', source: 'route', filter: ['==', ['get', 'kind'], 'ride'],
         layout: { 'line-cap': 'round', 'line-join': 'round' }, paint: { 'line-color': ['get', 'color'], 'line-width': 7 } })
       map.addLayer({ id: 'route-walk', type: 'line', source: 'route', filter: ['==', ['get', 'kind'], 'walk'],
         layout: { 'line-cap': 'round', 'line-join': 'round' }, paint: { 'line-color': '#1d4fa3', 'line-width': 5, 'line-dasharray': [0.6, 1.6] } })
       map.addLayer({ id: 'route-gap', type: 'line', source: 'route', filter: ['==', ['get', 'kind'], 'gap'],
-        layout: { 'line-cap': 'round' }, paint: { 'line-color': '#c2410c', 'line-width': 5, 'line-dasharray': [0.8, 1.4] } })
+        layout: { 'line-cap': 'round' }, paint: { 'line-color': '#c25e00', 'line-width': 5, 'line-dasharray': [0.8, 1.4] } })
       map.addLayer({ id: 'stairs-line', type: 'line', source: 'stairs', filter: ['==', ['geometry-type'], 'LineString'],
         paint: { 'line-color': '#b42318', 'line-width': 7 } })
       map.addLayer({ id: 'stairs-points', type: 'circle', source: 'stairs', filter: ['==', ['geometry-type'], 'Point'],
         paint: { 'circle-radius': 7, 'circle-color': '#b42318', 'circle-stroke-color': '#fff', 'circle-stroke-width': 2 } })
       map.addLayer({ id: 'stations', type: 'circle', source: 'stations',
         paint: { 'circle-radius': ['interpolate', ['linear'], ['zoom'], 11, 4, 15, 8],
-          'circle-color': ['match', ['get', 'status'], 'ok', '#1f7a4d', 'outage', '#c2410c', '#6b7280'],
+          'circle-color': ['match', ['get', 'status'], 'ok', '#1f7a4d', 'outage', '#b42318', '#6b6862'],
           'circle-stroke-color': '#fff', 'circle-stroke-width': 2 } })
       setReadyMap(map)
       viewport()
@@ -177,7 +177,7 @@ export default function MapView(props: Props) {
       lines.forEach((geometry) => geometry.coordinates.forEach((point) => bounds.extend([point[0], point[1]])))
       // Keep the route clear of the legend: bottom edge on phones, bottom-left corner on wider screens.
       const narrow = (container.current?.clientWidth ?? 0) < 600
-      const padding = narrow ? { top: 60, right: 50, bottom: 120, left: 30 } : { top: 70, right: 70, bottom: 60, left: 360 }
+      const padding = narrow ? { top: 60, right: 50, bottom: 120, left: 30 } : { top: 70, right: 70, bottom: 60, left: 400 }
       map.fitBounds(bounds, { padding, maxZoom: 17, duration: 400 })
     }
   }, [readyMap, props.plan, route, choice])

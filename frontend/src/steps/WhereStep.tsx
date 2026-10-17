@@ -47,7 +47,6 @@ export default function WhereStep({ start, destination, target, onStart, onDesti
   }
 
   return <form className="step" onSubmit={submit} aria-labelledby="where-title">
-    <h2 id="where-title">Where are you going?</h2>
     <AddressInput id="start" label="From" field={start} onFocus={() => onTarget('start')} onChange={onStart} />
     <div className="field-actions">
       <button type="button" className="link-button" onClick={locate} disabled={locating}>

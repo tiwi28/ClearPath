@@ -9,6 +9,8 @@ import ProfileStep from './steps/ProfileStep'
 import WhereStep from './steps/WhereStep'
 import type { Target } from './steps/WhereStep'
 import type { Barriers, Choice, LngLat, Plan, ProfileName, RiskMap, Station } from './types'
+import iconUrl from './assets/clearpath-icon-dark-bg.png'
+import logoUrl from './assets/clearpath-logo-dark-bg.png'
 import './App.css'
 
 const MapView = lazy(() => import('./components/MapView'))
@@ -16,6 +18,11 @@ const PREFERENCES_KEY = 'clearpath.preferences'
 const STEPS = ['Where', 'How', 'Options'] as const
 type StepName = typeof STEPS[number]
 type Preferences = { profile: ProfileName; includeTransit: boolean; avoidRisk: boolean }
+const TITLES: Record<StepName, { id: string; text: string }> = {
+  Where: { id: 'where-title', text: 'Where are you going?' },
+  How: { id: 'how-title', text: 'How do you get around?' },
+  Options: { id: 'options-title', text: 'Your options' },
+}
 const defaults: Preferences = { profile: 'manual_wheelchair', includeTransit: true, avoidRisk: true }
 
 function message(error: unknown) { return error instanceof Error ? error.message : String(error) }
@@ -119,20 +126,40 @@ export default function App() {
   }
 
   const stepIndex = STEPS.indexOf(step)
+  const reachable: Record<StepName, boolean> = { Where: true, How: Boolean(planRequest), Options: Boolean(plan) }
+
+  function goTo(name: StepName) {
+    if (name === step || !reachable[name]) return
+    if (name !== 'Options') clearPlan()
+    setStep(name)
+  }
 
   return <main className="app">
-    <section className="panel" aria-label="Trip planner">
-      <header className="brand">
-        <h1>ClearPath</h1>
-        <p>Toronto routes for wheelchairs, walkers and limited stamina, checked for stairs, station elevators and likely sidewalk barriers.</p>
-      </header>
-
-      <ol className="stepper" aria-label="Progress">
-        {STEPS.map((name, index) => <li key={name} className={index === stepIndex ? 'current' : index < stepIndex ? 'done' : ''}
-          aria-current={index === stepIndex ? 'step' : undefined}>
-          {['Where to', 'How you get around', 'Your options'][index]}
+    <nav className="rail" aria-label="Trip planner steps">
+      <span className="rail-brand">
+        <img className="rail-icon" src={iconUrl} alt="ClearPath" width="512" height="512" />
+        <img className="rail-logo" src={logoUrl} alt="ClearPath" width="1322" height="368" />
+      </span>
+      <ol className="stepper">
+        {STEPS.map((name, index) => <li key={name}>
+          <button type="button" className={`rail-step${index === stepIndex ? ' current' : index < stepIndex ? ' done' : ''}`}
+            aria-current={index === stepIndex ? 'step' : undefined} disabled={!reachable[name] && index !== stepIndex}
+            onClick={() => goTo(name)}>
+            <span className="rail-number">{index + 1}</span>
+            <span className="rail-label">{name}</span>
+            <span className="visually-hidden">: {TITLES[name].text}</span>
+          </button>
         </li>)}
       </ol>
+    </nav>
+
+    <section className="panel" aria-label="Trip planner">
+      <header className={`band${loading ? ' band-loading' : ''}`}>
+        <span className="band-domes" aria-hidden="true" />
+        <h1 className="visually-hidden">ClearPath</h1>
+        <h2 id={TITLES[step].id}>{TITLES[step].text}</h2>
+      </header>
+      {step === 'Where' && <p className="intro">Toronto routes for wheelchairs, walkers and limited stamina, checked for stairs, station elevators and likely sidewalk barriers.</p>}
 
       {step === 'Where' && <WhereStep start={start} destination={destination} target={target}
         onStart={(field) => { clearPlan(); setStart(field) }} onDestination={(field) => { clearPlan(); setDestination(field) }}

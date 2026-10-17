@@ -124,7 +124,6 @@ export default function OptionsStep({ plan, loading, error, choice, fromLabel, t
 
   return <section className="step" aria-labelledby="options-title">
     <div className="trip-summary">
-      <h2 id="options-title">Your options</h2>
       <p><span className="summary-place">{fromLabel}</span> to <span className="summary-place">{toLabel}</span></p>
       <p className="summary-edit">
         <button type="button" className="link-button" onClick={onEditTrip}>Change trip</button>

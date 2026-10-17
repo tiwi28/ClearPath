@@ -20,7 +20,6 @@ export default function ProfileStep(props: Props) {
   }
 
   return <form className="step" onSubmit={submit} aria-labelledby="how-title">
-    <h2 id="how-title">How do you get around?</h2>
     <fieldset className="profiles">
       <legend className="visually-hidden">Mobility profile</legend>
       {PROFILES.map((option) => <label key={option.value} className="profile-card">
