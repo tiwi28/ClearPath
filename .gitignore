@@ -22,3 +22,6 @@ audit/*.pt
 audit/*.mp4
 
 .DS_Store
+
+
+.claude
