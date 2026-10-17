@@ -1,6 +1,8 @@
+import time
 from datetime import datetime, timedelta, timezone
 
 from fastapi.testclient import TestClient
+from psycopg_pool import PoolTimeout
 from shapely.geometry import LineString
 
 from app import barriers, reports, restrictions
@@ -8,6 +10,7 @@ from app.main import app
 from conftest import ors_route
 
 client = TestClient(app)
+REAL_RECENT = reports.recent  # conftest replaces reports.recent; these tests need the real one
 NOW = datetime(2026, 10, 17, 12, tzinfo=timezone.utc)
 SPOT = (-79.3820, 43.6547)
 # A straight trip through the conftest "middle" risk cell (risk 0.5), passing SPOT.
@@ -94,3 +97,35 @@ def test_steps_carry_turn_types_and_route_indices(monkeypatch):
     monkeypatch.setattr(httpx, "post", post)
     steps = client.post("/plan", json={"from": ROUTE[0], "to": ROUTE[1], "include_transit": False}).json()["accessible"]["steps"]
     assert steps[0] == {"instruction": "Head east", "distance_m": 900, "way_points": [0, 1], "type": 11}
+
+
+def test_reports_outside_toronto_are_rejected():
+    body = {"device_id": "device-abc123", "kind": "other", "state": "blocked", "location": [-73.57, 45.50]}
+    assert client.post("/reports", json=body).status_code == 422
+
+
+def test_one_address_can_only_send_so_many_reports(monkeypatch):
+    monkeypatch.setattr(reports, "_by_address", reports.defaultdict(reports.deque))
+    assert all(reports._allow_address("203.0.113.9") for _ in range(reports.IP_RATE_LIMIT))
+    assert reports._allow_address("203.0.113.9") is False
+    assert reports._allow_address("198.51.100.4") is True
+
+
+def test_an_unreachable_database_never_slows_barrier_queries(monkeypatch):
+    calls = []
+
+    def down():
+        calls.append(1)
+        raise PoolTimeout("database unavailable")
+    monkeypatch.setattr(reports, "recent", REAL_RECENT)
+    monkeypatch.setattr(reports, "_pool", down)
+    started = time.time()
+    for _ in range(5):
+        assert barriers.query_features(barriers.route_bounds(ROUTE)) != []  # fixture barriers still come back
+    assert len(calls) == 1 and time.time() - started < 1
+
+
+def test_recent_reports_are_filtered_to_the_requested_area(monkeypatch):
+    monkeypatch.setattr(reports, "recent", REAL_RECENT)
+    monkeypatch.setattr(reports.REPORTS, "get", lambda: [report(1, "device-a"), report(2, "device-b", at=(-79.5, 43.7))])
+    assert [r["id"] for r in reports.recent(barriers.route_bounds(ROUTE))] == [1]

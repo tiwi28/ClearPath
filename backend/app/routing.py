@@ -5,7 +5,9 @@ ORS is called at the provider boundary and its GeoJSON is normalized here.
 
 import json
 import math
+import threading
 import time
+from collections import OrderedDict
 from concurrent.futures import ThreadPoolExecutor
 
 import httpx
@@ -25,7 +27,27 @@ RECOVERY_M = (40, 120, 300)  # how far in from an endpoint to look for a reachab
 MAX_DETOUR = 1.5           # a lower-risk route may be at most this much longer than the standard one
 MIN_GAIN = 0.03            # ...and must lower the length-weighted mean risk by at least this much
 CACHE_TTL = 300
-_cache: dict[str, tuple[float, dict]] = {}
+CACHE_SIZE = 256           # most recent ORS answers kept; oldest dropped first
+_cache: OrderedDict[str, tuple[float, dict]] = OrderedDict()
+_cache_lock = threading.Lock()
+
+
+def _cached(key: str) -> dict | None:
+    with _cache_lock:
+        entry = _cache.get(key)
+        if entry and time.time() - entry[0] < CACHE_TTL:
+            _cache.move_to_end(key)
+            return dict(entry[1])
+        _cache.pop(key, None)
+        return None
+
+
+def _remember(key: str, result: dict) -> None:
+    with _cache_lock:
+        _cache[key] = (time.time(), result)
+        _cache.move_to_end(key)
+        while len(_cache) > CACHE_SIZE:
+            _cache.popitem(last=False)
 
 
 def require_key():
@@ -76,9 +98,9 @@ def ors(profile: str, coordinates, options: dict | None = None, preference: str 
     if extra_info:
         body["extra_info"] = extra_info
     key = profile + json.dumps(body, sort_keys=True)
-    cached = _cache.get(key)
-    if cached and time.time() - cached[0] < CACHE_TTL:
-        return dict(cached[1])
+    cached = _cached(key)
+    if cached:
+        return cached
     try:
         response = httpx.post(ORS_URL.format(profile=profile), headers={"Authorization": settings.ors_api_key},
                               json=body, timeout=20)
@@ -111,7 +133,7 @@ def ors(profile: str, coordinates, options: dict | None = None, preference: str 
         }
     except (ValueError, KeyError, IndexError, TypeError, AttributeError, ValidationError):
         raise HTTPException(502, detail={"code": "invalid_routing_response", "message": "The routing service returned an invalid route. Try again."}) from None
-    _cache[key] = (time.time(), result)
+    _remember(key, result)
     return dict(result)
 
 

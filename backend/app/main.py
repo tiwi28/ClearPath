@@ -106,6 +106,10 @@ def trip_hazards(request: HazardRequest):
 
 
 @app.post("/reports", status_code=201)
-def report(request: ReportRequest):
+def report(body: ReportRequest, request: Request):
     """A rider's report from a trip: a spot is blocked, or it's clear again."""
-    return reports.record(request.device_id, request.kind, request.state, request.profile, *request.location)
+    # Behind a proxy or tunnel the first X-Forwarded-For hop is the rider. It can be spoofed, which
+    # only loosens this per-address limit; confirmations are still counted per device.
+    forwarded = request.headers.get("x-forwarded-for", "").split(",")[0].strip()
+    address = forwarded or (request.client.host if request.client else "unknown")
+    return reports.record(body.device_id, body.kind, body.state, body.profile, *body.location, address=address)

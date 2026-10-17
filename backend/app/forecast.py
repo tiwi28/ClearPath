@@ -8,6 +8,7 @@ publishes 311 data monthly.
 
 import csv
 import json
+import threading
 from datetime import date, datetime, timedelta
 from functools import cache
 from pathlib import Path
@@ -26,7 +27,10 @@ PEARSON = (43.68, -79.63)  # the airport station the model's weather features we
 DAYS_AHEAD = 2
 WEATHER_TTL = 3600
 
-_prediction_cache: dict[tuple[date, float], dict] = {}
+# Every day predicted from the current weather run. Requests for different days run on
+# different threads, so reads and writes go through the lock.
+_predictions: dict = {"run": None, "days": {}}
+_prediction_lock = threading.Lock()
 
 
 def today() -> date:
@@ -124,30 +128,40 @@ def predict(day: date | None = None) -> dict:
     day = day or today()
     if not today() <= day <= today() + timedelta(days=DAYS_AHEAD):
         raise HTTPException(422, detail={"code": "invalid_day", "message": f"Forecasts cover today through {DAYS_AHEAD} days ahead."})
+    _weather()  # load the weather first; predictions are cached per weather run
+    run = WEATHER.fetched_at
+    with _prediction_lock:
+        if _predictions["run"] == run and day in _predictions["days"]:
+            return _predictions["days"][day]
+    result = _predict(day)  # outside the lock: two threads may both compute, which is harmless
+    with _prediction_lock:
+        if _predictions["run"] != run:
+            if _predictions["run"] is not None and _predictions["run"] > run:
+                return result  # a newer weather run is already cached; don't replace it with this one
+            _predictions.update(run=run, days={})
+        return _predictions["days"].setdefault(day, result)
+
+
+def _predict(day: date) -> dict:
     meta, cells, _, _, booster = _history()
-    _weather()  # refresh the weather cache first; its timestamp is part of the cache key
-    key = (day, WEATHER.fetched_at)
-    if key not in _prediction_cache:
-        columns = features(day)
-        matrix = np.column_stack([columns[name] for name in booster.feature_name()]).astype(float)
-        risk = booster.predict(matrix)
-        through = date.fromisoformat(meta["reports_through"])
-        last_year = _prior(through + timedelta(days=1)) - _prior(through - timedelta(days=364))
-        warnings = []
-        if day - timedelta(days=meta["lag_days"]) > through:
-            warnings.append(f"311 history ends {through.isoformat()}; refresh it with ml/08_refresh_311.py for better predictions.")
-        _prediction_cache.clear()  # keep only the latest weather run
-        _prediction_cache[key] = {
-            "date": day.isoformat(),
-            "generated_at": datetime.now(TORONTO).isoformat(timespec="minutes"),
-            "reports_through": meta["reports_through"],
-            "weather": {name: round(float(value), 1) if value == value else None
-                        for name, value in _weather_features(day).items()},
-            "weather_source": "Open-Meteo forecast, Toronto Pearson",
-            "model": {name: meta[name] for name in ("roc_auc", "pr_auc", "top10_capture", "lag_days")},
-            "warnings": warnings,
-            "features": [{**cell, "properties": {**cell["properties"], "risk": round(float(value), 3),
-                                                  "reports_last_year": int(count)}}
-                         for cell, value, count in zip(cells, risk, last_year)],
-        }
-    return _prediction_cache[key]
+    columns = features(day)
+    matrix = np.column_stack([columns[name] for name in booster.feature_name()]).astype(float)
+    risk = booster.predict(matrix)
+    through = date.fromisoformat(meta["reports_through"])
+    last_year = _prior(through + timedelta(days=1)) - _prior(through - timedelta(days=364))
+    warnings = []
+    if day - timedelta(days=meta["lag_days"]) > through:
+        warnings.append(f"311 history ends {through.isoformat()}; refresh it with ml/08_refresh_311.py for better predictions.")
+    return {
+        "date": day.isoformat(),
+        "generated_at": datetime.now(TORONTO).isoformat(timespec="minutes"),
+        "reports_through": meta["reports_through"],
+        "weather": {name: round(float(value), 1) if value == value else None
+                    for name, value in _weather_features(day).items()},
+        "weather_source": "Open-Meteo forecast, Toronto Pearson",
+        "model": {name: meta[name] for name in ("roc_auc", "pr_auc", "top10_capture", "lag_days")},
+        "warnings": warnings,
+        "features": [{**cell, "properties": {**cell["properties"], "risk": round(float(value), 3),
+                                              "reports_last_year": int(count)}}
+                     for cell, value, count in zip(cells, risk, last_year)],
+    }

@@ -6,7 +6,7 @@ import pytest
 from fastapi import HTTPException
 from fastapi.testclient import TestClient
 
-from app import barriers, forecast
+from app import barriers, forecast, routing
 from app.config import settings
 from app.main import app
 from conftest import ors_route
@@ -245,3 +245,13 @@ def test_geocode_failure_is_reported(monkeypatch):
         return httpx.Response(500, json={}, request=httpx.Request("GET", url))
     monkeypatch.setattr(httpx, "get", get)
     assert client.get("/geocode", params={"text": "union"}).status_code == 502
+
+
+def test_routing_cache_keeps_only_the_most_recent_answers(monkeypatch):
+    monkeypatch.setattr(routing, "CACHE_SIZE", 3)
+    calls = provider(monkeypatch, ok)
+    for offset in range(5):
+        routing.ors("foot-walking", [TRIP["from"], [TRIP["to"][0] + offset * 1e-4, TRIP["to"][1]]])
+    assert len(routing._cache) == 3 and len(calls) == 5
+    routing.ors("foot-walking", [TRIP["from"], [TRIP["to"][0] + 4e-4, TRIP["to"][1]]])
+    assert len(calls) == 5  # the newest answer is still cached

@@ -1,3 +1,4 @@
+import threading
 from datetime import date, timedelta
 
 import httpx
@@ -24,7 +25,7 @@ def open_meteo(snow_today=0.0, tmin=-3.0, tmax=2.0, depth_m=0.05):
 def weather(monkeypatch):
     monkeypatch.setattr(forecast, "today", lambda: TODAY)
     forecast.WEATHER.reset()
-    forecast._prediction_cache.clear()
+    forecast._predictions.update(run=None, days={})
     state = {"body": open_meteo(), "calls": 0}
 
     def get(url, **kwargs):
@@ -72,3 +73,28 @@ def test_weather_failure_is_reported(weather, monkeypatch):
     with pytest.raises(HTTPException) as error:
         REAL_PREDICT()
     assert error.value.status_code == 503
+
+
+def test_days_from_one_weather_run_are_all_kept(weather):
+    today = REAL_PREDICT()
+    REAL_PREDICT(TODAY + timedelta(days=1))
+    assert REAL_PREDICT() is today
+
+
+def test_concurrent_predictions_for_different_days_never_fail(weather):
+    errors = []
+
+    def run(offset):
+        try:
+            for _ in range(3):
+                forecast._predictions.update(run=None, days={})
+                assert REAL_PREDICT(TODAY + timedelta(days=offset))["date"] == (TODAY + timedelta(days=offset)).isoformat()
+        except Exception as error:  # noqa: BLE001
+            errors.append(error)
+
+    threads = [threading.Thread(target=run, args=(offset,)) for offset in (0, 1, 2, 0, 1, 2)]
+    for thread in threads:
+        thread.start()
+    for thread in threads:
+        thread.join(30)
+    assert errors == []

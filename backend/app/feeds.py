@@ -40,10 +40,10 @@ class Feed:
             threading.Thread(target=self.refresh, name=f"feed-{self.name}", daemon=True).start()
         return self._value
 
-    def refresh(self) -> bool:
-        """Fetch now unless another thread just did. Returns whether a fresh value is held."""
+    def refresh(self, force: bool = False) -> bool:
+        """Fetch now unless another thread just did (or `force`). Returns whether a fresh value is held."""
         with self._lock:
-            if self._value is not None and not self.stale:
+            if not force and self._value is not None and not self.stale:
                 return True
             try:
                 value = self._fetch()

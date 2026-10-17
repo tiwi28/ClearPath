@@ -45,7 +45,7 @@ class Wards:
 
 _loaded: tuple[tuple, Wards] | None = None
 _load_lock = threading.Lock()
-_cells: dict = {"features": None, "wards": None, "by_ward": {}}
+_cells: tuple = (None, None, {})  # (forecast cells, ward data, ward -> cell indexes), swapped in one assignment
 
 
 def _signature() -> tuple:
@@ -119,15 +119,18 @@ def _closures(area: PreparedGeometry) -> dict:
 
 def _cells_by_ward(cells: list[dict], wards: Wards) -> dict[int, list[int]]:
     """Forecast cell indexes per ward (by cell centre), worked out once per forecast run."""
-    if _cells["features"] is not cells or _cells["wards"] is not wards:
-        by_ward: dict[int, list[int]] = {ward_id: [] for ward_id in wards.areas}
-        for index, cell in enumerate(cells):
-            centre = shape(cell["geometry"]).centroid
-            ward_id = next((i for i, area in wards.areas.items() if area.contains(centre)), None)
-            if ward_id is not None:
-                by_ward[ward_id].append(index)
-        _cells.update(features=cells, wards=wards, by_ward=by_ward)
-    return _cells["by_ward"]
+    global _cells
+    cached_cells, cached_wards, by_ward = _cells
+    if cached_cells is cells and cached_wards is wards:
+        return by_ward
+    by_ward = {ward_id: [] for ward_id in wards.areas}
+    for index, cell in enumerate(cells):
+        centre = shape(cell["geometry"]).centroid
+        ward_id = next((i for i, area in wards.areas.items() if area.contains(centre)), None)
+        if ward_id is not None:
+            by_ward[ward_id].append(index)
+    _cells = (cells, wards, by_ward)
+    return by_ward
 
 
 def _forecast(wards: Wards, ward_id: int) -> dict:

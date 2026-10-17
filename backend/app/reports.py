@@ -4,8 +4,14 @@ One "blocked" report shows the spot to other riders as unverified. Two or more d
 devices reporting it blocked within 48 h, with no newer "clear" report, confirm it: it then
 becomes a small avoid-area that routing treats like a verified barrier. Spots expire 48 h
 after the last blocked report.
+
+Recent reports are kept in memory (refreshed every 30 s, and right after each new report), so
+barrier queries never wait on the database, and an unreachable database costs nothing.
 """
 
+import threading
+import time
+from collections import defaultdict, deque
 from datetime import datetime, timedelta, timezone
 
 import psycopg
@@ -15,12 +21,14 @@ from psycopg_pool import PoolTimeout
 from shapely.geometry import MultiPoint, Point, mapping
 
 from . import geo
+from .feeds import Feed
 
 WINDOW = timedelta(hours=48)
 CLUSTER_M = 20       # reports this close together describe the same spot
 AVOID_RADIUS_M = 12  # size of a confirmed spot's avoid-area
 CONFIRMATIONS = 2    # different devices needed before routing avoids a spot
 RATE_LIMIT = 10      # reports per device per hour
+IP_RATE_LIMIT = 30   # reports per network address per hour (device ids are made up by the client)
 KINDS = ("blocked_sidewalk", "snow_ice", "construction", "elevator_out", "other")
 LABELS = {"blocked_sidewalk": "Blocked sidewalk", "snow_ice": "Snow or ice", "construction": "Construction",
           "elevator_out": "Elevator out", "other": "Reported problem"}
@@ -31,7 +39,27 @@ def _pool():
     return get_pool()
 
 
-def record(device_id: str, kind: str, state: str, profile: str | None, lng: float, lat: float) -> dict:
+_by_address: dict[str, deque] = defaultdict(deque)
+_address_lock = threading.Lock()
+
+
+def _allow_address(address: str) -> bool:
+    """In-memory sliding-window limit per network address."""
+    now = time.time()
+    with _address_lock:
+        stamps = _by_address[address]
+        while stamps and now - stamps[0] > 3600:
+            stamps.popleft()
+        if len(stamps) >= IP_RATE_LIMIT:
+            return False
+        stamps.append(now)
+        return True
+
+
+def record(device_id: str, kind: str, state: str, profile: str | None, lng: float, lat: float,
+           address: str = "unknown") -> dict:
+    if not _allow_address(address):
+        raise HTTPException(429, detail={"code": "too_many_reports", "message": "Thanks. You've sent a lot of reports this hour; try again later."})
     try:
         with _pool().connection() as connection, connection.cursor() as cursor:
             cursor.execute("SELECT count(*) FROM rider_reports WHERE device_id = %s AND created_at > now() - interval '1 hour'",
@@ -44,20 +72,24 @@ def record(device_id: str, kind: str, state: str, profile: str | None, lng: floa
             report_id, created = cursor.fetchone()
     except (psycopg.Error, PoolTimeout):
         raise HTTPException(503, detail={"code": "reports_unavailable", "message": "Reports can't be saved right now. Try again shortly."}) from None
+    REPORTS.refresh(force=True)  # the next plan sees this report straight away
     return {"id": report_id, "created_at": created.isoformat()}
+
+
+def _fetch_recent() -> list[dict]:
+    with _pool().connection() as connection, connection.cursor(row_factory=dict_row) as cursor:
+        cursor.execute("""SELECT id, created_at, device_id, kind, state, ST_X(geom) AS lng, ST_Y(geom) AS lat
+                          FROM rider_reports WHERE created_at > now() - %s ORDER BY created_at""", (WINDOW,))
+        return cursor.fetchall()
+
+
+REPORTS = Feed("rider-reports", _fetch_recent, ttl=30)
 
 
 def recent(bounds) -> list[dict]:
     """Reports from the last 48 h inside bounds. Empty when the database is unreachable."""
-    try:
-        with _pool().connection() as connection, connection.cursor(row_factory=dict_row) as cursor:
-            cursor.execute("""SELECT id, created_at, device_id, kind, state, ST_X(geom) AS lng, ST_Y(geom) AS lat
-                              FROM rider_reports
-                              WHERE created_at > now() - %s AND geom && ST_MakeEnvelope(%s, %s, %s, %s, 4326)
-                              ORDER BY created_at""", (WINDOW, *bounds))
-            return cursor.fetchall()
-    except (psycopg.Error, PoolTimeout):
-        return []
+    west, south, east, north = bounds
+    return [r for r in REPORTS.get() or [] if west <= r["lng"] <= east and south <= r["lat"] <= north]
 
 
 def spots(reports: list[dict], now: datetime | None = None) -> list[dict]:

@@ -12,8 +12,7 @@ from shapely.geometry import box, shape
 
 from . import reports
 from .config import settings
-
-TORONTO_BBOX = (-79.65, 43.55, -79.1, 43.9)
+from .geo import TORONTO_BBOX
 FIXTURE_PATH = Path(__file__).parent / "data" / "barriers.json"
 _pool: ConnectionPool | None = None
 

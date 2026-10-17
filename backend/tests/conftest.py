@@ -52,6 +52,7 @@ def controlled_dependencies(monkeypatch):
     routing._cache.clear()
     ttc.ALERTS.reset()
     restrictions.FEED.reset()
+    reports.REPORTS.reset()
 
     def post(url, **kwargs):
         return httpx.Response(200, json=ors_route(kwargs["json"]["coordinates"]), request=httpx.Request("POST", url))

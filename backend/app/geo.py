@@ -9,6 +9,7 @@ import numpy as np
 import shapely
 
 LAT = 43.7  # Toronto
+TORONTO_BBOX = (-79.65, 43.55, -79.1, 43.9)  # west, south, east, north
 SCALE = np.array([111_320 * math.cos(math.radians(LAT)), 110_540])
 
 

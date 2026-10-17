@@ -1,8 +1,9 @@
 from datetime import date
 from typing import Annotated, Literal
 
-from pydantic import BaseModel, Field, model_validator
+from pydantic import BaseModel, Field, field_validator, model_validator
 
+from .geo import TORONTO_BBOX
 from .profiles import ProfileName
 
 Longitude = Annotated[float, Field(ge=-180, le=180, allow_inf_nan=False)]
@@ -145,3 +146,11 @@ class ReportRequest(BaseModel):
     location: LngLat
 
     model_config = {"extra": "forbid"}
+
+    @field_validator("location")
+    @classmethod
+    def in_toronto(cls, value):
+        west, south, east, north = TORONTO_BBOX
+        if not (west <= value[0] <= east and south <= value[1] <= north):
+            raise ValueError("Reports must be inside Toronto.")
+        return value
