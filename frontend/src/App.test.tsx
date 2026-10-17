@@ -59,12 +59,12 @@ afterEach(() => { cleanup(); vi.unstubAllGlobals() })
 it('walks from places to profile to options and compares with the typical route', async () => {
   render(<App />)
   await reachOptions()
-  await screen.findByText('Route without stairs')
+  await screen.findByText('Accessible route')
   const body = JSON.parse(planCalls()[0][1]!.body as string)
   expect(body).toEqual({ from: [-79.3806, 43.6453], to: [-79.3871, 43.6426], profile: 'walker',
     include_transit: true, avoid_risk: true, day: forecastDays()[0].value })
   expect(screen.getByText(/Avoids 2 sets of stairs on the typical route for 99 m more/)).toBeTruthy()
-  expect(screen.getByText(/Last 40 m not confirmed step-free/)).toBeTruthy()
+  expect(screen.getByText(/Last 40 m not confirmed free of stairs/)).toBeTruthy()
   expect(screen.getByText('Line 1')).toBeTruthy()
   expect(screen.getByText('Stations have working elevators')).toBeTruthy()
   expect(screen.getByText(/Uses stairs in 2 places/)).toBeTruthy()
@@ -95,7 +95,7 @@ it('fills a field from address suggestions', async () => {
 it('remembers how the person gets around', async () => {
   render(<App />)
   await reachOptions('Limited stamina')
-  await screen.findByText('Route without stairs')
+  await screen.findByText('Accessible route')
   cleanup()
   render(<App />)
   fireEvent.click(screen.getByRole('button', { name: /Try an example/ }))
@@ -106,7 +106,7 @@ it('remembers how the person gets around', async () => {
 it('re-plans when the forecast day changes', async () => {
   render(<App />)
   await reachOptions()
-  await screen.findByText('Route without stairs')
+  await screen.findByText('Accessible route')
   fireEvent.change(screen.getByRole('combobox', { name: 'Forecast for' }), { target: { value: forecastDays()[1].value } })
   await waitFor(() => expect(planCalls()).toHaveLength(2))
   expect(JSON.parse(planCalls()[1][1]!.body as string).day).toBe(forecastDays()[1].value)

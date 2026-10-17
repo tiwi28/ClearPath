@@ -24,6 +24,7 @@ test('Fast Refresh waits for replacement map sources and restores current data',
     on(name, callback) { this.handlers[name] = callback }
     addSource(name) { this.sources[name] = { setData(data) { this.data = data } } }
     addLayer() {}
+    getStyle() { return { layers: [{ id: 'labels', type: 'symbol' }] } }
     setLayoutProperty() {}
     getCanvas() { return { style: {} } }
     getSource(name) { return this.sources[name] }
@@ -32,6 +33,9 @@ test('Fast Refresh waits for replacement map sources and restores current data',
     }
     remove() {}
     fitBounds() {}
+    easeTo() {}
+    getBearing() { return 0 }
+    getZoom() { return 14 }
   }
   const maplibre = {
     Map: MapMock, NavigationControl: class {}, setWorkerUrl() {},
@@ -46,7 +50,7 @@ test('Fast Refresh waits for replacement map sources and restores current data',
   })()
   const compiled = ts.transpileModule(fs.readFileSync('./src/components/MapView.tsx', 'utf8'), {
     compilerOptions: { module: ts.ModuleKind.CommonJS, jsx: ts.JsxEmit.ReactJSX },
-  }).outputText
+  }).outputText.replace(/import\.meta\.env/g, '({})')
   function evaluateComponent() {
     const module = { exports: {} }
     const requireDependency = (name) => name === 'maplibre-gl' ? maplibre
@@ -71,7 +75,7 @@ test('Fast Refresh waits for replacement map sources and restores current data',
   }
   try {
     await React.act(async () => root.render(React.createElement(previous.default, props)))
-    await React.act(async () => maps[0].handlers.load())
+    await React.act(async () => maps[0].handlers['style.load']())
     const next = evaluateComponent()
     refresh.registerExportsForReactRefresh('MapView', next)
     await React.act(async () => {
@@ -80,7 +84,7 @@ test('Fast Refresh waits for replacement map sources and restores current data',
     })
     assert.equal(maps.length, 2)
     assert.equal(maps[1].getSource('barriers'), undefined)
-    await React.act(async () => maps[1].handlers.load())
+    await React.act(async () => maps[1].handlers['style.load']())
     assert.deepEqual(maps[1].getSource('barriers').data.features, props.barriers.features)
     assert.deepEqual(maps[1].getSource('route').data.features[0].geometry, props.plan.accessible.geometry)
   } finally {

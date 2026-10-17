@@ -54,7 +54,7 @@ function AccessibleCard({ route, plan, label }: { route: AccessibleRoute; plan: 
     {route.risk_avoided && route.standard && <span className="card-win">
       Steers around likely sidewalk barriers for {formatDistance(Math.max(0, route.distance_m - route.standard.distance_m))} more.
     </span>}
-    {gap > 0 && <span className="card-caution">Last {formatDistance(gap)} not confirmed step-free. Check the entrance.</span>}
+    {gap > 0 && <span className="card-caution">Last {formatDistance(gap)} not confirmed free of stairs. Check the entrance.</span>}
     <Exposure route={route} />
   </>
 }
@@ -116,9 +116,8 @@ function Directions({ plan, choice }: { plan: Plan; choice: Choice }) {
 
 export default function OptionsStep({ plan, loading, error, choice, fromLabel, toLabel, onChoice, onEditTrip, onEditProfile, onStart }: Props) {
   const profile = PROFILES.find((item) => item.value === plan?.profile)
-  const stepFree = plan?.profile === 'manual_wheelchair' || plan?.profile === 'power_wheelchair'
   const cards: { id: Choice; body: ReactNode; tone?: string }[] = []
-  if (plan?.accessible) cards.push({ id: 'accessible', body: <AccessibleCard route={plan.accessible} plan={plan} label={stepFree ? 'Step-free route' : 'Route without stairs'} /> })
+  if (plan?.accessible) cards.push({ id: 'accessible', body: <AccessibleCard route={plan.accessible} plan={plan} label="Accessible route" /> })
   plan?.transit.forEach((option, index) => cards.push({ id: `transit-${index}`, body: <TransitCard option={option} /> }))
   if (plan?.ideal) cards.push({ id: 'ideal', body: <TypicalCard ideal={plan.ideal} />, tone: 'typical' })
   const notes = [...new Set(plan?.warnings ?? [])]

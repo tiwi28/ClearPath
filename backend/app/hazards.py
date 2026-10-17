@@ -79,7 +79,7 @@ def find(coordinates, day=None, stations=(), unverified=()) -> list[dict]:
         at = 0.0 if gap["end"] == "start" else max(0.0, line_m.length - gap["length_m"])
         found.append({
             "id": f"gap-{gap['end']}", "kind": "unverified", "severity": "warning", "source": "clearpath",
-            "label": f"The next {round(gap['length_m'])} m isn't confirmed step-free. Check the entrance.",
+            "label": f"The next {round(gap['length_m'])} m isn't confirmed free of stairs. Check the entrance.",
             "confirmable": True, "at_m": at, "lnglat": list(geo.to_degrees(line_m.interpolate(at)).coords[0]),
         })
 

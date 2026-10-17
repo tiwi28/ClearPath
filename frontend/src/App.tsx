@@ -238,7 +238,11 @@ export default function App() {
       </header>
       {trip && <TripPanel trip={live} route={trip.route} mode={trip.mode} rerouting={rerouting} rerouteError={rerouteError}
         onFindWayAround={() => { if (live.position) void reroute(live.position.lnglat) }}
-        onEnd={() => { setTrip(null); setRerouteError('') }} />}
+        onEnd={() => { setTrip(null); setRerouteError('') }}
+        onDone={() => {
+          setTrip(null); setRerouteError(''); clearPlan()
+          setStart({ text: '', point: null }); setDestination({ text: '', point: null }); setTarget('start'); setStep('Where')
+        }} />}
       {!trip && step === 'Where' && <p className="intro">Toronto routes for wheelchairs, walkers and limited stamina, checked for stairs, station elevators and likely sidewalk barriers.</p>}
 
       {!trip && step === 'Where' && <WhereStep start={start} destination={destination} target={target}

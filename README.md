@@ -32,7 +32,7 @@ container receives the new values.
    walking pace, and transit rules (see `backend/app/profiles.py`). The choice is
    remembered in the browser. Toggles: include the TTC, avoid likely sidewalk barriers.
 3. **Your options.** Each option is a card. Selecting one draws it on the map.
-   - **Step-free route** (or **Route without stairs**): the profile's street route. It
+   - **Accessible route**: the profile's street route, which avoids stairs. It
      says what it avoids compared with the typical route ("Avoids 2 sets of stairs").
    - **TTC options** from Transitous. Every subway/LRT station on the trip is checked
      against TTC's elevator list and live elevator/escalator outages. Wheelchair profiles
@@ -44,7 +44,7 @@ container receives the new values.
 **Routes that used to fail.** ORS's wheelchair profile snaps each endpoint to its nearest
 path. Near PATH, Union Station, the CN Tower or park paths, that path may only connect to
 the street by stairs, so ORS returned "no route". The backend now walks in along the typical
-route (40/120/300 m from the failing end) until a step-free route exists. It marks the
+route (40/120/300 m from the failing end) until a route without stairs exists. It marks the
 remaining stretch as **not confirmed** (dotted orange) instead of failing.
 
 **Map layers** (top left): sidewalk barrier forecast (hexagons), TTC station elevators

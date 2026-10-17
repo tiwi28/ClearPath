@@ -65,5 +65,5 @@ it('simulates a trip: directions, an alert ahead, a rider report, and arrival', 
   await advance(30_000)
   expect(await screen.findByText("You've arrived")).toBeTruthy()
   fireEvent.click(screen.getByRole('button', { name: 'Done' }))
-  expect(screen.getByRole('heading', { name: 'Your options' })).toBeTruthy()
+  expect(screen.getByRole('heading', { name: 'Where are you going?' })).toBeTruthy()
 })

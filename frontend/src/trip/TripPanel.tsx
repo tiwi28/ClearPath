@@ -39,6 +39,7 @@ type Props = {
   rerouteError: string
   onFindWayAround: () => void
   onEnd: () => void
+  onDone: () => void
 }
 
 function AlertBanner({ hazard, distance, onFindWayAround }: { hazard: Hazard; distance: number; onFindWayAround: () => void }) {
@@ -49,7 +50,7 @@ function AlertBanner({ hazard, distance, onFindWayAround }: { hazard: Hazard; di
   </div>
 }
 
-export default function TripPanel({ trip, route, mode, rerouting, rerouteError, onFindWayAround, onEnd }: Props) {
+export default function TripPanel({ trip, route, mode, rerouting, rerouteError, onFindWayAround, onEnd, onDone }: Props) {
   const { progress, banner, prompt, sim } = trip
 
   if (progress?.arrived) {
@@ -61,7 +62,7 @@ export default function TripPanel({ trip, route, mode, rerouting, rerouteError, 
       <p>Did anything on the way get in your way? Your report warns the next rider.</p>
       <ReportMenu onReport={trip.report} />
       {trip.notice && <p className="trip-notice" role="status">{trip.notice}</p>}
-      <button type="button" className="primary" onClick={onEnd}>Done</button>
+      <button type="button" className="primary" onClick={onDone}>Done</button>
     </section>
   }
 

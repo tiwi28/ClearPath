@@ -15,7 +15,7 @@ Two audiences, weighted equally:
 
 ## Product Purpose
 
-ClearPath plans Toronto trips for people with mobility limits. It compares a step-free street route, TTC transit options checked against station elevators and live outages, and the "typical" route most map apps would suggest, so the person can see exactly what the typical route would have cost them. Success is someone choosing a route they can actually complete.
+ClearPath plans Toronto trips for people with mobility limits. It compares an accessible street route that avoids stairs, TTC transit options checked against station elevators and live outages, and the "typical" route most map apps would suggest, so the person can see exactly what the typical route would have cost them. Success is someone choosing a route they can actually complete.
 
 ## Positioning
 

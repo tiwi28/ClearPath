@@ -51,7 +51,7 @@ class RouteRisk(BaseModel):
 
 
 class Gap(BaseModel):
-    """Part of the trip, next to one endpoint, that couldn't be confirmed step-free."""
+    """Part of the trip, next to one endpoint, that couldn't be confirmed free of stairs."""
     end: Literal["start", "destination"]
     geometry: RouteGeometry
     length_m: NonNegative

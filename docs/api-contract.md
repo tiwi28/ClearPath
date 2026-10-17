@@ -63,7 +63,7 @@ Unknown fields are rejected with HTTP 422.
   - `geometry`, `distance_m`, `duration_s` (from the profile's pace when it has one), `steps`.
   - `risk`: `max`, length-weighted `mean`, `cells_crossed`, `high_risk_cells` (risk >= 0.3),
     `high_risk_share` (fraction of length in those cells), or `null` if the forecast failed.
-  - `unverified`: stretches next to an endpoint that couldn't be confirmed step-free:
+  - `unverified`: stretches next to an endpoint that couldn't be confirmed free of stairs:
     `{end: "start"|"destination", geometry, length_m, uses_stairs}`.
   - `risk_avoided`, `standard`: when a lower-risk detour replaced the route, `standard` is the
     route it replaced.

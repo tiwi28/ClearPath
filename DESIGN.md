@@ -163,7 +163,7 @@ A material palette from the street: asphalt, warning-plate yellow, concrete, wit
 ### Tertiary
 - **Stairs Red**: stairs on the map, elevator outages, blocker chips (white text), field errors.
 - **Barrier Amber**: unconfirmed segments on the map (dashed), the route's barrier-exposure fill bar, and the 0.3 stop of the risk ramp.
-- **Win Green**: the "Avoids 2 sets of stairs" line on the step-free card and the OK badge text.
+- **Win Green**: the "Avoids 2 sets of stairs" line on the accessible route card and the OK badge text.
 
 ### Neutral
 - **Asphalt**: rail, primary button, warning chips, map layer panel, legend frame, selected-card frame, developer `pre` blocks.
@@ -235,7 +235,7 @@ Gently rounded, never soft: 6px for chips and badges, 8px for fields, the rail n
 - **Link button:** Route Blue, 700, 2px underline at 4px offset; hover turns ink with a yellow underline.
 
 ### Chips
-- **Warning chip:** asphalt with yellow type, 6px radius, 700 weight. Used for "not confirmed step-free" and the typical route's stairs cost.
+- **Warning chip:** asphalt with yellow type, 6px radius, 700 weight. Used for "not confirmed free of stairs" and the typical route's stairs cost.
 - **Blocker chip:** Stairs Red with white type. **OK badge:** pale green with Win Green type.
 - **Leg pills:** 2px border in the TTC line colour on paper for rides; borderless Curb Light at 400 for walks.
 

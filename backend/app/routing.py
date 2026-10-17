@@ -145,7 +145,7 @@ def _piece(coordinates, start_m: float, end_m: float) -> dict:
 def recover(profile: Profile, request: PlanRequest, ideal: dict, options: dict) -> dict | None:
     """The profile's routing failed, usually because an endpoint snapped onto a path that only
     connects by stairs (PATH, plazas, park paths). Walk in along the typical route until a
-    step-free route exists, and report the remaining stretch as unverified."""
+    route without stairs exists, and report the remaining stretch as unverified."""
     coordinates = ideal["geometry"]["coordinates"]
     line = _metric(coordinates)
     total = line.length
@@ -222,7 +222,7 @@ def accessible_route(profile: Profile, request: PlanRequest, ideal: dict | None,
             raise
         for gap in result["unverified"]:
             place = "your destination" if gap["end"] == "destination" else "your start"
-            warnings.append(f"We couldn't confirm a step-free path for the last {round(gap['length_m'])} m near {place}"
+            warnings.append(f"We couldn't confirm a path without stairs for the last {round(gap['length_m'])} m near {place}"
                             + (" (the usual way in uses stairs)." if gap["uses_stairs"] else ". Check entrances before you go."))
     if crosses_obstruction(result, constraints):
         raise HTTPException(409, detail={
@@ -279,7 +279,7 @@ def plan(request: PlanRequest) -> dict:
         if error.status_code not in (404, 409):
             raise
         failure = error
-        warnings.append("No step-free street route was found for this trip." if error.status_code == 404
+        warnings.append("No street route without stairs was found for this trip." if error.status_code == 404
                         else error.detail["message"])
 
     options = []
