@@ -67,3 +67,16 @@ print(f"On held-out data from Nov 2025 to Sep 2026, our model predicts where acc
       f"rates, mainly because snowfall and freeze-thaw weather tell it when risk spikes across the city. "
       f"On any single day, flagging the riskiest 10% of areas catches {cap_model:.0%} of upcoming "
       f"complaints (a random 10% would catch about 10%).")
+
+# The live model (05_train.py --live) is what the app runs today: it only sees reports
+# older than LAG days because Toronto publishes 311 data monthly.
+live_path = PROCESSED / "test_preds_live.parquet"
+if live_path.exists():
+    q = pd.read_parquet(live_path)
+    q["lag_rate_hist"] = q["lag_rate_hist"].fillna(0)
+    print("\nLive model (history older than LAG days only):")
+    print(f"{'score':<20} {'ROC-AUC':>8} {'PR-AUC':>8} {'top10%':>8}")
+    for name, frame, c in (("original model", p, "risk"), ("live model", q, "risk"),
+                           ("lagged hist. rate", q, "lag_rate_hist")):
+        print(f"{name:<20} {roc_auc_score(frame['y'], frame[c]):>8.3f} "
+              f"{average_precision_score(frame['y'], frame[c]):>8.3f} {top10_capture(frame, c):>8.1%}")

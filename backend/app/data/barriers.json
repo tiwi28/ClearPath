@@ -1,0 +1,19 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {"type": "Feature",
+     "geometry": {"type": "Point", "coordinates": [-79.3823, 43.6547]},
+     "properties": {"id": 1, "source": "311", "kind": "sidewalk", "status": "open",
+                    "verification": "reported", "blocks_route": false,
+                    "label": "Sample report: uneven sidewalk",
+                    "opened_at": "2026-10-01T12:00:00Z", "ward_id": 13,
+                    "source_url": "https://open.toronto.ca/"}},
+    {"type": "Feature",
+     "geometry": {"type": "Polygon", "coordinates": [[[-79.3883, 43.6577], [-79.3877, 43.6577], [-79.3877, 43.6583], [-79.3883, 43.6583], [-79.3883, 43.6577]]]},
+     "properties": {"id": 2, "source": "road_restriction", "kind": "closure", "status": "open",
+                    "verification": "verified", "blocks_route": true,
+                    "label": "Sample verified closure (fictional)",
+                    "opened_at": "2026-10-01T12:00:00Z", "ward_id": 13,
+                    "source_url": "https://open.toronto.ca/"}}
+  ]
+}

@@ -32,21 +32,45 @@ Run from inside `ml/`. Each step reads the previous step's output, so any step c
 | `02_filter_types.py` | 1st run: list keyword-matched request types and stop. 2nd run: keep types in `accessibility_types.csv` | `ml/candidate_types.csv`, then `data/processed/sr_access.parquet` |
 | `03_geocode.py` | Match each request's two intersection streets to the centreline file | `data/processed/sr_geocoded.parquet` |
 | `04_build_panel.py` | Cell x day panel, history + weather + calendar features, 3-day-ahead target | `data/processed/panel.parquet` |
-| `05_train.py` | Train LightGBM; test = from 2025-11-01, train = before 2025-10-29 | `ml/risk_model.txt`, `data/processed/test_preds.parquet` |
-| `06_evaluate.py` | ROC/PR-AUC vs baselines, daily top-10% capture, slide summary | `ml/feature_importance.png` |
-| `07_export.py` | Demo storm day map + full test-period scores | `data/risk_storm.geojson`, `data/risk_scores.csv` |
+| `05_train.py [--live]` | Train LightGBM; test = from 2025-11-01, train = before 2025-10-29. `--live` trains on history older than `LAG` days only | `ml/risk_model.txt` or `ml/risk_model_live.txt`, `data/processed/test_preds[_live].parquet` |
+| `06_evaluate.py` | ROC/PR-AUC vs baselines, daily top-10% capture, slide summary, live vs original model | `ml/feature_importance.png` |
+| `07_export.py` | Export the live model and its inputs for the backend | `backend/app/data/` (see below) |
+| `08_refresh_311.py` | Download the newest 311 zips from Toronto Open Data, re-run 01-03 and 07. Run monthly | refreshed `backend/app/data/` |
 
-`common.py` holds paths, column names, and the street-name normalization (`norm`, `key`).
+`common.py` holds paths, column names, `LAG`, and the street-name normalization (`norm`, `key`).
 `accessibility_types.csv` is the hand-picked list of 311 types that count as barriers.
 
-## Outputs for the app
+## Live predictions ("use the past to predict now")
 
-- **`data/risk_storm.geojson`**: one hexagon polygon per cell for the demo storm date
-  (the test day with the most 3-day snowfall). Properties: `cell`, `risk` (0 to 1), `actual`
-  (complaints that really came in over the next 3 days). Drop it straight onto the map.
-- **`data/risk_scores.csv`**: `cell, day, risk` for every cell and day in the test period.
-  The backend can join a route's H3 cells to these scores.
-- **`ml/risk_model.txt`**: the LightGBM model, loadable with `lightgbm.Booster(model_file=...)`.
+The app predicts risk for today and the next two days; it never replays a past day.
+
+- Toronto publishes 311 data **monthly** (around the 8th, through the end of the previous month), so on
+  any day the newest report can be ~40 days old. The live model's history features
+  (`lag_past28/91/365`, `lag_rate_hist`, `season_last_year`) only use reports older than `LAG = 40` days,
+  so it never depends on data that wouldn't exist yet.
+- Weather comes live from the Open-Meteo forecast for Toronto Pearson, built into the same features as
+  training (`snow`, `snow_ground`, `tmin`, `tmax`, `precip`, freeze-thaw, 3/7-day sums).
+- `backend/app/forecast.py` rebuilds the features exactly like `04_build_panel.py` (checked against the
+  panel on test days) and runs `risk_model_live.txt`.
+
+| Model (test: Nov 2025 to Sep 2026) | ROC-AUC | PR-AUC | Top-10% capture |
+|---|---|---|---|
+| Original (needs reports up to yesterday) | 0.863 | 0.422 | 27.8% |
+| **Live (reports older than 40 days + live weather)** | **0.856** | **0.392** | **26.0%** |
+| Historical complaint rate, lagged | 0.694 | 0.117 | 27.5% |
+
+Losing the last 40 days of reports costs very little; weather does most of the work of saying *when*
+risk spikes. Ranking *which* cells are riskiest on a given day is still mostly history, which is why the
+daily top-10% capture is close to the historical-rate baseline.
+
+## Outputs for the app (`backend/app/data/`, written by `07_export.py`)
+
+- **`risk_cells.geojson`**: one H3 resolution-8 hexagon (about 0.7 km²) per modelled cell (753 cells with
+  at least 3 past reports). Areas without a hexagon have too few reports to predict.
+- **`cell_counts.csv`**, **`cell_totals.csv`**: daily geocoded report counts per cell for the last ~800
+  days, plus each cell's earlier total (needed for `lag_rate_hist`).
+- **`risk_model_live.txt`**: the live LightGBM model.
+- **`model_meta.json`**: `LAG`, panel start, `reports_through`, and the live model's test metrics.
 
 ## Design notes
 

@@ -8,6 +8,12 @@ OUT = ML.parent / "data"
 RAW = OUT / "raw"
 PROCESSED = OUT / "processed"
 PROCESSED.mkdir(parents=True, exist_ok=True)
+APP_DATA = ML.parent / "backend" / "app" / "data"
+
+# Toronto publishes 311 data monthly (around the 8th, through the end of the previous
+# month), so on any day the newest available report can be up to ~40 days old.
+# Live-model history features only look at days before t - LAG.
+LAG = 40
 
 # 311 columns (after lowercasing/stripping in 01_load_311.py).
 C_DATE = "creation date"

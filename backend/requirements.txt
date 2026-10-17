@@ -3,8 +3,8 @@ uvicorn[standard]
 psycopg[binary,pool]
 pydantic-settings
 httpx
-google-genai
-geopandas
 shapely
-pandas
+lightgbm
+numpy
+tzdata
 pytest

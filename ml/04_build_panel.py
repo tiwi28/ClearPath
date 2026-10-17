@@ -3,7 +3,7 @@ import h3
 import numpy as np
 import pandas as pd
 
-from common import PROCESSED, RAW
+from common import LAG, PROCESSED, RAW
 
 RES = 8
 MIN_REQUESTS = 3
@@ -34,6 +34,14 @@ for w in (3, 7, 28, 365):
     panel[f"past{w}"] = (prior - g["prior"].shift(w, fill_value=0)).astype("int16")
 day_idx = g.cumcount()                 # number of panel days before t
 panel["rate_hist"] = (prior / day_idx.replace(0, np.nan)).astype("float32")
+
+# --- Lag-aware history for the live model (only days before t - LAG) ---
+lag_prior = g["prior"].shift(LAG, fill_value=0)   # requests before day t - LAG
+for w in (28, 91, 365):
+    panel[f"lag_past{w}"] = (lag_prior - g["prior"].shift(LAG + w, fill_value=0)).astype("int16")
+panel["lag_rate_hist"] = (lag_prior / (day_idx - LAG).where(day_idx > LAG)).astype("float32")
+# Same season last year: requests in [t-379, t-351], which captures winter-prone cells.
+panel["season_last_year"] = (g["prior"].shift(350, fill_value=0) - g["prior"].shift(379, fill_value=0)).astype("int16")
 
 # --- Target: requests on days t+1..t+3 ---
 panel["cum"] = cum
@@ -79,7 +87,10 @@ full = counts.loc[c].reindex(days, fill_value=0)
 for t in s.index[400:410]:
     assert s.at[t, "past7"] == full[t - pd.Timedelta(days=7):t - pd.Timedelta(days=1)].sum()
     assert s.at[t, "future3"] == full[t + pd.Timedelta(days=1):t + pd.Timedelta(days=3)].sum()
-print("Leakage check passed (past7 / future3 match a manual loop)")
+    lag_end = t - pd.Timedelta(days=LAG)
+    assert s.at[t, "lag_past28"] == full[lag_end - pd.Timedelta(days=28):lag_end - pd.Timedelta(days=1)].sum()
+    assert s.at[t, "season_last_year"] == full[t - pd.Timedelta(days=379):t - pd.Timedelta(days=351)].sum()
+print("Leakage check passed (past7 / lag_past28 / season_last_year / future3 match a manual loop)")
 
 print(f"\nPanel shape: {panel.shape}")
 print(f"Days: {panel['day'].min().date()} to {panel['day'].max().date()}")

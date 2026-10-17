@@ -1,4 +1,7 @@
-.PHONY: db api web dev schema ingest test
+.PHONY: db api web dev schema test check
+
+dev:
+	docker compose up --build
 
 db:
 	docker compose up -d db
@@ -12,8 +15,10 @@ api:
 web:
 	cd frontend && npm run dev
 
-ingest:
-	cd backend && . .venv/bin/activate && python -m app.ingest.wards
-
 test:
-	cd backend && . .venv/bin/activate && pytest -q
+	docker compose run --rm --no-deps api python -m pytest -q
+	docker compose run --rm --no-deps web npm test
+
+check:
+	docker compose config --quiet
+	docker compose run --rm --no-deps web npm run build

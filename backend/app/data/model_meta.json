@@ -1,0 +1,13 @@
+{
+  "lag_days": 40,
+  "panel_start": "2019-01-02",
+  "first_history_day": "2024-07-23",
+  "reports_through": "2026-09-30",
+  "test_period": [
+    "2025-11-01",
+    "2026-09-27"
+  ],
+  "roc_auc": 0.856,
+  "pr_auc": 0.392,
+  "top10_capture": 0.26
+}

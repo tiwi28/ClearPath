@@ -8,5 +8,50 @@ services:
     volumes:
       - pgdata:/home/postgres/pgdata/data
       - ./backend/sql/schema.sql:/docker-entrypoint-initdb.d/schema.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d clearpath"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  api:
+    build: ./backend
+    environment:
+      DATABASE_URL: postgresql://postgres:clearpath@db:5432/clearpath
+      BARRIER_SOURCE: ${BARRIER_SOURCE:-fixtures}
+      ORS_API_KEY: ${ORS_API_KEY:-}
+      FRONTEND_ORIGIN: http://localhost:${WEB_PORT:-5173}
+    ports: ["8000:8000"]
+    volumes:
+      - ./backend/app:/srv/app
+      - ./backend/tests:/srv/tests:ro
+    command: ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
+    depends_on:
+      db:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health')"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  web:
+    build: ./frontend
+    environment:
+      API_PROXY_TARGET: http://api:8000
+      VITE_API_URL: /api
+      VITE_USE_POLLING: "true"
+    ports: ["${WEB_PORT:-5173}:5173"]
+    volumes:
+      - ./frontend/src:/app/src
+      - ./frontend/tests:/app/tests:ro
+      - ./frontend/package.json:/app/package.json:ro
+      - ./frontend/public:/app/public
+      - ./frontend/index.html:/app/index.html:ro
+      - ./frontend/vite.config.ts:/app/vite.config.ts:ro
+    depends_on:
+      api:
+        condition: service_healthy
+
 volumes:
   pgdata:

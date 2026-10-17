@@ -9,8 +9,8 @@ CREATE TABLE IF NOT EXISTS wards (
 
 CREATE TABLE IF NOT EXISTS barriers (
   id bigserial,
-  source text,          -- '311' | 'road_restriction' | 'elevator' | 'audit'
-  kind text,            -- 'sidewalk' | 'closure' | 'elevator_out' | 'curb'
+  source text,          -- e.g. '311' or 'road_restriction'
+  kind text,            -- e.g. 'sidewalk', 'closure', or 'curb'
   status text,
   opened_at timestamptz NOT NULL,
   closed_at timestamptz,
@@ -22,11 +22,8 @@ CREATE TABLE IF NOT EXISTS barriers (
 SELECT create_hypertable('barriers', 'opened_at', if_not_exists => TRUE);
 CREATE INDEX IF NOT EXISTS barriers_geom_idx ON barriers USING gist (geom);
 
-CREATE TABLE IF NOT EXISTS stations (
-  id text PRIMARY KEY,
-  name text,
-  ward_id int,
-  has_elevator bool,
-  elevator_status text,
-  geom geometry(Point, 4326)
-);
+-- Retain point locations while adding precise footprints for routing.
+ALTER TABLE barriers ADD COLUMN IF NOT EXISTS verification text NOT NULL DEFAULT 'reported';
+ALTER TABLE barriers ADD COLUMN IF NOT EXISTS blocks_route boolean NOT NULL DEFAULT false;
+ALTER TABLE barriers ADD COLUMN IF NOT EXISTS avoidance_geom geometry(Geometry, 4326);
+CREATE INDEX IF NOT EXISTS barriers_avoidance_geom_idx ON barriers USING gist (avoidance_geom);

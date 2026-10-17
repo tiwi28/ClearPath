@@ -1,0 +1,1216 @@
+{
+ "sources": {
+  "stations": "https://ckan0.cf.opendata.inter.prod-toronto.ca/dataset/7795b45e-e65a-4465-81fc-c36b9dfff169/resource/cfb6b2b8-6191-41e3-bda1-b175c51148cb/download/opendata_ttc_schedules.zip",
+  "elevators": "https://www.ttc.ca/accessibility/Easier-access-on-the-TTC/Elevators-and-Escalators"
+ },
+ "built": "2026-10-17",
+ "stations": [
+  {
+   "name": "Aga Khan Park & Museum",
+   "lines": [
+    "5"
+   ],
+   "coordinates": [
+    -79.332692,
+    43.722419
+   ],
+   "has_elevator": true
+  },
+  {
+   "name": "Albion",
+   "lines": [
+    "6"
+   ],
+   "coordinates": [
+    -79.589183,
+    43.741171
+   ],
+   "has_elevator": true
+  },
+  {
+   "name": "Avenue",
+   "lines": [
+    "5"
+   ],
+   "coordinates": [
+    -79.408895,
+    43.704813
+   ],
+   "has_elevator": true
+  },
+  {
+   "name": "Bathurst",
+   "lines": [
+    "2"
+   ],
+   "coordinates": [
+    -79.41144,
+    43.665799
+   ],
+   "has_elevator": true
+  },
+  {
+   "name": "Bay",
+   "lines": [
+    "2"
+   ],
+   "coordinates": [
+    -79.390939,
+    43.669999
+   ],
+   "has_elevator": true
+  },
+  {
+   "name": "Bayview",
+   "lines": [
+    "4"
+   ],
+   "coordinates": [
+    -79.386717,
+    43.766911
+   ],
+   "has_elevator": true
+  },
+  {
+   "name": "Bessarion",
+   "lines": [
+    "4"
+   ],
+   "coordinates": [
+    -79.376328,
+    43.769249
+   ],
+   "has_elevator": true
+  },
+  {
+   "name": "Birchmount",
+   "lines": [
+    "5"
+   ],
+   "coordinates": [
+    -79.277054,
+    43.730181
+   ],
+   "has_elevator": true
+  },
+  {
+   "name": "Bloor-Yonge",
+   "lines": [
+    "1",
+    "2"
+   ],
+   "coordinates": [
+    -79.386013,
+    43.670785
+   ],
+   "has_elevator": true
+  },
+  {
+   "name": "Broadview",
+   "lines": [
+    "2"
+   ],
+   "coordinates": [
+    -79.358838,
+    43.676699
+   ],
+   "has_elevator": true
+  },
+  {
+   "name": "Caledonia",
+   "lines": [
+    "5"
+   ],
+   "coordinates": [
+    -79.465389,
+    43.692348
+   ],
+   "has_elevator": true
+  },
+  {
+   "name": "Castle Frank",
+   "lines": [
+    "2"
+   ],
+   "coordinates": [
+    -79.368938,
+    43.673799
+   ],
+   "has_elevator": true
+  },
+  {
+   "name": "Cedarvale",
+   "lines": [
+    "1",
+    "5"
+   ],
+   "coordinates": [
+    -79.436249,
+    43.699478
+   ],
+   "has_elevator": true
+  },
+  {
+   "name": "Chaplin",
+   "lines": [
+    "5"
+   ],
+   "coordinates": [
+    -79.417404,
+    43.702961
+   ],
+   "has_elevator": true
+  },
+  {
+   "name": "Chester",
+   "lines": [
+    "2"
+   ],
+   "coordinates": [
+    -79.352519,
+    43.678296
+   ],
+   "has_elevator": true
+  },
+  {
+   "name": "Christie",
+   "lines": [
+    "2"
+   ],
+   "coordinates": [
+    -79.41814,
+    43.664299
+   ],
+   "has_elevator": true
+  },
+  {
+   "name": "College",
+   "lines": [
+    "1"
+   ],
+   "coordinates": [
+    -79.382888,
+    43.660799
+   ],
+   "has_elevator": false
+  },
+  {
+   "name": "Coxwell",
+   "lines": [
+    "2"
+   ],
+   "coordinates": [
+    -79.322836,
+    43.684399
+   ],
+   "has_elevator": true
+  },
+  {
+   "name": "Davisville",
+   "lines": [
+    "1"
+   ],
+   "coordinates": [
+    -79.39709,
+    43.697648
+   ],
+   "has_elevator": true
+  },
+  {
+   "name": "Don Mills",
+   "lines": [
+    "4"
+   ],
+   "coordinates": [
+    -79.346386,
+    43.775397
+   ],
+   "has_elevator": true
+  },
+  {
+   "name": "Don Valley",
+   "lines": [
+    "5"
+   ],
+   "coordinates": [
+    -79.339178,
+    43.720012
+   ],
+   "has_elevator": true
+  },
+  {
+   "name": "Donlands",
+   "lines": [
+    "2"
+   ],
+   "coordinates": [
+    -79.338337,
+    43.681049
+   ],
+   "has_elevator": true
+  },
+  {
+   "name": "Downsview Park",
+   "lines": [
+    "1"
+   ],
+   "coordinates": [
+    -79.478693,
+    43.753311
+   ],
+   "has_elevator": true
+  },
+  {
+   "name": "Driftwood",
+   "lines": [
+    "6"
+   ],
+   "coordinates": [
+    -79.513354,
+    43.758068
+   ],
+   "has_elevator": true
+  },
+  {
+   "name": "Dufferin",
+   "lines": [
+    "2"
+   ],
+   "coordinates": [
+    -79.43479,
+    43.660699
+   ],
+   "has_elevator": true
+  },
+  {
+   "name": "Duncanwoods",
+   "lines": [
+    "6"
+   ],
+   "coordinates": [
+    -79.557553,
+    43.748827
+   ],
+   "has_elevator": true
+  },
+  {
+   "name": "Dundas West",
+   "lines": [
+    "2"
+   ],
+   "coordinates": [
+    -79.451941,
+    43.657299
+   ],
+   "has_elevator": true
+  },
+  {
+   "name": "Dupont",
+   "lines": [
+    "1"
+   ],
+   "coordinates": [
+    -79.40689,
+    43.674349
+   ],
+   "has_elevator": true
+  },
+  {
+   "name": "Eglinton",
+   "lines": [
+    "1",
+    "5"
+   ],
+   "coordinates": [
+    -79.398808,
+    43.706016
+   ],
+   "has_elevator": true
+  },
+  {
+   "name": "Emery",
+   "lines": [
+    "6"
+   ],
+   "coordinates": [
+    -79.542392,
+    43.752081
+   ],
+   "has_elevator": true
+  },
+  {
+   "name": "Fairbank",
+   "lines": [
+    "5"
+   ],
+   "coordinates": [
+    -79.449443,
+    43.695767
+   ],
+   "has_elevator": true
+  },
+  {
+   "name": "Finch",
+   "lines": [
+    "1"
+   ],
+   "coordinates": [
+    -79.415492,
+    43.780497
+   ],
+   "has_elevator": true
+  },
+  {
+   "name": "Finch West",
+   "lines": [
+    "1",
+    "6"
+   ],
+   "coordinates": [
+    -79.490932,
+    43.764049
+   ],
+   "has_elevator": true
+  },
+  {
+   "name": "Forest Hill",
+   "lines": [
+    "5"
+   ],
+   "coordinates": [
+    -79.425302,
+    43.701199
+   ],
+   "has_elevator": true
+  },
+  {
+   "name": "Glencairn",
+   "lines": [
+    "1"
+   ],
+   "coordinates": [
+    -79.440541,
+    43.708598
+   ],
+   "has_elevator": true
+  },
+  {
+   "name": "Golden Mile",
+   "lines": [
+    "5"
+   ],
+   "coordinates": [
+    -79.287626,
+    43.727866
+   ],
+   "has_elevator": true
+  },
+  {
+   "name": "Greenwood",
+   "lines": [
+    "2"
+   ],
+   "coordinates": [
+    -79.330837,
+    43.682699
+   ],
+   "has_elevator": true
+  },
+  {
+   "name": "Hakimi Lebovic",
+   "lines": [
+    "5"
+   ],
+   "coordinates": [
+    -79.291555,
+    43.726997
+   ],
+   "has_elevator": true
+  },
+  {
+   "name": "High Park",
+   "lines": [
+    "2"
+   ],
+   "coordinates": [
+    -79.467841,
+    43.653699
+   ],
+   "has_elevator": true
+  },
+  {
+   "name": "Highway 407",
+   "lines": [
+    "1"
+   ],
+   "coordinates": [
+    -79.523454,
+    43.783359
+   ],
+   "has_elevator": true
+  },
+  {
+   "name": "Humber College",
+   "lines": [
+    "6"
+   ],
+   "coordinates": [
+    -79.60153,
+    43.729898
+   ],
+   "has_elevator": true
+  },
+  {
+   "name": "Ionview",
+   "lines": [
+    "5"
+   ],
+   "coordinates": [
+    -79.272093,
+    43.731312
+   ],
+   "has_elevator": true
+  },
+  {
+   "name": "Islington",
+   "lines": [
+    "2"
+   ],
+   "coordinates": [
+    -79.524144,
+    43.645398
+   ],
+   "has_elevator": false
+  },
+  {
+   "name": "Jane",
+   "lines": [
+    "2"
+   ],
+   "coordinates": [
+    -79.483742,
+    43.649949
+   ],
+   "has_elevator": true
+  },
+  {
+   "name": "Jane and Finch",
+   "lines": [
+    "6"
+   ],
+   "coordinates": [
+    -79.517713,
+    43.757248
+   ],
+   "has_elevator": true
+  },
+  {
+   "name": "Keele",
+   "lines": [
+    "2"
+   ],
+   "coordinates": [
+    -79.459541,
+    43.655499
+   ],
+   "has_elevator": true
+  },
+  {
+   "name": "Keelesdale",
+   "lines": [
+    "5"
+   ],
+   "coordinates": [
+    -79.474676,
+    43.690513
+   ],
+   "has_elevator": true
+  },
+  {
+   "name": "Kennedy",
+   "lines": [
+    "2",
+    "5"
+   ],
+   "coordinates": [
+    -79.264366,
+    43.732554
+   ],
+   "has_elevator": true
+  },
+  {
+   "name": "King",
+   "lines": [
+    "1"
+   ],
+   "coordinates": [
+    -79.377888,
+    43.649049
+   ],
+   "has_elevator": false
+  },
+  {
+   "name": "Kipling",
+   "lines": [
+    "2"
+   ],
+   "coordinates": [
+    -79.535793,
+    43.63752
+   ],
+   "has_elevator": true
+  },
+  {
+   "name": "Laird",
+   "lines": [
+    "5"
+   ],
+   "coordinates": [
+    -79.365031,
+    43.713269
+   ],
+   "has_elevator": true
+  },
+  {
+   "name": "Lansdowne",
+   "lines": [
+    "2"
+   ],
+   "coordinates": [
+    -79.442467,
+    43.65928
+   ],
+   "has_elevator": true
+  },
+  {
+   "name": "Lawrence",
+   "lines": [
+    "1"
+   ],
+   "coordinates": [
+    -79.40239,
+    43.725948
+   ],
+   "has_elevator": true
+  },
+  {
+   "name": "Lawrence West",
+   "lines": [
+    "1"
+   ],
+   "coordinates": [
+    -79.443915,
+    43.715266
+   ],
+   "has_elevator": true
+  },
+  {
+   "name": "Leaside",
+   "lines": [
+    "5"
+   ],
+   "coordinates": [
+    -79.376689,
+    43.710876
+   ],
+   "has_elevator": true
+  },
+  {
+   "name": "Leslie",
+   "lines": [
+    "4"
+   ],
+   "coordinates": [
+    -79.36589,
+    43.771298
+   ],
+   "has_elevator": true
+  },
+  {
+   "name": "Main Street",
+   "lines": [
+    "2"
+   ],
+   "coordinates": [
+    -79.301536,
+    43.689099
+   ],
+   "has_elevator": true
+  },
+  {
+   "name": "Martin Grove",
+   "lines": [
+    "6"
+   ],
+   "coordinates": [
+    -79.591918,
+    43.736739
+   ],
+   "has_elevator": true
+  },
+  {
+   "name": "Milvan Rumike",
+   "lines": [
+    "6"
+   ],
+   "coordinates": [
+    -79.552309,
+    43.749971
+   ],
+   "has_elevator": true
+  },
+  {
+   "name": "Mount Dennis",
+   "lines": [
+    "5"
+   ],
+   "coordinates": [
+    -79.485789,
+    43.688025
+   ],
+   "has_elevator": true
+  },
+  {
+   "name": "Mount Olive",
+   "lines": [
+    "6"
+   ],
+   "coordinates": [
+    -79.581782,
+    43.743302
+   ],
+   "has_elevator": true
+  },
+  {
+   "name": "Mount Pleasant",
+   "lines": [
+    "5"
+   ],
+   "coordinates": [
+    -79.390435,
+    43.708585
+   ],
+   "has_elevator": true
+  },
+  {
+   "name": "Museum",
+   "lines": [
+    "1"
+   ],
+   "coordinates": [
+    -79.393189,
+    43.666599
+   ],
+   "has_elevator": false
+  },
+  {
+   "name": "Norfinch Oakdale",
+   "lines": [
+    "6"
+   ],
+   "coordinates": [
+    -79.524252,
+    43.755943
+   ],
+   "has_elevator": true
+  },
+  {
+   "name": "North York Centre",
+   "lines": [
+    "1"
+   ],
+   "coordinates": [
+    -79.412542,
+    43.767947
+   ],
+   "has_elevator": true
+  },
+  {
+   "name": "O'Connor",
+   "lines": [
+    "5"
+   ],
+   "coordinates": [
+    -79.301785,
+    43.724826
+   ],
+   "has_elevator": true
+  },
+  {
+   "name": "Oakwood",
+   "lines": [
+    "5"
+   ],
+   "coordinates": [
+    -79.442958,
+    43.697485
+   ],
+   "has_elevator": true
+  },
+  {
+   "name": "Old Mill",
+   "lines": [
+    "2"
+   ],
+   "coordinates": [
+    -79.494142,
+    43.649748
+   ],
+   "has_elevator": false
+  },
+  {
+   "name": "Osgoode",
+   "lines": [
+    "1"
+   ],
+   "coordinates": [
+    -79.386688,
+    43.651099
+   ],
+   "has_elevator": true
+  },
+  {
+   "name": "Ossington",
+   "lines": [
+    "2"
+   ],
+   "coordinates": [
+    -79.42699,
+    43.662199
+   ],
+   "has_elevator": true
+  },
+  {
+   "name": "Pape",
+   "lines": [
+    "2"
+   ],
+   "coordinates": [
+    -79.344937,
+    43.679799
+   ],
+   "has_elevator": true
+  },
+  {
+   "name": "Pearldale",
+   "lines": [
+    "6"
+   ],
+   "coordinates": [
+    -79.562497,
+    43.747743
+   ],
+   "has_elevator": true
+  },
+  {
+   "name": "Pharmacy",
+   "lines": [
+    "5"
+   ],
+   "coordinates": [
+    -79.296742,
+    43.725841
+   ],
+   "has_elevator": true
+  },
+  {
+   "name": "Pioneer Village",
+   "lines": [
+    "1"
+   ],
+   "coordinates": [
+    -79.509353,
+    43.776746
+   ],
+   "has_elevator": true
+  },
+  {
+   "name": "Queen",
+   "lines": [
+    "1"
+   ],
+   "coordinates": [
+    -79.379388,
+    43.652749
+   ],
+   "has_elevator": true
+  },
+  {
+   "name": "Queen's Park",
+   "lines": [
+    "1"
+   ],
+   "coordinates": [
+    -79.390489,
+    43.659899
+   ],
+   "has_elevator": true
+  },
+  {
+   "name": "Rosedale",
+   "lines": [
+    "1"
+   ],
+   "coordinates": [
+    -79.388339,
+    43.676649
+   ],
+   "has_elevator": true
+  },
+  {
+   "name": "Rowntree Mills",
+   "lines": [
+    "6"
+   ],
+   "coordinates": [
+    -79.568579,
+    43.746311
+   ],
+   "has_elevator": true
+  },
+  {
+   "name": "Royal York",
+   "lines": [
+    "2"
+   ],
+   "coordinates": [
+    -79.509593,
+    43.648448
+   ],
+   "has_elevator": true
+  },
+  {
+   "name": "Runnymede",
+   "lines": [
+    "2"
+   ],
+   "coordinates": [
+    -79.475842,
+    43.651899
+   ],
+   "has_elevator": true
+  },
+  {
+   "name": "Sentinel",
+   "lines": [
+    "6"
+   ],
+   "coordinates": [
+    -79.500039,
+    43.761081
+   ],
+   "has_elevator": true
+  },
+  {
+   "name": "Sheppard West",
+   "lines": [
+    "1"
+   ],
+   "coordinates": [
+    -79.462387,
+    43.749675
+   ],
+   "has_elevator": true
+  },
+  {
+   "name": "Sheppard-Yonge",
+   "lines": [
+    "1",
+    "4"
+   ],
+   "coordinates": [
+    -79.410517,
+    43.761285
+   ],
+   "has_elevator": true
+  },
+  {
+   "name": "Sherbourne",
+   "lines": [
+    "2"
+   ],
+   "coordinates": [
+    -79.376167,
+    43.672139
+   ],
+   "has_elevator": true
+  },
+  {
+   "name": "Signet Arrow",
+   "lines": [
+    "6"
+   ],
+   "coordinates": [
+    -79.536226,
+    43.753293
+   ],
+   "has_elevator": true
+  },
+  {
+   "name": "Sloane",
+   "lines": [
+    "5"
+   ],
+   "coordinates": [
+    -79.31268,
+    43.72592
+   ],
+   "has_elevator": true
+  },
+  {
+   "name": "Spadina",
+   "lines": [
+    "1",
+    "2"
+   ],
+   "coordinates": [
+    -79.404889,
+    43.668374
+   ],
+   "has_elevator": true
+  },
+  {
+   "name": "St Andrew",
+   "lines": [
+    "1"
+   ],
+   "coordinates": [
+    -79.384788,
+    43.647649
+   ],
+   "has_elevator": true
+  },
+  {
+   "name": "St Clair",
+   "lines": [
+    "1"
+   ],
+   "coordinates": [
+    -79.393289,
+    43.688049
+   ],
+   "has_elevator": true
+  },
+  {
+   "name": "St Clair West",
+   "lines": [
+    "1"
+   ],
+   "coordinates": [
+    -79.41564,
+    43.684548
+   ],
+   "has_elevator": true
+  },
+  {
+   "name": "St George",
+   "lines": [
+    "1",
+    "2"
+   ],
+   "coordinates": [
+    -79.398814,
+    43.668399
+   ],
+   "has_elevator": true
+  },
+  {
+   "name": "St Patrick",
+   "lines": [
+    "1"
+   ],
+   "coordinates": [
+    -79.388188,
+    43.654649
+   ],
+   "has_elevator": true
+  },
+  {
+   "name": "Stevenson",
+   "lines": [
+    "6"
+   ],
+   "coordinates": [
+    -79.586949,
+    43.743219
+   ],
+   "has_elevator": true
+  },
+  {
+   "name": "Summerhill",
+   "lines": [
+    "1"
+   ],
+   "coordinates": [
+    -79.390989,
+    43.682699
+   ],
+   "has_elevator": true
+  },
+  {
+   "name": "Sunnybrook Park",
+   "lines": [
+    "5"
+   ],
+   "coordinates": [
+    -79.349134,
+    43.717309
+   ],
+   "has_elevator": true
+  },
+  {
+   "name": "TMU",
+   "lines": [
+    "1"
+   ],
+   "coordinates": [
+    -79.380988,
+    43.656549
+   ],
+   "has_elevator": true
+  },
+  {
+   "name": "Tobermory",
+   "lines": [
+    "6"
+   ],
+   "coordinates": [
+    -79.507918,
+    43.759332
+   ],
+   "has_elevator": true
+  },
+  {
+   "name": "Union",
+   "lines": [
+    "1"
+   ],
+   "coordinates": [
+    -79.380588,
+    43.645699
+   ],
+   "has_elevator": true
+  },
+  {
+   "name": "Vaughan Metropolitan Centre",
+   "lines": [
+    "1"
+   ],
+   "coordinates": [
+    -79.527906,
+    43.794021
+   ],
+   "has_elevator": true
+  },
+  {
+   "name": "Victoria Park",
+   "lines": [
+    "2"
+   ],
+   "coordinates": [
+    -79.288685,
+    43.694899
+   ],
+   "has_elevator": true
+  },
+  {
+   "name": "Warden",
+   "lines": [
+    "2"
+   ],
+   "coordinates": [
+    -79.278935,
+    43.711549
+   ],
+   "has_elevator": true
+  },
+  {
+   "name": "Wellesley",
+   "lines": [
+    "1"
+   ],
+   "coordinates": [
+    -79.383638,
+    43.665549
+   ],
+   "has_elevator": true
+  },
+  {
+   "name": "Westmore",
+   "lines": [
+    "6"
+   ],
+   "coordinates": [
+    -79.600709,
+    43.73475
+   ],
+   "has_elevator": true
+  },
+  {
+   "name": "Wilson",
+   "lines": [
+    "1"
+   ],
+   "coordinates": [
+    -79.450042,
+    43.734448
+   ],
+   "has_elevator": true
+  },
+  {
+   "name": "Woodbine",
+   "lines": [
+    "2"
+   ],
+   "coordinates": [
+    -79.313136,
+    43.686499
+   ],
+   "has_elevator": true
+  },
+  {
+   "name": "Wynford",
+   "lines": [
+    "5"
+   ],
+   "coordinates": [
+    -79.32666,
+    43.724083
+   ],
+   "has_elevator": true
+  },
+  {
+   "name": "York Mills",
+   "lines": [
+    "1"
+   ],
+   "coordinates": [
+    -79.406091,
+    43.743848
+   ],
+   "has_elevator": true
+  },
+  {
+   "name": "York University",
+   "lines": [
+    "1"
+   ],
+   "coordinates": [
+    -79.499888,
+    43.774097
+   ],
+   "has_elevator": true
+  },
+  {
+   "name": "Yorkdale",
+   "lines": [
+    "1"
+   ],
+   "coordinates": [
+    -79.447492,
+    43.724598
+   ],
+   "has_elevator": true
+  }
+ ]
+}

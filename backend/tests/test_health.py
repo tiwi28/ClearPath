@@ -14,7 +14,7 @@ def test_barriers_mock_shape():
     assert body["type"] == "FeatureCollection"
 
 
-def test_route_accepts_contract_keys():
+def test_plan_accepts_contract_keys():
     # Contract uses "from" (a Python keyword), mapped to from_ via alias.
-    payload = {"from": [-79.3832, 43.6532], "to": [-79.377, 43.659], "profile": "wheelchair"}
-    assert client.post("/route", json=payload).status_code == 200
+    payload = {"from": [-79.41, 43.66], "to": [-79.42, 43.665], "profile": "manual_wheelchair", "include_transit": False}
+    assert client.post("/plan", json=payload).status_code == 200

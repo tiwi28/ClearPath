@@ -1,14 +1,23 @@
-"""Train the LightGBM risk model with a time-based split."""
+"""Train the LightGBM risk model with a time-based split.
+
+Usage: python 05_train.py [--live]
+  --live trains the model the app runs today: history features stop LAG days before t,
+  because Toronto publishes 311 data monthly. Saves risk_model_live.txt.
+"""
+import sys
+
 import lightgbm as lgb
 import pandas as pd
 
 from common import ML, PROCESSED
 
-FEATURES = [
-    "past3", "past7", "past28", "past365", "rate_hist",
-    "snow", "snow_ground", "tmin", "tmax", "precip", "ft", "snow3", "snow7", "ft3",
-    "dow", "month",
-]
+WEATHER = ["snow", "snow_ground", "tmin", "tmax", "precip", "ft", "snow3", "snow7", "ft3"]
+FEATURES = ["past3", "past7", "past28", "past365", "rate_hist", *WEATHER, "dow", "month"]
+LIVE_FEATURES = ["lag_past28", "lag_past91", "lag_past365", "lag_rate_hist", "season_last_year",
+                 *WEATHER, "dow", "month"]
+live = "--live" in sys.argv
+features = LIVE_FEATURES if live else FEATURES
+suffix = "_live" if live else ""
 TEST_START = pd.Timestamp("2025-11-01")
 # Training targets look 3 days ahead, so stop training 3 days before the test
 # period; otherwise the last training labels would peek into test days.
@@ -27,12 +36,12 @@ model = lgb.LGBMClassifier(
     subsample=0.8, subsample_freq=1, colsample_bytree=0.8,
     verbose=-1,
 )
-model.fit(train[FEATURES], train["y"])
-model.booster_.save_model(str(ML / "risk_model.txt"))
-print(f"\nSaved model to {ML / 'risk_model.txt'}")
+model.fit(train[features], train["y"])
+model.booster_.save_model(str(ML / f"risk_model{suffix}.txt"))
+print(f"\nSaved model to {ML / f'risk_model{suffix}.txt'}")
 
-preds = test[["cell", "day", "y", "future3", "rate_hist", "past7", "snow3"]].copy()
-preds["risk"] = model.predict_proba(test[FEATURES])[:, 1]
-preds.to_parquet(PROCESSED / "test_preds.parquet", index=False)
-print(f"Saved {len(preds):,} test predictions to {PROCESSED / 'test_preds.parquet'}")
+preds = test[["cell", "day", "y", "future3", "rate_hist", "lag_rate_hist", "past7", "snow3"]].copy()
+preds["risk"] = model.predict_proba(test[features])[:, 1]
+preds.to_parquet(PROCESSED / f"test_preds{suffix}.parquet", index=False)
+print(f"Saved {len(preds):,} test predictions to {PROCESSED / f'test_preds{suffix}.parquet'}")
 print(preds["risk"].describe().to_string())

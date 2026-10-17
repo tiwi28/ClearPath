@@ -22,6 +22,8 @@ audit/*.pt
 audit/*.mp4
 
 .DS_Store
-
-
+.agents
+.aws
+.codex
+docs
 .claude
