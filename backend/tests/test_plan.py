@@ -255,3 +255,100 @@ def test_routing_cache_keeps_only_the_most_recent_answers(monkeypatch):
     assert len(routing._cache) == 3 and len(calls) == 5
     routing.ors("foot-walking", [TRIP["from"], [TRIP["to"][0] + 4e-4, TRIP["to"][1]]])
     assert len(calls) == 5  # the newest answer is still cached
+
+
+def test_forced_fallback_replaces_walking_and_wheelchair_routing(monkeypatch):
+    monkeypatch.setattr(settings, "ors_fallback_profile", "foot-hiking")
+    monkeypatch.setattr(settings, "ors_force_fallback", True)
+    calls = provider(monkeypatch, ok)
+    body = client.post("/plan", json={**TRIP, "avoid_risk": False}).json()
+    assert [call["profile"] for call in calls] == ["foot-hiking", "foot-hiking"]
+    accessible = calls[1]["json"]["options"]
+    assert accessible["avoid_features"] == ["steps"] and "profile_params" not in accessible
+    assert body["warnings"][0] == routing.FALLBACK_WARNING
+
+
+def test_no_fallback_warning_in_normal_routing(monkeypatch):
+    provider(monkeypatch, ok)
+    assert routing.FALLBACK_WARNING not in client.post("/plan", json=TRIP).json()["warnings"]
+
+
+def test_directions_go_to_the_configured_ors_server(monkeypatch):
+    calls = provider(monkeypatch, ok)
+    client.post("/plan", json={**TRIP, "avoid_risk": False})
+    assert calls[0]["url"] == "https://api.heigit.org/openrouteservice/v2/directions/foot-walking/geojson"
+    monkeypatch.setattr(settings, "ors_base_url", "http://ors:8082/ors/v2/")
+    routing._cache.clear()
+    calls.clear()
+    client.post("/plan", json={**TRIP, "avoid_risk": False})
+    assert calls[0]["url"] == "http://ors:8082/ors/v2/directions/foot-walking/geojson"
+
+
+def walking_down(profile, body):
+    if profile == "foot-walking":
+        raise httpx.ReadTimeout("foot-walking is down")
+    return ok(profile, body)
+
+
+def test_failing_profile_falls_back_automatically_and_stays_skipped(monkeypatch):
+    monkeypatch.setattr(settings, "ors_fallback_profile", "foot-hiking")
+    calls = provider(monkeypatch, walking_down)
+    body = client.post("/plan", json={**TRIP, "profile": "walker", "avoid_risk": False}).json()
+    # foot-walking is tried once, then skipped for the accessible route too.
+    assert [call["profile"] for call in calls] == ["foot-walking", "foot-hiking", "foot-hiking"]
+    assert body["accessible"] and body["warnings"][0] == routing.FALLBACK_WARNING
+
+
+def test_wheelchair_keeps_its_own_routing_when_only_walking_is_down(monkeypatch):
+    monkeypatch.setattr(settings, "ors_fallback_profile", "foot-hiking")
+    calls = provider(monkeypatch, walking_down)
+    body = client.post("/plan", json={**TRIP, "avoid_risk": False}).json()
+    assert [call["profile"] for call in calls] == ["foot-walking", "foot-hiking", "wheelchair"]
+    assert "profile_params" in calls[2]["json"]["options"]
+    assert body["warnings"][0] == routing.IDEAL_FALLBACK_NOTE
+    assert routing.FALLBACK_WARNING not in body["warnings"]
+
+
+def test_no_route_does_not_trigger_the_fallback(monkeypatch):
+    monkeypatch.setattr(settings, "ors_fallback_profile", "foot-hiking")
+    calls = provider(monkeypatch, lambda profile, body: (404, {"error": {"code": 2009}}))
+    assert client.post("/plan", json=TRIP).status_code == 404
+    assert "foot-hiking" not in [call["profile"] for call in calls]
+
+
+def test_gateway_error_page_is_retried_once(monkeypatch):
+    calls = []
+
+    def post(url, **kwargs):
+        calls.append(url)
+        if len(calls) == 1:
+            return httpx.Response(502, text="<html>502 Bad Gateway</html>", request=httpx.Request("POST", url))
+        return httpx.Response(200, json=ors_route(kwargs["json"]["coordinates"]), request=httpx.Request("POST", url))
+
+    monkeypatch.setattr(httpx, "post", post)
+    assert routing.ors("foot-walking", DIRECT)["distance_m"] == 920
+    assert len(calls) == 2
+
+
+def test_repeated_gateway_error_page_is_reported_as_unavailable(monkeypatch):
+    def post(url, **kwargs):
+        return httpx.Response(502, text="<html>502 Bad Gateway</html>", request=httpx.Request("POST", url))
+
+    monkeypatch.setattr(httpx, "post", post)
+    response = client.post("/plan", json=TRIP)
+    assert response.status_code == 502
+    assert response.json()["detail"]["code"] == "routing_unavailable"
+
+
+def test_rejected_request_is_not_retried(monkeypatch):
+    calls = provider(monkeypatch, lambda profile, body: (400, {"error": {"code": 2011, "message": "bad option"}}))
+    assert client.post("/plan", json=TRIP).status_code == 502
+    assert len(calls) == 1
+
+
+def test_local_ors_server_needs_no_key(monkeypatch):
+    monkeypatch.setattr(settings, "ors_api_key", "")
+    monkeypatch.setattr(settings, "ors_base_url", "http://ors:8082/ors/v2")
+    calls = provider(monkeypatch, ok)
+    assert client.post("/plan", json={**TRIP, "avoid_risk": False}).status_code == 200
+    assert "Authorization" not in calls[0]["headers"]

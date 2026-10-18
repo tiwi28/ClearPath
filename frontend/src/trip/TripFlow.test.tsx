@@ -137,6 +137,28 @@ it('tries a failed re-route again after a pause', async () => {
   expect(planCalls()).toBe(3)
 })
 
+it('re-routes after every wrong turn, even on a new route that doubles back', async () => {
+  // Like ORS, each new route starts where the rider strayed and heads back to Front St before going west.
+  const base = vi.mocked(fetch).getMockImplementation()!
+  vi.mocked(fetch).mockImplementation(async (input, init) => {
+    if (!String(input).endsWith('/plan') || planCalls() === 1) return base(input as string)
+    const from = JSON.parse(init!.body as string).from as number[]
+    const coordinates = [from, [from[0], 43.6453], [-79.3872, 43.6453]]
+    return reply({ ...plan, accessible: { ...plan.accessible, geometry: line(coordinates),
+      steps: [{ instruction: 'Head back to Front St', distance_m: 60, way_points: [0, 1], type: 11 },
+        { instruction: 'Head west on Front St', distance_m: 470, way_points: [1, 2], type: 11 }] } })
+  })
+  render(<App />)
+  await planAndSimulate()
+  await advance(1000)
+  for (const expected of [2, 3, 4]) {
+    fireEvent.click(screen.getByRole('button', { name: 'Take a wrong turn' }))
+    await readings(4)
+    expect(planCalls()).toBe(expected)
+    await advance(5000) // about 40 m along the new route: partway back to Front St
+  }
+})
+
 it('says so when turn-by-turn is not available for an option', async () => {
   const leg = { mode: 'BUS', line: '6', headsign: null, color: null, from_name: 'START', to_name: 'END', start: '2026-10-17T10:00:00Z',
     end: '2026-10-17T10:10:00Z', duration_s: 600, distance_m: 900, geometry: null, risk: null }

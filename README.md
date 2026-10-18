@@ -22,6 +22,38 @@ mounted for hot reload (Vite polls for changes inside Docker). Rebuild after
 dependency changes. Changing `.env` needs `docker compose up -d api` so the API
 container receives the new values.
 
+### When OpenRouteService is down or out of quota
+
+**Automatic backup profile.** If ORS walking or wheelchair routing times out or errors, the API
+retries that request on `ORS_FALLBACK_PROFILE` (default `foot-hiking`) and keeps using it for that
+profile for 5 minutes. Routes still avoid stairs, but kerbs and slopes aren't checked, and each plan
+says so. `ORS_FORCE_FALLBACK=true` uses the backup for every request; `ORS_FALLBACK_PROFILE=` (empty)
+turns it off.
+
+**Run routing locally** (for demos; needs about 3 GB of Docker memory). Download the Toronto map
+once, start the local server, and point the API at it:
+
+```powershell
+mkdir ors-dockeriles
+curl.exe -L -o ors-dockeriles	oronto.osm.pbf https://download.bbbike.org/osm/bbbike/Toronto/Toronto.osm.pbf
+docker compose --profile ors up -d
+```
+
+The first start builds the routing graphs (several minutes); `http://localhost:8080/ors/v2/health`
+shows `{"status":"ready"}` when it's done. Then set `ORS_BASE_URL=http://ors:8082/ors/v2` and run
+`docker compose up -d --force-recreate api`. A local server needs no `ORS_API_KEY`, but address
+search still uses the public ORS geocoder, so without a key you pick points on the map.
+
+| Where the API runs | `ORS_BASE_URL` | `ORS_API_KEY` |
+|---|---|---|
+| Render (deployed) | leave unset (public ORS) | required |
+| Local Docker, local ORS | `http://ors:8082/ors/v2` | optional (address search only) |
+| API outside Docker, local ORS | `http://localhost:8080/ors/v2` | optional (address search only) |
+
+A deployed API can't reach an ORS server on your laptop. For a live demo of the deployed site on
+local routing, expose it with a tunnel (e.g. `cloudflared tunnel --url http://localhost:8080`) and
+set Render's `ORS_BASE_URL` to the tunnel URL plus `/ors/v2`.
+
 ## Plan a trip
 
 1. **Where are you going?** Search From and To (ORS address search within Toronto),

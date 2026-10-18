@@ -48,12 +48,22 @@ export function pointAt(track: Track, along: number): { lnglat: LngLat; heading:
   return { lnglat: toLngLat([ax + t * (bx - ax), ay + t * (by - ay)]), heading }
 }
 
-/** A point `metres` to the right of the route at `along`; the simulator uses it for "take a wrong turn". */
-export function offsetAt(track: Track, along: number, metres: number): LngLat {
-  const { lnglat, heading } = pointAt(track, along)
-  const [x, y] = toXY(lnglat)
-  const angle = (heading + 90) * Math.PI / 180
-  return toLngLat([x + Math.sin(angle) * metres, y + Math.cos(angle) * metres])
+/** The point `metres` from `from` toward compass bearing `angle` (0 = north, 90 = east). */
+export function moveFrom(from: LngLat, angle: number, metres: number): LngLat {
+  const [x, y] = toXY(from)
+  const radians = angle * Math.PI / 180
+  return toLngLat([x + Math.sin(radians) * metres, y + Math.cos(radians) * metres])
+}
+
+/** Where the simulator's "take a wrong turn" heads: of eight bearings, the one that ends up farthest
+ * from the whole route. A route that doubles back can pass close by on either side of where it bends. */
+export function strayDirection(track: Track, from: LngLat, metres: number): number {
+  let best = { angle: 0, off: -1 }
+  for (let angle = 0; angle < 360; angle += 45) {
+    const { off } = project(track, moveFrom(from, angle, metres))
+    if (off > best.off) best = { angle, off }
+  }
+  return best.angle
 }
 
 /** The travelled part of the route, for drawing it grey. */

@@ -4,11 +4,13 @@ ORS is called at the provider boundary and its GeoJSON is normalized here.
 """
 
 import json
+import logging
 import math
 import threading
 import time
 from collections import OrderedDict
 from concurrent.futures import ThreadPoolExecutor
+from urllib.parse import urlparse
 
 import httpx
 from fastapi import HTTPException
@@ -21,15 +23,27 @@ from .config import settings
 from .profiles import PROFILES, Profile
 from .schemas import NonNegative, PlanRequest, RouteGeometry, Step
 
-ORS_URL = "https://api.openrouteservice.org/v2/directions/{profile}/geojson"
+# Directions use settings.ors_base_url (public api.heigit.org by default, or a local server).
+# Address search always uses the public geocoder; a local ORS has none.
+GEOCODE_URL = "https://api.heigit.org/pelias/v1/autocomplete"
+PUBLIC_ORS_HOSTS = ("api.heigit.org", "api.openrouteservice.org")  # need an API key; a local server doesn't
+ORS_TIMEOUT = 12
+RETRY_STATUSES = (502, 503, 504)
+DOWN_FOR = 300             # once a profile fails, skip straight to the fallback for this long
 STEPS_WAYTYPE = 8          # ORS extra_info "waytype" value for stairs
 RECOVERY_M = (40, 120, 300)  # how far in from an endpoint to look for a reachable street
 MAX_DETOUR = 1.5           # a lower-risk route may be at most this much longer than the standard one
 MIN_GAIN = 0.03            # ...and must lower the length-weighted mean risk by at least this much
 CACHE_TTL = 300
 CACHE_SIZE = 256           # most recent ORS answers kept; oldest dropped first
+FALLBACK_FOR = ("foot-walking", "wheelchair")
+FALLBACK_WARNING = ("Accessible routing is temporarily unavailable, so this route uses a backup network. "
+                    "It avoids stairs, but kerbs and slopes aren't checked.")
+IDEAL_FALLBACK_NOTE = "The typical walking route was calculated on a backup network while walking routing is down."
+log = logging.getLogger(__name__)
 _cache: OrderedDict[str, tuple[float, dict]] = OrderedDict()
 _cache_lock = threading.Lock()
+_down: dict[str, float] = {}  # ORS profile -> when it last timed out or errored
 
 
 def _cached(key: str) -> dict | None:
@@ -50,8 +64,8 @@ def _remember(key: str, result: dict) -> None:
             _cache.popitem(last=False)
 
 
-def require_key():
-    if not settings.ors_api_key.strip():
+def require_key(url: str):
+    if urlparse(url).hostname in PUBLIC_ORS_HOSTS and not settings.ors_api_key.strip():
         raise HTTPException(503, detail={
             "code": "routing_not_configured", "message": "Live routing is not configured. Add the ORS API key to the backend.",
         })
@@ -59,11 +73,11 @@ def require_key():
 
 def geocode(text: str) -> list[dict]:
     """Address suggestions within Toronto, as {label, coordinates: [lng, lat]}."""
-    require_key()
+    require_key(GEOCODE_URL)
     west, south, east, north = barriers.TORONTO_BBOX
     try:
         response = httpx.get(
-            "https://api.openrouteservice.org/geocode/autocomplete",
+            GEOCODE_URL,
             headers={"Authorization": settings.ors_api_key},
             params={"text": text, "boundary.rect.min_lon": west, "boundary.rect.min_lat": south,
                     "boundary.rect.max_lon": east, "boundary.rect.max_lat": north,
@@ -88,37 +102,87 @@ def with_constraints(options: dict, constraints: list[dict]) -> dict:
     return {**options, "avoid_polygons": mapping(area)}
 
 
+def _is_down(profile: str) -> bool:
+    with _cache_lock:
+        return time.time() - _down.get(profile, 0) < DOWN_FOR
+
+
+def _mark_down(profile: str) -> None:
+    with _cache_lock:
+        _down[profile] = time.time()
+
+
+def _fallback_options(options: dict | None) -> dict | None:
+    """Wheelchair-only settings (slope and kerb limits) are rejected by other profiles; avoiding stairs still applies."""
+    if options and "profile_params" in options:
+        return {key: value for key, value in options.items() if key != "profile_params"}
+    return options
+
+
 def ors(profile: str, coordinates, options: dict | None = None, preference: str = "recommended",
         extra_info: list[str] | None = None) -> dict:
-    require_key()
+    """Route on `profile`. If walking or wheelchair routing is down, route on ORS_FALLBACK_PROFILE
+    instead and mark the result with "fallback": True so the plan can say so."""
+    fallback = settings.ors_fallback_profile.strip()
+    if not fallback or profile not in FALLBACK_FOR or fallback == profile:
+        return _directions(profile, coordinates, options, preference, extra_info, attempts=2)
+    if not (settings.ors_force_fallback or _is_down(profile)):
+        try:
+            return _directions(profile, coordinates, options, preference, extra_info, attempts=1)
+        except HTTPException as error:
+            if error.detail.get("code") not in ("routing_timeout", "routing_unavailable"):
+                raise
+            log.warning("ORS %s is failing (%s); using %s for %ss", profile, error.detail["code"], fallback, DOWN_FOR)
+            _mark_down(profile)
+    result = _directions(fallback, coordinates, _fallback_options(options), preference, extra_info, attempts=2)
+    return {**result, "fallback": True}
+
+
+def _directions(profile: str, coordinates, options: dict | None, preference: str,
+                extra_info: list[str] | None, attempts: int) -> dict:
+    url = f"{settings.ors_base_url.rstrip('/')}/directions/{profile}/geojson"
+    require_key(url)
     body = {"coordinates": [list(point) for point in coordinates], "instructions": True,
             "instructions_format": "text", "language": "en", "preference": preference}
     if options:
         body["options"] = options
     if extra_info:
         body["extra_info"] = extra_info
-    key = profile + json.dumps(body, sort_keys=True)
+    key = url + json.dumps(body, sort_keys=True)
     cached = _cached(key)
     if cached:
         return cached
-    try:
-        response = httpx.post(ORS_URL.format(profile=profile), headers={"Authorization": settings.ors_api_key},
-                              json=body, timeout=20)
-    except httpx.TimeoutException:
-        raise HTTPException(504, detail={"code": "routing_timeout", "message": "Routing timed out. Try again."}) from None
-    except httpx.RequestError:
-        raise HTTPException(502, detail={"code": "routing_unavailable", "message": "The routing service is unavailable. Try again."}) from None
+    headers = {"Authorization": settings.ors_api_key} if settings.ors_api_key.strip() else {}
+    for attempt in range(1, attempts + 1):
+        # Public ORS sometimes drops a request or answers with a gateway error page; one retry usually works.
+        try:
+            response = httpx.post(url, headers=headers, json=body, timeout=ORS_TIMEOUT)
+        except httpx.TimeoutException:
+            if attempt == attempts:
+                raise HTTPException(504, detail={"code": "routing_timeout", "message": "Routing timed out. Try again."}) from None
+            continue
+        except httpx.RequestError:
+            if attempt == attempts:
+                raise HTTPException(502, detail={"code": "routing_unavailable", "message": "The routing service is unavailable. Try again."}) from None
+            continue
+        if response.status_code not in RETRY_STATUSES or attempt == attempts:
+            break
 
+    if not response.is_success:
+        try:
+            error = response.json().get("error", {})
+        except (ValueError, AttributeError):
+            error = {}  # gateway error pages are HTML
+        code = error.get("code") if isinstance(error, dict) else None
+        if response.status_code in (403, 429):
+            raise HTTPException(503, detail={"code": "routing_quota", "message": "The routing service's daily limit has been reached. Try again later, or use a different ORS API key."})
+        if response.status_code == 404 or code in (2009, 2010):
+            raise HTTPException(404, detail={"code": "no_route", "message": "No route found with these accessibility constraints. Try other points."})
+        if response.status_code == 400:
+            log.warning("ORS rejected the %s request: %s", profile, error)
+        raise HTTPException(502, detail={"code": "routing_unavailable", "message": "The routing service could not calculate this trip. Try again."})
     try:
-        data = response.json()
-        error = data.get("error", {})
-        if not response.is_success:
-            if response.status_code in (403, 429):
-                raise HTTPException(503, detail={"code": "routing_quota", "message": "The routing service's daily limit has been reached. Try again later, or use a different ORS API key."})
-            if response.status_code == 404 or (isinstance(error, dict) and error.get("code") in (2009, 2010)):
-                raise HTTPException(404, detail={"code": "no_route", "message": "No route found with these accessibility constraints. Try other points."})
-            raise HTTPException(502, detail={"code": "routing_unavailable", "message": "The routing service could not calculate this trip. Try again."})
-        feature = data["features"][0]
+        feature = response.json()["features"][0]
         geometry = RouteGeometry.model_validate(feature["geometry"])
         summary = feature["properties"]["summary"]
         number = TypeAdapter(NonNegative)
@@ -316,6 +380,10 @@ def plan(request: PlanRequest) -> dict:
         if failure and failure.status_code == 409:
             raise failure
         raise HTTPException(404, detail={"code": "no_route", "message": "No accessible way to make this trip was found. Try points on a nearby street."})
+    if accessible and accessible.get("fallback"):
+        warnings.insert(0, FALLBACK_WARNING)
+    elif ideal and ideal.get("fallback"):
+        warnings.insert(0, IDEAL_FALLBACK_NOTE)
     if risk_info["available"]:
         warnings.append("Predicted risk estimates likely 311 reports; it is not a confirmed barrier.")
     warnings.append("Barrier coverage is incomplete; a calculated route is not a guarantee of accessibility.")

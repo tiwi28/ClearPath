@@ -20,6 +20,9 @@ services:
       DATABASE_URL: postgresql://postgres:clearpath@db:5432/clearpath
       BARRIER_SOURCE: ${BARRIER_SOURCE:-fixtures}
       ORS_API_KEY: ${ORS_API_KEY:-}
+      ORS_BASE_URL: ${ORS_BASE_URL:-https://api.heigit.org/openrouteservice/v2}
+      ORS_FALLBACK_PROFILE: ${ORS_FALLBACK_PROFILE-foot-hiking}  # set it empty to turn the fallback off
+      ORS_FORCE_FALLBACK: ${ORS_FORCE_FALLBACK:-false}
       GEMINI_API_KEY: ${GEMINI_API_KEY:-}
       GEMINI_MODEL: ${GEMINI_MODEL:-gemini-3.8-flash}
       FRONTEND_ORIGIN: http://localhost:${WEB_PORT:-5173}
@@ -54,6 +57,31 @@ services:
     depends_on:
       api:
         condition: service_healthy
+
+  # Optional local routing server for when the public ORS is down or out of quota.
+  # Start it with `docker compose --profile ors up -d` and set ORS_BASE_URL=http://ors:8082/ors/v2.
+  # First start builds the Toronto routing graphs (several minutes); later starts reuse them.
+  ors:
+    image: openrouteservice/openrouteservice:v10.1.0
+    profiles: ["ors"]
+    ports: ["8080:8082"]
+    volumes:
+      - ./ors-docker:/home/ors
+    environment:
+      XMS: 1g
+      XMX: 3g
+      ors.engine.profile_default.build.source_file: /home/ors/files/toronto.osm.pbf
+      ors.engine.profile_default.build.elevation: "false"  # no elevation download; works offline
+      ors.engine.profiles.driving-car.enabled: "false"
+      ors.engine.profiles.foot-walking.enabled: "true"
+      ors.engine.profiles.foot-hiking.enabled: "true"
+      ors.engine.profiles.wheelchair.enabled: "true"
+    healthcheck:
+      test: ["CMD-SHELL", "wget -q --spider http://localhost:8082/ors/v2/health || exit 1"]
+      interval: 15s
+      timeout: 5s
+      retries: 80
+      start_period: 2m
 
 volumes:
   pgdata:

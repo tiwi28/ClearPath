@@ -17,6 +17,9 @@ data/*
 !data/fixtures/
 !data/fixtures/**
 
+# local ORS routing server: map file, graphs and logs (large, rebuilt locally)
+ors-docker/
+
 # audit model weights / videos
 audit/*.pt
 audit/*.mp4

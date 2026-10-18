@@ -1,5 +1,5 @@
 import { expect, it } from 'vitest'
-import { arrived, makeTrack, offRouteCount, offsetAt, pointAt, project, travelled } from './progress'
+import { arrived, makeTrack, moveFrom, offRouteCount, pointAt, project, strayDirection, travelled } from './progress'
 import { stepAt } from './route'
 import type { LngLat } from '../types'
 
@@ -20,8 +20,18 @@ it('snaps a position to the route and measures how far off it is', () => {
   const { along, off } = project(track, halfway)
   expect(along).toBeCloseTo(200, 0)
   expect(off).toBeLessThan(0.5)
-  const beside = project(track, offsetAt(track, 200, 50))
+  const beside = project(track, moveFrom(halfway, 180, 50))
   expect(beside.off).toBeCloseTo(50, 0)
+})
+
+it('takes a wrong turn away from a route that doubles back', () => {
+  // South 60 m to Front St, then west along it: heading west from the first leg would run beside the route.
+  const top: LngLat = [-79.3800, 43.6458]
+  const bend: LngLat = [-79.3800, 43.6453]
+  const doubling = makeTrack([top, bend, [-79.3870, 43.6453]])
+  const from = pointAt(doubling, 40).lnglat
+  expect(strayDirection(doubling, from, 60)).toBe(90) // east, away from both legs
+  expect(project(doubling, moveFrom(from, 90, 60)).off).toBeGreaterThan(55)
 })
 
 it('gives the heading of travel', () => {
