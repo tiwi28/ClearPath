@@ -1,5 +1,5 @@
 import { lazy, Suspense, useCallback, useEffect, useRef, useState } from 'react'
-import { ApiError, getBarriers, getPlan, getRisk, getStations } from './api'
+import { getBarriers, getPlan, getRisk, getStations } from './api'
 import type { Field } from './components/AddressInput'
 import { LayerPanel, Legend } from './components/MapOverlays'
 import type { Hover, Layers } from './components/MapView'
@@ -57,7 +57,6 @@ export default function App() {
   const [day, setDay] = useState(() => forecastDays()[0].value)
   const [layers, setLayers] = useState<Layers>({ risk: true, stations: true, barriers: false })
   const [bbox, setBbox] = useState('-79.40,43.64,-79.36,43.67')
-  const [refresh, setRefresh] = useState(0)
   const [barriers, setBarriers] = useState<Barriers | null>(null)
   const [risk, setRisk] = useState<RiskMap | null>(null)
   const [riskError, setRiskError] = useState('')
@@ -65,14 +64,15 @@ export default function App() {
   const [hover, setHover] = useState<Hover | null>(null)
   const [plan, setPlan] = useState<Plan | null>(null)
   const [choice, setChoice] = useState<Choice>('accessible')
-  const [response, setResponse] = useState<unknown>(null)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
-  const [trip, setTrip] = useState<{ mode: TripMode; route: TripRoute } | null>(null)
+  const [trip, setTrip] = useState<{ id: number; mode: TripMode; route: TripRoute } | null>(null)
   const [rerouting, setRerouting] = useState(false)
   const [rerouteError, setRerouteError] = useState('')
   const requestId = useRef(0)
   const controller = useRef<AbortController | null>(null)
+  const tripCount = useRef(0)
+  const rerouteRun = useRef<AbortController | null>(null)
   const planRequest = start.point && destination.point ? {
     from: start.point, to: destination.point, profile: preferences.profile,
     include_transit: preferences.includeTransit, avoid_risk: preferences.avoidRisk, day,
@@ -85,7 +85,7 @@ export default function App() {
     const pending = new AbortController()
     getBarriers(bbox, pending.signal).then((body) => { if (!pending.signal.aborted) setBarriers(body) }).catch(() => {})
     return () => pending.abort()
-  }, [bbox, refresh])
+  }, [bbox])
   useEffect(() => {
     const pending = new AbortController()
     getRisk(day, pending.signal).then((body) => {
@@ -99,7 +99,7 @@ export default function App() {
     const pending = new AbortController()
     getStations(pending.signal).then((body) => { if (!pending.signal.aborted) setStations(body.stations) }).catch(() => {})
     return () => pending.abort()
-  }, [refresh])
+  }, [])
   useEffect(() => () => { controller.current?.abort(); requestId.current += 1 }, [])
   useEffect(() => {
     const sync = () => setView(readHash())
@@ -111,7 +111,7 @@ export default function App() {
   function clearPlan() {
     controller.current?.abort()
     requestId.current += 1
-    setPlan(null); setResponse(null); setError(''); setLoading(false)
+    setPlan(null); setError(''); setLoading(false)
   }
 
   async function findRoutes(forDay = day) {
@@ -126,49 +126,68 @@ export default function App() {
       const body = await getPlan({ from: start.point, to: destination.point, profile: preferences.profile,
         include_transit: preferences.includeTransit, avoid_risk: preferences.avoidRisk, day: forDay }, pending.signal)
       if (id === requestId.current && !pending.signal.aborted) {
-        setPlan(body); setResponse(body)
+        setPlan(body)
         setChoice(body.accessible ? 'accessible' : body.transit.length ? 'transit-0' : 'ideal')
       }
     } catch (failure) {
       if (id === requestId.current && !pending.signal.aborted) {
         setError(message(failure))
-        setResponse(failure instanceof ApiError ? failure.body : { error: message(failure) })
       }
     } finally {
       if (id === requestId.current) setLoading(false)
     }
   }
 
-  function startTrip(mode: TripMode) {
-    const route = plan && tripRoute(plan, choice, destination.text || 'your destination')
-    if (!route) return
-    setRerouteError('')
-    setTrip({ mode, route })
+  function cancelReroute() {
+    rerouteRun.current?.abort()
+    rerouteRun.current = null
+    setRerouting(false); setRerouteError('')
   }
 
-  // Plan again from where the rider is now, keeping the kind of option they chose.
-  const reroute = useCallback(async (from: LngLat) => {
-    if (!trip || !destination.point) return
+  function startTrip(mode: TripMode) {
+    const route = plan && tripRoute(plan, choice, destination.text || 'your destination')
+    if (!route) {
+      setError("Turn-by-turn isn't available for this option. Try another option, or follow the directions above.")
+      return
+    }
+    cancelReroute(); setError('')
+    tripCount.current += 1
+    setTrip({ id: tripCount.current, mode, route })
+  }
+
+  function endTrip() {
+    cancelReroute()
+    setTrip(null)
+  }
+
+  // Plan again from where the rider is now, keeping the kind of option they chose. Resolves to whether
+  // a new route was found. One re-plan at a time; ending the trip cancels it, so a late answer changes nothing.
+  const reroute = useCallback(async (from: LngLat): Promise<boolean> => {
+    if (!trip || !destination.point || rerouteRun.current) return false
+    const run = new AbortController()
+    rerouteRun.current = run
     setRerouting(true); setRerouteError('')
     try {
       const next = await getPlan({ from, to: destination.point, profile: preferences.profile,
-        include_transit: preferences.includeTransit, avoid_risk: preferences.avoidRisk, day }, new AbortController().signal)
+        include_transit: preferences.includeTransit, avoid_risk: preferences.avoidRisk, day }, run.signal)
+      if (rerouteRun.current !== run) return false
       const kind: Choice = trip.route.choice.startsWith('transit-') && next.transit.length ? 'transit-0'
         : trip.route.choice === 'ideal' && next.ideal ? 'ideal' : next.accessible ? 'accessible' : next.transit.length ? 'transit-0' : 'ideal'
       const route = tripRoute(next, kind, trip.route.destination)
       if (!route) throw new Error('No new route was found from here. Head back toward the blue line.')
-      setPlan(next); setResponse(next); setChoice(kind)
+      setPlan(next); setChoice(kind)
       setStart({ text: 'Your location', point: from })
-      setTrip((current) => current && { ...current, route })
+      setTrip((current) => current && current.id === trip.id ? { ...current, route } : current)
+      return true
     } catch (failure) {
-      setRerouteError(message(failure))
+      if (rerouteRun.current === run) setRerouteError(message(failure))
+      return false
     } finally {
-      setRerouting(false)
+      if (rerouteRun.current === run) { rerouteRun.current = null; setRerouting(false) }
     }
   }, [trip, destination.point, preferences, day])
-  const onReroute = useCallback((from: LngLat) => { void reroute(from) }, [reroute])
 
-  const live = useTrip({ route: trip?.route ?? null, mode: trip?.mode ?? 'sim', profile: preferences.profile, day, onReroute })
+  const live = useTrip({ tripId: trip?.id ?? 0, route: trip?.route ?? null, mode: trip?.mode ?? 'sim', profile: preferences.profile, day, onReroute: reroute })
 
   function placePoint(point: LngLat) {
     if (step !== 'Where' || trip) return  // the map only sets points while choosing them
@@ -238,9 +257,9 @@ export default function App() {
       </header>
       {trip && <TripPanel trip={live} route={trip.route} mode={trip.mode} rerouting={rerouting} rerouteError={rerouteError}
         onFindWayAround={() => { if (live.position) void reroute(live.position.lnglat) }}
-        onEnd={() => { setTrip(null); setRerouteError('') }}
+        onEnd={endTrip}
         onDone={() => {
-          setTrip(null); setRerouteError(''); clearPlan()
+          endTrip(); clearPlan()
           setStart({ text: '', point: null }); setDestination({ text: '', point: null }); setTarget('start'); setStep('Where')
         }} />}
       {!trip && step === 'Where' && <p className="intro">Toronto routes for wheelchairs, walkers and limited stamina, checked for stairs, station elevators and likely sidewalk barriers.</p>}
@@ -256,23 +275,6 @@ export default function App() {
       {!trip && step === 'Options' && <OptionsStep plan={plan} loading={loading} error={error} choice={choice}
         fromLabel={start.text || 'Start'} toLabel={destination.text || 'Destination'} onChoice={setChoice} onStart={startTrip}
         onEditTrip={() => { clearPlan(); setStep('Where') }} onEditProfile={() => { clearPlan(); setStep('How') }} />}
-
-      <details className="developer">
-        <summary>Developer details</summary>
-        <div className="developer-body">
-          <div className="buttons">
-            <button type="button" onClick={() => setRefresh((value) => value + 1)}>Refresh barriers and stations</button>
-            <span>{barriers?.features.length ?? 0} barriers in view from {barriers?.data_source || 'unavailable source'}</span>
-          </div>
-          {risk && <p>Forecast model: ROC-AUC {risk.model.roc_auc}, 311 reports through {risk.reports_through} ({risk.model.lag_days}-day lag), weather from {risk.weather_source}.</p>}
-          <h3>POST /plan request</h3>
-          <pre aria-label="Request JSON">{JSON.stringify(planRequest, null, 2)}</pre>
-          <h3>Plan response</h3>
-          <pre aria-label="Response JSON">{response ? JSON.stringify(response, null, 2) : 'No response yet.'}</pre>
-          <h3>Barrier GeoJSON</h3>
-          <pre aria-label="Barrier JSON">{barriers ? JSON.stringify(barriers, null, 2) : 'No barrier response yet.'}</pre>
-        </div>
-      </details>
     </section>}
 
     {!wards && <section className="map-panel" aria-label="Map">

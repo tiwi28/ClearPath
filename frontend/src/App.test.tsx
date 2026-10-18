@@ -92,6 +92,15 @@ it('fills a field from address suggestions', async () => {
   expect((screen.getByLabelText('From') as HTMLInputElement).value).toBe('Kensington Market, Toronto, ON, Canada')
 })
 
+it('does not open suggestions for a field the person has already left', async () => {
+  render(<App />)
+  const field = screen.getByLabelText('From')
+  fireEvent.change(field, { target: { value: 'kensington' } })
+  fireEvent.blur(field)
+  await new Promise((resolve) => setTimeout(resolve, 500))  // past the 300 ms search delay
+  expect(screen.queryByRole('listbox')).toBeNull()
+})
+
 it('remembers how the person gets around', async () => {
   render(<App />)
   await reachOptions('Limited stamina')
@@ -112,13 +121,12 @@ it('re-plans when the forecast day changes', async () => {
   expect(JSON.parse(planCalls()[1][1]!.body as string).day).toBe(forecastDays()[1].value)
 })
 
-it('keeps the full error response for debugging', async () => {
+it('shows the error message when no route is found', async () => {
   const failure = { detail: { code: 'no_route', message: 'No accessible way to make this trip was found.' } }
   vi.stubGlobal('fetch', api(() => reply(failure, 404)))
   render(<App />)
   await reachOptions()
   expect((await screen.findByRole('alert')).textContent).toBe('No accessible way to make this trip was found.')
-  expect(JSON.parse(screen.getByLabelText('Response JSON').textContent!)).toEqual(failure)
 })
 
 it('discards a late response after the trip changes', async () => {
@@ -129,6 +137,6 @@ it('discards a late response after the trip changes', async () => {
   await waitFor(() => expect(finish).toBeDefined())
   fireEvent.click(screen.getByRole('button', { name: 'Change trip' }))
   await act(async () => { finish!(reply(plan)) })
-  expect(screen.getByLabelText('Response JSON').textContent).toBe('No response yet.')
   expect(screen.getByRole('heading', { name: 'Where are you going?' })).toBeTruthy()
+  expect(screen.queryByText('Accessible route')).toBeNull()
 })

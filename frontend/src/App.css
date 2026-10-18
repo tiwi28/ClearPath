@@ -10,7 +10,7 @@
 }
 
 /* Rail */
-.rail { display: flex; flex-direction: column; align-items: center; gap: 28px; padding: 18px 0; background: var(--asphalt); color: #fff; }
+.rail { position: relative; display: flex; flex-direction: column; align-items: center; gap: 28px; padding: 18px 0; overflow-y: auto; background: var(--asphalt); color: #fff; }
 .rail-brand { display: flex; }
 .rail-icon { display: block; width: 52px; height: 52px; }
 .rail-logo { display: none; height: 30px; width: auto; }
@@ -27,7 +27,7 @@
 .rail-step:disabled .rail-number { border-color: #4d4b46; }
 
 /* Planner panel */
-.panel { display: flex; flex-direction: column; overflow-y: auto; background: var(--paper); border-right: 1px solid var(--line); }
+.panel { position: relative; display: flex; flex-direction: column; overflow-y: auto; background: var(--paper); border-right: 1px solid var(--line); }
 /* The band is the decision point: dome rows over clear yellow that carries the step's question. */
 .band { flex: none; background: var(--dome); color: var(--asphalt); }
 .band-domes { position: relative; display: block; height: 44px; overflow: hidden; }
@@ -112,7 +112,7 @@
 .exposure-caption strong { color: var(--ink); }
 
 .directions { border-top: 2px solid var(--asphalt); padding-top: 4px; }
-.directions summary, .developer summary { cursor: pointer; font-weight: 800; padding: 8px 0; }
+.directions summary { cursor: pointer; font-weight: 800; padding: 8px 0; }
 /* Disclosure marker drawn from the palette instead of the browser triangle. */
 summary { display: flex; align-items: center; gap: 10px; list-style: none; }
 summary::-webkit-details-marker { display: none; }
@@ -128,11 +128,6 @@ details[open] > summary::before { transform: rotate(45deg); }
 .notes { margin: 0; padding-left: 1.1em; color: var(--muted); font-size: .9375rem; }
 .notes li + li { margin-top: 4px; }
 
-.developer { margin-top: auto; padding: 4px 28px 16px; border-top: 1px solid var(--line); background: var(--curb-light); color: var(--muted); font-size: .875rem; }
-.developer summary { font-weight: 700; color: var(--ink); }
-.developer-body { display: flex; flex-direction: column; gap: 8px; }
-.developer h3 { font-size: .875rem; margin-top: 8px; color: var(--ink); }
-.developer pre { font-size: 12px; line-height: 1.5; margin: 0; padding: 10px; overflow: auto; max-height: 240px; background: var(--asphalt); border-radius: 6px; color: #ecebe6; }
 .buttons { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; }
 .buttons button { padding: 6px 12px; border: 2px solid var(--asphalt); border-radius: 6px; background: var(--paper); font-weight: 700; }
 
@@ -163,10 +158,7 @@ details[open] > summary::before { transform: rotate(45deg); }
 .key-typical { background: repeating-linear-gradient(to right, var(--muted) 0 4px, transparent 4px 7px); }
 .key-stairs { height: 7px; background: var(--stairs); }
 .key-gap { background: repeating-linear-gradient(to right, #c25e00 0 3px, transparent 3px 6px); }
-.dot { width: 12px; height: 12px; border-radius: 50%; border: 2px solid #fff; box-shadow: 0 0 0 1px var(--edge); }
-.dot-ok { background: #1f7a4d; }
-.dot-outage { background: var(--stairs); }
-.dot-none { background: #6b6862; }
+.legend-icon { flex: none; width: 16px; height: 16px; border-radius: 3px; }
 
 .endpoint-marker { width: 32px; height: 32px; display: grid; place-items: center; border: 3px solid var(--dome); border-radius: 50%; color: #fff; background: var(--asphalt); font-weight: 800; box-shadow: 0 2px 6px rgb(0 0 0 / .35); }
 .endpoint-1 { background: var(--route); border-color: #fff; }
@@ -184,7 +176,6 @@ details[open] > summary::before { transform: rotate(45deg); }
   .rail-number { width: 32px; height: 32px; font-size: 1rem; }
   .intro, .step { padding-left: 16px; padding-right: 16px; }
   .band h2 { padding: 8px 16px 16px; font-size: 1.625rem; }
-  .developer { order: 2; padding-left: 16px; padding-right: 16px; }
   .map-panel { order: 1; height: 60dvh; }
   .layer-panel { top: 8px; left: 8px; max-width: calc(100% - 64px); }
   .layer-panel:not([open]) { padding: 8px 12px; }
@@ -212,7 +203,7 @@ details[open] > summary::before { transform: rotate(45deg); }
 .ward-row.selected .ward-number { color: var(--ink); }
 
 /* Ward report card (main area) */
-.ward-main { overflow-y: auto; background: var(--curb-light); padding: 32px clamp(16px, 4vw, 48px) 48px; }
+.ward-main { position: relative; overflow-y: auto; background: var(--curb-light); padding: 32px clamp(16px, 4vw, 48px) 48px; }
 .ward-empty { max-width: 52ch; margin-top: 12vh; display: flex; flex-direction: column; gap: 10px; }
 .ward-empty h2 { font-size: 1.875rem; font-weight: 800; }
 .ward-empty p { color: var(--muted); }
@@ -247,6 +238,7 @@ details[open] > summary::before { transform: rotate(45deg); }
 .places { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; }
 .places li { display: flex; justify-content: space-between; gap: 12px; padding: 8px 0; border-bottom: 1px solid var(--line); font-size: .9375rem; }
 .places-n { font-weight: 800; font-variant-numeric: tabular-nums; }
+.open-share-line { margin-top: 16px; color: var(--route); }
 .open-share { font-size: 1.5rem; font-weight: 800; }
 .trend { margin: 0; display: flex; flex-direction: column; gap: 8px; }
 .trend-legend { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: .875rem; color: var(--muted); }
@@ -261,9 +253,7 @@ details[open] > summary::before { transform: rotate(45deg); }
 .trend-table table { width: 100%; margin-top: 6px; border-collapse: collapse; font-size: .875rem; font-variant-numeric: tabular-nums; }
 .trend-table th, .trend-table td { padding: 4px 8px; border-bottom: 1px solid var(--line); text-align: right; }
 .trend-table th:first-child, .trend-table td:first-child { text-align: left; }
-.ward-foot { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
-.ward-read ul, .sources { margin: 0; padding-left: 1.2em; display: flex; flex-direction: column; gap: 8px; font-size: .9375rem; }
-.ward-read li { color: var(--muted); }
+.sources { margin: 0; padding-left: 1.2em; display: flex; flex-direction: column; gap: 8px; font-size: .9375rem; }
 
 @media (max-width: 900px) {
   .attention { grid-template-columns: 1fr; }

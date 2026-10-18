@@ -44,6 +44,11 @@ async function advance(ms: number) {
   await act(async () => { vi.advanceTimersByTime(ms) })
 }
 
+// Several ticks inside one act() render once, so step the clock when each reading must be seen.
+async function readings(count: number) {
+  for (let i = 0; i < count; i += 1) await advance(300)
+}
+
 it('simulates a trip: directions, an alert ahead, a rider report, and arrival', async () => {
   render(<App />)
   fireEvent.click(screen.getByRole('button', { name: /Try an example/ }))
@@ -66,4 +71,81 @@ it('simulates a trip: directions, an alert ahead, a rider report, and arrival', 
   expect(await screen.findByText("You've arrived")).toBeTruthy()
   fireEvent.click(screen.getByRole('button', { name: 'Done' }))
   expect(screen.getByRole('heading', { name: 'Where are you going?' })).toBeTruthy()
+})
+
+async function planAndSimulate() {
+  fireEvent.click(screen.getByRole('button', { name: /Try an example/ }))
+  fireEvent.click(screen.getByRole('button', { name: 'Next: how you get around' }))
+  fireEvent.click(screen.getByRole('button', { name: 'Find routes' }))
+  fireEvent.click(await screen.findByRole('button', { name: 'Simulate' }))
+}
+
+const planCalls = () => vi.mocked(fetch).mock.calls.filter(([url]) => String(url).endsWith('/plan')).length
+
+it('starts a second trip fresh: directions are spoken and spots are asked about again', async () => {
+  const spoken: string[] = []
+  vi.stubGlobal('speechSynthesis', { cancel() {}, speak(utterance: { text: string }) { spoken.push(utterance.text) } })
+  vi.stubGlobal('SpeechSynthesisUtterance', class { text: string; constructor(text: string) { this.text = text } })
+  render(<App />)
+  await planAndSimulate()
+  await advance(13_000)
+  fireEvent.click(await screen.findByRole('button', { name: 'Blocked' }))
+  fireEvent.click(screen.getByRole('button', { name: 'End trip' }))
+
+  spoken.length = 0
+  fireEvent.click(await screen.findByRole('button', { name: 'Simulate' }))
+  await advance(1000)
+  expect(spoken).toContain('Head west on Front St')
+  await advance(12_000)
+  expect(await screen.findByRole('button', { name: 'Blocked' })).toBeTruthy()
+  expect(screen.queryByText(/Thanks\. Other riders/)).toBeNull()
+})
+
+it('ignores a re-route that answers after the trip has ended', async () => {
+  let answer: (value: Response) => void = () => {}
+  const base = vi.mocked(fetch).getMockImplementation()!
+  vi.mocked(fetch).mockImplementation(async (input) => String(input).endsWith('/plan') && planCalls() > 1
+    ? new Promise<Response>((resolve) => { answer = resolve }) : base(input as string))
+  render(<App />)
+  await planAndSimulate()
+  await advance(1000)
+  fireEvent.click(screen.getByRole('button', { name: 'Take a wrong turn' }))
+  await readings(4)
+  expect(planCalls()).toBe(2)
+  fireEvent.click(screen.getByRole('button', { name: 'End trip' }))
+  await act(async () => { answer(reply({ ...plan, warnings: ['late'] })) })
+  expect(screen.getByRole('heading', { name: 'Your options' })).toBeTruthy()
+  expect(screen.queryByText('Your location')).toBeNull()
+})
+
+it('tries a failed re-route again after a pause', async () => {
+  vi.useFakeTimers({ toFake: ['setInterval', 'clearInterval', 'Date'] })
+  const base = vi.mocked(fetch).getMockImplementation()!
+  vi.mocked(fetch).mockImplementation(async (input) => String(input).endsWith('/plan') && planCalls() > 1
+    ? reply({ detail: { code: 'routing_unavailable', message: 'The routing service is unavailable.' } }, 502) : base(input as string))
+  render(<App />)
+  await planAndSimulate()
+  await advance(1000)
+  fireEvent.click(screen.getByRole('button', { name: 'Take a wrong turn' }))
+  await readings(4)
+  expect(planCalls()).toBe(2)
+  expect(await screen.findByText('The routing service is unavailable.')).toBeTruthy()
+  await readings(10)
+  expect(planCalls()).toBe(2)
+  await advance(20_000)
+  await readings(4)
+  expect(planCalls()).toBe(3)
+})
+
+it('says so when turn-by-turn is not available for an option', async () => {
+  const leg = { mode: 'BUS', line: '6', headsign: null, color: null, from_name: 'START', to_name: 'END', start: '2026-10-17T10:00:00Z',
+    end: '2026-10-17T10:10:00Z', duration_s: 600, distance_m: 900, geometry: null, risk: null }
+  const transitOnly = { ...plan, accessible: null,
+    transit: [{ start: leg.start, end: leg.end, duration_s: 600, transfers: 0, walk_m: 0, legs: [leg], issues: [], step_free: true }] }
+  const base = vi.mocked(fetch).getMockImplementation()!
+  vi.mocked(fetch).mockImplementation(async (input) => String(input).endsWith('/plan') ? reply(transitOnly) : base(input as string))
+  render(<App />)
+  await planAndSimulate()
+  expect(screen.getByRole('alert').textContent).toMatch(/Turn-by-turn isn't available/)
+  expect(screen.queryByRole('heading', { name: 'On your way' })).toBeNull()
 })

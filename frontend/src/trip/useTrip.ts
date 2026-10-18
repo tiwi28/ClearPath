@@ -11,6 +11,7 @@ const ANNOUNCE_M = 150   // alerts appear this far ahead
 const ASK_AFTER_M = 20   // ask "was it blocked?" once this far past a spot
 const ASK_UNTIL_M = 250  // ...and stop asking once well past it
 const HAZARD_REFRESH_MS = 60_000
+const REROUTE_RETRY_MS = 20_000  // after a failed re-plan, wait this long before trying again
 const DEVICE_KEY = 'clearpath.device'
 
 export function deviceId(): string {
@@ -30,26 +31,38 @@ function speak(text: string, enabled: boolean) {
 }
 
 type Options = {
+  /** Changes with each new trip (not with a re-route), so per-trip state starts fresh. */
+  tripId: number
   route: TripRoute | null
   mode: TripMode
   profile: ProfileName
   day: string | null
-  onReroute: (from: LngLat) => void
+  /** Plan again from `from`; resolves to whether a new route was found. */
+  onReroute: (from: LngLat) => Promise<boolean>
 }
 
-export function useTrip({ route, mode, profile, day, onReroute }: Options) {
+export function useTrip({ tripId, route, mode, profile, day, onReroute }: Options) {
   const active = route !== null
   const speed = route ? Math.max(0.6, route.track.total / Math.max(route.duration_s, 1)) : 1
   const sim = useSimulation(route?.track ?? null, speed, active && mode === 'sim')
-  const gps = useGeolocation(active && mode === 'gps')
+  const gps = useGeolocation(active && mode === 'gps', tripId)
   const position = mode === 'sim' ? sim.position : gps.position
-  const [hazards, setHazards] = useState<Hazard[]>([])
-  const [answered, setAnswered] = useState<Record<string, string>>({})
+  // Each piece of state records what it belongs to, so a stale value is ignored rather than reset in an effect:
+  // alerts belong to a route (their distances are along it); answers and notices belong to a trip.
+  const [loaded, setLoaded] = useState<{ route: TripRoute; list: Hazard[] } | null>(null)
+  const [answers, setAnswers] = useState<{ trip: number; ids: Record<string, string> }>({ trip: tripId, ids: {} })
+  const [message, setMessage] = useState<{ trip: number; text: string }>({ trip: tripId, text: '' })
+  const hazards = useMemo(() => loaded && loaded.route === route ? loaded.list : [], [loaded, route])
+  const answered = answers.trip === tripId ? answers.ids : {}
+  const notice = message.trip === tripId ? message.text : ''
   const [sound, setSound] = useState(true)
-  const [notice, setNotice] = useState('')
   const offCount = useRef(0)
   const rerouting = useRef(false)
+  const retryAt = useRef(0)
   const spoken = useRef(new Set<string>())
+
+  // A new trip speaks every instruction and alert again.
+  useEffect(() => { spoken.current = new Set() }, [tripId])
 
   // Alerts ahead: fetched for each route, then refreshed so live feeds and rider reports stay current.
   useEffect(() => {
@@ -57,7 +70,7 @@ export function useTrip({ route, mode, profile, day, onReroute }: Options) {
     const pending = new AbortController()
     const load = () => getHazards({
       route: { type: 'LineString', coordinates: route.track.coords }, day, stations: route.stations, unverified: route.unverified,
-    }, pending.signal).then((list) => { if (!pending.signal.aborted) setHazards(list) }).catch(() => {})
+    }, pending.signal).then((list) => { if (!pending.signal.aborted) setLoaded({ route, list }) }).catch(() => {})
     void load()
     const timer = setInterval(load, HAZARD_REFRESH_MS)
     rerouting.current = false
@@ -86,14 +99,19 @@ export function useTrip({ route, mode, profile, day, onReroute }: Options) {
   const prompt = hazards.find((h) => h.confirmable && !answered[h.id]
     && along - h.at_m >= ASK_AFTER_M && along - h.at_m <= ASK_UNTIL_M) ?? null
 
-  // Off route for several readings in a row: plan again from here (once per route).
+  // Off route for several readings in a row: plan again from here. A failed attempt is retried after a pause.
   useEffect(() => {
-    if (!progress || !position || progress.arrived || rerouting.current) return
+    if (!progress || !position || progress.arrived || rerouting.current || Date.now() < retryAt.current) return
     offCount.current = offRouteCount(offCount.current, progress.off, mode === 'gps' ? position.accuracy : 0)
     if (offCount.current >= OFF_ROUTE_READINGS) {
       rerouting.current = true
       speak('Off route. Finding a new way.', sound)
-      onReroute(position.lnglat)
+      void onReroute(position.lnglat).then((found) => {
+        if (found) return  // the new route resets the counters
+        rerouting.current = false
+        offCount.current = 0
+        retryAt.current = Date.now() + REROUTE_RETRY_MS
+      })
     }
   }, [progress, position, mode, onReroute, sound])
 
@@ -113,14 +131,14 @@ export function useTrip({ route, mode, profile, day, onReroute }: Options) {
   async function send(kind: ReportKind, state: 'blocked' | 'clear', location: LngLat) {
     try {
       await postReport({ device_id: deviceId(), kind, state, profile, location })
-      setNotice(state === 'clear' ? 'Thanks. We marked it clear for other riders.' : 'Thanks. Other riders will see this spot.')
+      setMessage({ trip: tripId, text: state === 'clear' ? 'Thanks. We marked it clear for other riders.' : 'Thanks. Other riders will see this spot.' })
     } catch (failure) {
-      setNotice(failure instanceof Error ? failure.message : 'The report could not be sent.')
+      setMessage({ trip: tripId, text: failure instanceof Error ? failure.message : 'The report could not be sent.' })
     }
   }
 
   function answer(hazard: Hazard, state: 'blocked' | 'clear' | 'skip') {
-    setAnswered((previous) => ({ ...previous, [hazard.id]: state }))
+    setAnswers((previous) => ({ trip: tripId, ids: { ...(previous.trip === tripId ? previous.ids : {}), [hazard.id]: state } }))
     if (state === 'skip') return
     const kind: ReportKind = hazard.kind === 'closure' ? 'construction' : hazard.kind === 'elevator' ? 'elevator_out' : 'blocked_sidewalk'
     void send(kind, state, hazard.lnglat)
@@ -131,7 +149,7 @@ export function useTrip({ route, mode, profile, day, onReroute }: Options) {
   }
 
   return {
-    position, progress, hazards, ahead, banner, prompt, answer, report, notice, dismissNotice: () => setNotice(''),
+    position, progress, hazards, ahead, banner, prompt, answer, report, notice, dismissNotice: () => setMessage({ trip: tripId, text: '' }),
     sound, setSound, sim, gpsError: gps.error,
   }
 }

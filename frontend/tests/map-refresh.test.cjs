@@ -24,6 +24,9 @@ test('Fast Refresh waits for replacement map sources and restores current data',
     on(name, callback) { this.handlers[name] = callback }
     addSource(name) { this.sources[name] = { setData(data) { this.data = data } } }
     addLayer() {}
+    loadImage() { return Promise.resolve({ data: {} }) }
+    addImage() {}
+    getLayer() { return undefined }
     getStyle() { return { layers: [{ id: 'labels', type: 'symbol' }] } }
     setLayoutProperty() {}
     getCanvas() { return { style: {} } }
@@ -57,7 +60,7 @@ test('Fast Refresh waits for replacement map sources and restores current data',
       : name === '../format' ? { RISK_STOPS: [[0, '#fff'], [1, '#000']] }
       : name === '../mapData' ? mapData
       : name.endsWith('?worker&url') ? { default: 'worker.mjs' }
-        : name.endsWith('.css') ? {} : require(name)
+        : name.endsWith('.css') ? {} : name.endsWith('.png') ? { default: name } : require(name)
     vm.runInThisContext(`(function(require,module,exports){${compiled}\n})`)(requireDependency, module, module.exports)
     return module.exports
   }
@@ -87,6 +90,18 @@ test('Fast Refresh waits for replacement map sources and restores current data',
     await React.act(async () => maps[1].handlers['style.load']())
     assert.deepEqual(maps[1].getSource('barriers').data.features, props.barriers.features)
     assert.deepEqual(maps[1].getSource('route').data.features[0].geometry, props.plan.accessible.geometry)
+
+    // The typical route is drawn for comparison, hidden while a trip runs, and drawn again after it.
+    const ideal = { geometry: { type: 'LineString', coordinates: [[-79.3832, 43.6534], [-79.3815, 43.6561]] }, stairs: [] }
+    const withIdeal = { ...props, plan: { ...props.plan, ideal } }
+    const render = (extra) => React.act(async () => root.render(React.createElement(next.default, { ...withIdeal, ...extra })))
+    const idealDrawn = () => maps[1].getSource('ideal').data.type === 'Feature'
+    await render({ trip: null })
+    assert.equal(idealDrawn(), true)
+    await render({ trip: { position: null, travelled: [], hazards: [] } })
+    assert.equal(idealDrawn(), false)
+    await render({ trip: null })
+    assert.equal(idealDrawn(), true)
   } finally {
     await React.act(async () => root.unmount())
     dom.window.close()

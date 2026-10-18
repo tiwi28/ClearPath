@@ -4,6 +4,9 @@ import type { GeoJSONSource, Map as MapInstance, StyleSpecification } from 'mapl
 import workerUrl from 'maplibre-gl/dist/maplibre-gl-worker.mjs?worker&url'
 import type { FeatureCollection } from 'geojson'
 import 'maplibre-gl/dist/maplibre-gl.css'
+import elevatorWorkingUrl from '../assets/elevator-working.png'
+import elevatorOutUrl from '../assets/elevator-out.png'
+import elevatorNoneUrl from '../assets/elevator-none.png'
 import { RISK_STOPS } from '../format'
 import { line, selectedLines, stationStatus } from '../mapData'
 import type { Barriers, Choice, Hazard, LngLat, Plan, RiskMap, RiskProperties, Station } from '../types'
@@ -57,6 +60,11 @@ export default function MapView(props: Props) {
   const choice = props.choice ?? 'accessible'
   const layers = props.layers ?? allLayers
   const route = useMemo(() => selectedLines(props.plan, choice), [props.plan, choice])
+  const trip = props.trip ?? null
+  const onTrip = trip !== null
+  const position = trip?.position ?? null
+  const travelledLine = trip?.travelled
+  const hazards = trip?.hazards
 
   useEffect(() => { callbacks.current = props }, [props])
 
@@ -68,6 +76,7 @@ export default function MapView(props: Props) {
       map = new maplibregl.Map({
         container: container.current, center: [-79.383, 43.658], zoom: 13.2,
         minZoom: 9, maxZoom: 19, maxBounds: [[-79.75, 43.5], [-79, 44]], style: MAP_STYLE,
+        attributionControl: { customAttribution: '<a href="https://icons8.com" target="_blank" rel="noreferrer">Icons by Icons8</a>' },
       })
     } catch {
       queueMicrotask(() => { if (!cancelled) setError('The map could not load. Search addresses to plan your trip; directions appear in the panel.') })
@@ -79,6 +88,15 @@ export default function MapView(props: Props) {
       const bounds = map.getBounds()
       callbacks.current.onViewport([bounds.getWest(), bounds.getSouth(), bounds.getEast(), bounds.getNorth()]
         .map((value) => value.toFixed(6)).join(','))
+    }
+    const clearHoverOn = (id: string) => map.on('mouseleave', id, () => { map.getCanvas().style.cursor = ''; callbacks.current.onHover?.(null) })
+    const hoverStations = (id: string) => {
+      map.on('mousemove', id, (event) => {
+        const index = Number(event.features?.[0]?.properties?.index)
+        const station = callbacks.current.stations?.[index]
+        if (station) { map.getCanvas().style.cursor = 'pointer'; callbacks.current.onHover?.({ kind: 'station', station }) }
+      })
+      clearHoverOn(id)
     }
     let overlaysAdded = false
     let fellBack = false
@@ -119,10 +137,19 @@ export default function MapView(props: Props) {
         paint: { 'line-color': '#b42318', 'line-width': 7 } })
       map.addLayer({ id: 'stairs-points', type: 'circle', source: 'stairs', filter: ['==', ['geometry-type'], 'Point'],
         paint: { 'circle-radius': 7, 'circle-color': '#b42318', 'circle-stroke-color': '#fff', 'circle-stroke-width': 2 } })
-      map.addLayer({ id: 'stations', type: 'circle', source: 'stations', minzoom: 13,
-        paint: { 'circle-radius': ['interpolate', ['linear'], ['zoom'], 11, 4, 15, 8],
-          'circle-color': ['match', ['get', 'status'], 'ok', '#1f7a4d', 'outage', '#b42318', '#6b6862'],
-          'circle-stroke-color': '#fff', 'circle-stroke-width': 2 } })
+      // Station icons: green elevator working, red elevator out, grey no elevator. Added once the images load.
+      void Promise.all([elevatorWorkingUrl, elevatorOutUrl, elevatorNoneUrl].map((url) => map.loadImage(url))).then(([working, out, none]) => {
+        if (cancelled || map.getLayer('stations')) return
+        map.addImage('elevator-ok', working.data, { pixelRatio: 2 })
+        map.addImage('elevator-outage', out.data, { pixelRatio: 2 })
+        map.addImage('elevator-none', none.data, { pixelRatio: 2 })
+        map.addLayer({ id: 'stations', type: 'symbol', source: 'stations', minzoom: 13,
+          layout: { 'icon-image': ['match', ['get', 'status'], 'outage', 'elevator-outage', 'none', 'elevator-none', 'elevator-ok'],
+            'icon-size': ['interpolate', ['linear'], ['zoom'], 13, 0.4, 16, 0.6],
+            'icon-allow-overlap': true, 'icon-ignore-placement': true,
+            visibility: callbacks.current.layers?.stations === false ? 'none' : 'visible' } }, 'trip-done')
+        hoverStations('stations')
+      }).catch(() => setError('Station icons could not load. Address search and directions still work.'))
       map.addLayer({ id: 'trip-done', type: 'line', source: 'trip-done', layout: { 'line-cap': 'round', 'line-join': 'round' },
         paint: { 'line-color': '#9a978f', 'line-width': 6 } })
       map.addLayer({ id: 'hazards', type: 'circle', source: 'hazards',
@@ -137,14 +164,7 @@ export default function MapView(props: Props) {
       const cell = event.features?.[0]?.properties as RiskProperties | undefined
       if (cell) callbacks.current.onHover?.({ kind: 'risk', cell: { cell: cell.cell, risk: Number(cell.risk), reports_last_year: Number(cell.reports_last_year) } })
     })
-    map.on('mousemove', 'stations', (event) => {
-      const index = Number(event.features?.[0]?.properties?.index)
-      const station = callbacks.current.stations?.[index]
-      if (station) { map.getCanvas().style.cursor = 'pointer'; callbacks.current.onHover?.({ kind: 'station', station }) }
-    })
-    for (const id of ['risk-fill', 'stations']) {
-      map.on('mouseleave', id, () => { map.getCanvas().style.cursor = ''; callbacks.current.onHover?.(null) })
-    }
+    clearHoverOn('risk-fill')
     map.on('error', () => {
       if (!overlaysAdded && !fellBack) { fellBack = true; map.setStyle(FALLBACK_STYLE); return }
       setError('Some map layers could not load. Address search and directions still work.')
@@ -177,7 +197,7 @@ export default function MapView(props: Props) {
     const map = mapRef.current
     if (!map || readyMap !== map) return
     for (const [layer, ids] of Object.entries(LAYER_GROUPS) as [keyof Layers, string[]][]) {
-      ids.forEach((id) => map.setLayoutProperty(id, 'visibility', layers[layer] ? 'visible' : 'none'))
+      ids.forEach((id) => { if (map.getLayer(id)) map.setLayoutProperty(id, 'visibility', layers[layer] ? 'visible' : 'none') })
     }
   }, [readyMap, layers])
 
@@ -185,7 +205,6 @@ export default function MapView(props: Props) {
     const map = mapRef.current
     if (!map || readyMap !== map) return
     const ideal = props.plan?.ideal
-    const onTrip = Boolean(callbacks.current.trip)
     ;(map.getSource('ideal') as GeoJSONSource).setData(ideal && choice !== 'ideal' && !onTrip ? line(ideal.geometry) : empty)
     ;(map.getSource('stairs') as GeoJSONSource).setData({ type: 'FeatureCollection', features: (ideal?.stairs ?? []).flatMap((stairs) => [
       line(stairs),
@@ -201,7 +220,7 @@ export default function MapView(props: Props) {
       const padding = narrow ? { top: 60, right: 50, bottom: 120, left: 30 } : { top: 70, right: 70, bottom: 60, left: 400 }
       map.fitBounds(bounds, { padding, maxZoom: 17, duration: 400 })
     }
-  }, [readyMap, props.plan, route, choice])
+  }, [readyMap, props.plan, route, choice, onTrip])
 
   useEffect(() => {
     const map = mapRef.current
@@ -217,19 +236,21 @@ export default function MapView(props: Props) {
     return () => { markers.forEach((marker) => marker.remove()) }
   }, [readyMap, props.start, props.destination])
 
-  const trip = props.trip ?? null
-  const onTrip = trip !== null
-  const position = trip?.position ?? null
-
   useEffect(() => {
     const map = mapRef.current
     if (!map || readyMap !== map) return
-    ;(map.getSource('trip-done') as GeoJSONSource).setData(trip && trip.travelled.length > 1
-      ? { type: 'FeatureCollection', features: [line({ type: 'LineString', coordinates: trip.travelled })] } : empty)
-    ;(map.getSource('hazards') as GeoJSONSource).setData({ type: 'FeatureCollection', features: (trip?.hazards ?? []).map((hazard) => ({
+    ;(map.getSource('trip-done') as GeoJSONSource).setData(travelledLine && travelledLine.length > 1
+      ? { type: 'FeatureCollection', features: [line({ type: 'LineString', coordinates: travelledLine })] } : empty)
+  }, [readyMap, travelledLine])
+
+  // Alerts change about once a minute, so they are not redrawn on every position update.
+  useEffect(() => {
+    const map = mapRef.current
+    if (!map || readyMap !== map) return
+    ;(map.getSource('hazards') as GeoJSONSource).setData({ type: 'FeatureCollection', features: (hazards ?? []).map((hazard) => ({
       type: 'Feature', geometry: { type: 'Point', coordinates: hazard.lnglat }, properties: { severity: hazard.severity, label: hazard.label },
     })) })
-  }, [readyMap, trip])
+  }, [readyMap, hazards])
 
   // The rider's dot, with a pointer for the direction of travel.
   const rider = useRef<maplibregl.Marker | null>(null)

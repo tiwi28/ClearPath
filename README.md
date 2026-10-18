@@ -48,10 +48,10 @@ route (40/120/300 m from the failing end) until a route without stairs exists. I
 remaining stretch as **not confirmed** (dotted orange) instead of failing.
 
 **Map layers** (top left): sidewalk barrier forecast (hexagons), TTC station elevators
-(green working, orange out, grey none), known barriers, and the forecast day (today or
+(green icon: working, red icon: out, grey icon: no elevator), known barriers, and the forecast day (today or
 the next two days). Point at a hexagon or station for details.
 
-**Developer details** holds request/response JSON and barrier GeoJSON. Server
+**Debugging:** API requests and responses are in the browser's network tab. Server
 tracebacks: `docker compose logs -f api`.
 
 ## Live data sources

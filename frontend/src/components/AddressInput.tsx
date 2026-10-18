@@ -59,11 +59,14 @@ export default function AddressInput({ id, label, field, onChange, onFocus }: Pr
       placeholder="Search a Toronto address or place"
       role="combobox" aria-expanded={open} aria-controls={listId} aria-autocomplete="list"
       aria-activedescendant={active >= 0 ? `${listId}-${active}` : undefined}
-      onFocus={onFocus} onKeyDown={keyDown} onBlur={() => setPlaces([])}
+      onFocus={onFocus} onKeyDown={keyDown}
+      // Clearing the query also cancels a search still in flight, so suggestions never open on a field you've left.
+      onBlur={() => { setQuery(null); setPlaces([]) }}
       onChange={(event) => {
         const text = event.target.value
         onChange({ text, point: parsePoint(text) })
         setQuery(text)
+        setSearchError('')
         if (text.trim().length < 3) setPlaces([])
       }} />
     {open && <ul id={listId} role="listbox" aria-label={`${label} suggestions`} className="suggestions">

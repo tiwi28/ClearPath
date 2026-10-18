@@ -1,6 +1,9 @@
 import { formatDate, forecastDays, percent, RISK_STOPS } from '../format'
 import type { RiskMap, Station } from '../types'
 import type { Hover, Layers } from './MapView'
+import elevatorWorkingUrl from '../assets/elevator-working.png'
+import elevatorOutUrl from '../assets/elevator-out.png'
+import elevatorNoneUrl from '../assets/elevator-none.png'
 
 type LayerProps = {
   layers: Layers
@@ -54,9 +57,9 @@ export function Legend({ risk, riskError, hover, layers }: LegendProps) {
       <li><span className="key key-stairs" />Stairs</li>
       <li><span className="key key-gap" />Not confirmed</li>
       {layers.stations && <>
-        <li><span className="dot dot-ok" />Elevator</li>
-        <li><span className="dot dot-outage" />Elevator out</li>
-        <li><span className="dot dot-none" />No elevator</li>
+        <li><img className="legend-icon" src={elevatorWorkingUrl} alt="" width="16" height="16" />Elevator</li>
+        <li><img className="legend-icon" src={elevatorOutUrl} alt="" width="16" height="16" />Elevator out</li>
+        <li><img className="legend-icon" src={elevatorNoneUrl} alt="" width="16" height="16" />No elevator</li>
       </>}
     </ul>
   </aside>

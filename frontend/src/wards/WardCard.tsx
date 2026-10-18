@@ -93,31 +93,20 @@ export default function WardCard({ card }: { card: Card }) {
           {card.top_places.length ? <ol className="places">
             {card.top_places.map((place) => <li key={place.place}><span>{place.place}</span><span className="places-n">{place.reports}</span></li>)}
           </ol> : <p className="hint">Most reports in this ward don't name an intersection.</p>}
-          <h4>Still open</h4>
-          <p><b className="open-share">{Math.round(card.open_share_12m * 100)}%</b> of the past year's reports are not marked completed yet.</p>
+          <p className="open-share-line"><b className="open-share">{Math.round(card.open_share_12m * 100)}%</b> of the past year's reports are not marked completed yet.</p>
         </div>
       </div>
     </section>
 
-    <div className="ward-foot">
-      <section className="ward-section ward-read" aria-labelledby="read-title">
-        <h3 id="read-title">How to read this</h3>
-        <ul>
-          <li>311 numbers count what people reported, not every problem. Areas where fewer people report can look better than they are.</li>
-          <li>The City publishes 311 data monthly, so the newest reports can be up to 40 days old.</li>
-          <li>The barrier forecast is a likelihood from past reports and weather. It is not a confirmed problem.</li>
-        </ul>
-      </section>
-      <section className="ward-section" aria-labelledby="sources-title">
-        <h3 id="sources-title">Sources</h3>
-        <ul className="sources">
-          <li><a href={card.sources['311']} target="_blank" rel="noreferrer">Toronto Open Data: 311 service requests</a></li>
-          <li><a href={card.sources.wards} target="_blank" rel="noreferrer">Toronto Open Data: City wards</a></li>
-          <li><a href={card.sources.closures} target="_blank" rel="noreferrer">Toronto Open Data: road restrictions</a></li>
-          <li><a href={card.sources.ttc} target="_blank" rel="noreferrer">TTC service advisories</a></li>
-          <li><a href={card.sources.forecast} target="_blank" rel="noreferrer">Open-Meteo weather, used by the ClearPath forecast</a></li>
-        </ul>
-      </section>
-    </div>
+    <section className="ward-section" aria-labelledby="sources-title">
+      <h3 id="sources-title">Sources</h3>
+      <ul className="sources">
+        <li><a href={card.sources['311']} target="_blank" rel="noreferrer">Toronto Open Data: 311 service requests</a></li>
+        <li><a href={card.sources.wards} target="_blank" rel="noreferrer">Toronto Open Data: City wards</a></li>
+        <li><a href={card.sources.closures} target="_blank" rel="noreferrer">Toronto Open Data: road restrictions</a></li>
+        <li><a href={card.sources.ttc} target="_blank" rel="noreferrer">TTC service advisories</a></li>
+        <li><a href={card.sources.forecast} target="_blank" rel="noreferrer">Open-Meteo weather, used by the ClearPath forecast</a></li>
+      </ul>
+    </section>
   </article>
 }
